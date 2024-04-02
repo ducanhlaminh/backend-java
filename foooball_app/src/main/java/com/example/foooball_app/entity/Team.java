@@ -8,22 +8,36 @@ import jakarta.persistence.Id;
 @Entity
 public class Team {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String team_id;
-    private String team_name;
-    public String getId() {
-        return team_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int teamId;
+
+    private String teamName;
+
+    private String country;
+
+    // Getters and setters
+
+    public int getTeamId() {
+        return teamId;
     }
 
-
-    public String getTeam() {
-        return team_name;
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
     }
 
-    public void setId(String id) {
-        this.team_id = id;
+    public String getTeamName() {
+        return teamName;
     }
-    public void setTeam(String team) {
-        this.team_name = team;
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

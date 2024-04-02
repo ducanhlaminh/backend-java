@@ -1,4 +1,4 @@
-package com.example.foooball_app;
+package com.example.foooball_app.service;
 import java.util.List;
 import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.repository.TeamRepository;
@@ -12,7 +12,7 @@ public class TeamService {
     private TeamRepository TeamRepository;
     public Team createReq(TeamRequest req) {
         Team team = new Team();
-        team.setTeam(req.getTeam_name());
+
         return TeamRepository.save(team);
     }
     public List<Team> getAll() {
