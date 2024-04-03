@@ -1,13 +1,19 @@
 package com.example.foooball_app.request;
 
-public class TeamRequest {
-    private String team_name;
+import jakarta.validation.constraints.Pattern;
 
-    public String getTeam_name() {
-        return team_name;
+public class TeamRequest {
+
+    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Tên chỉ được chứa ký tự chữ cái và số")
+    private String teamName;
+    @Pattern(regexp = "^[a-zA-Z]*$", message = "Chỉ chấp nhận các ký tự chữ cái")
+    private String country;
+
+    public String getTeamName() {
+        return teamName;
     }
 
-    public void setTeam_name(String team_name) {
-        this.team_name = team_name;
+    public String getCountry() {
+        return country;
     }
 }

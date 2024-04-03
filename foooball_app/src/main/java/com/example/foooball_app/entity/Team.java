@@ -1,15 +1,14 @@
 package com.example.foooball_app.entity;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
 @Entity
+@Table(name = "teams")
 public class Team {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int teamId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int team_id;
 
     private String teamName;
 
@@ -18,11 +17,11 @@ public class Team {
     // Getters and setters
 
     public int getTeamId() {
-        return teamId;
+        return team_id;
     }
 
     public void setTeamId(int teamId) {
-        this.teamId = teamId;
+        this.team_id = teamId;
     }
 
     public String getTeamName() {
