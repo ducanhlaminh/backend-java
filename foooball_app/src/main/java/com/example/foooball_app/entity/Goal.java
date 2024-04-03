@@ -3,6 +3,9 @@ import java.sql.Time;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Table(name = "goals")
 public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
