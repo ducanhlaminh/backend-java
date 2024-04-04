@@ -1,7 +1,10 @@
 package com.example.foooball_app.exception;
 
 public enum ErrorCode {
-    USER_EXISTED(1001,"USER EXISTED");
+    USER_EXISTED(1001,"USER EXISTED"),
+
+    USER_UNEXISTED(2,"Không tìm thấy người dùng này");
+
     ErrorCode(int code, String message) {
         this.code = code;
         this.message = message;

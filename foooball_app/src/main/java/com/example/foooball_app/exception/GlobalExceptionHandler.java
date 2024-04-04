@@ -1,5 +1,5 @@
 package com.example.foooball_app.exception;
-import com.example.foooball_app.request.ApiResponse;
+import com.example.foooball_app.dto.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;

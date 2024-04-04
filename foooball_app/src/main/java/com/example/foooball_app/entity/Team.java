@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int team_id;
+    private int teamId;
 
     private String teamName;
 
@@ -17,11 +17,11 @@ public class Team {
     // Getters and setters
 
     public int getTeamId() {
-        return team_id;
+        return teamId;
     }
 
     public void setTeamId(int teamId) {
-        this.team_id = teamId;
+        this.teamId = teamId;
     }
 
     public String getTeamName() {
