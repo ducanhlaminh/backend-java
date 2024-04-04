@@ -4,17 +4,20 @@ import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.exception.AppError;
 import com.example.foooball_app.exception.ErrorCode;
 import com.example.foooball_app.repository.TeamRepository;
-import com.example.foooball_app.request.TeamRequest;
+import com.example.foooball_app.dto.request.TeamRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.logging.Logger;
+import java.util.stream.Collectors;
 @Service
 public class TeamService {
     @Autowired
     private TeamRepository TeamRepository;
 
-    private static final Logger logger = Logger.getLogger(TeamService.class.getName());
-
+    public List<Team> getTeamWithService(String country , String teamName){
+        List<Team> listTeam;
+         listTeam = TeamRepository.findAll();
+         return filter(listTeam,country,teamName) ;
+    }
     public Team createTeamService(TeamRequest req) {
         Team team = new Team();
         team.setTeamName(req.getTeamName());
@@ -26,7 +29,29 @@ public class TeamService {
         }
         return TeamRepository.save(team);
     }
-    public List<Team> getAll() {
-        return TeamRepository.findAll();
+    public List<Team> filter(List<Team> teams,String country, String teamName) {
+        List<Team> filteredTeams;
+        filteredTeams = teams.stream()
+                .filter(team -> (country == null || team.getCountry().toLowerCase().equals(country)))
+                .filter(team -> (teamName == null || team.getTeamName().toLowerCase().equals(teamName)))
+                .collect(Collectors.toList());
+
+        return filteredTeams;
+    }
+    public Team updateTeam(int id ,TeamRequest teamData ) {
+        Team existingTeam = TeamRepository.findById(id).orElseThrow(()-> new AppError(ErrorCode.USER_UNEXISTED));
+            if(teamData.getTeamName()!=null) {
+                existingTeam.setTeamName(teamData.getTeamName());
+            }
+            if(teamData.getCountry()!=null) {
+               existingTeam.setCountry(teamData.getCountry());
+           }
+            return TeamRepository.save(existingTeam);
+    }
+    public boolean deleteTeam(int id  ) {
+            TeamRepository.findById(id).orElseThrow(()-> new AppError(ErrorCode.USER_UNEXISTED));
+            TeamRepository.deleteById(id);
+            return true;
+
     }
 }
