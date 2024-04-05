@@ -13,7 +13,7 @@ public class Sponsorship {
 
     private Sponsor sponsor;
 
-    private Team team;
+//    private Team team;
 
     private int tournament_id;
 

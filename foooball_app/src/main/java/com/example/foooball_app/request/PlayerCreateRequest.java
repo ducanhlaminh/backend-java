@@ -13,11 +13,9 @@ public class PlayerCreateRequest {
 
     private Date dateOfBirth;
 
-    private Team team;
+//    private Team team;
 
-    public String getPlayerName() {
-        return playerName;
-    }
+    public String getPlayerName() { return playerName; }
 
     public String getNationality() {
         return nationality;
@@ -31,7 +29,5 @@ public class PlayerCreateRequest {
         return dateOfBirth;
     }
 
-    public Team getTeam() {
-        return team;
-    }
+//    public Team getTeam() { return team; }
 }

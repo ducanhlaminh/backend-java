@@ -20,10 +20,10 @@ public class Match {
     private int tournament_id;
 
 
-    private Team homeTeam;
-
-
-    private Team awayTeam;
+//    private Team homeTeam;
+//
+//
+//    private Team awayTeam;
 
     // Getters and setters
 }
