@@ -3,6 +3,7 @@ package com.example.foooball_app.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+@Entity
 @Table(name = "players")
 public class Player {
     @Id
