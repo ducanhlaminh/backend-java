@@ -1,7 +1,8 @@
 package com.example.foooball_app.service;
 import java.util.List;
-import com.example.foooball_app.entity.Team;
+
 import com.example.foooball_app.exception.AppError;
+import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.exception.ErrorCode;
 import com.example.foooball_app.repository.TeamRepository;
 import com.example.foooball_app.dto.request.TeamRequest;
