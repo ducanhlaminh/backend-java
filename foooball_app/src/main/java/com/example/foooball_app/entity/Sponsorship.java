@@ -15,9 +15,9 @@ public class Sponsorship {
     @JoinColumn(name = "sponsor_id" ,referencedColumnName = "sponsor_id")
     @JsonBackReference
     private Sponsor sponsor;
-    @OneToMany(mappedBy = "sponsorships" , cascade = CascadeType.ALL)
-    @JsonBackReference
-    private Set<Team> teams;
+//    @OneToMany(mappedBy = "sponsorships" , cascade = CascadeType.ALL)
+//    @JsonBackReference
+//    private Set<Team> teams;
 
     private int tournament_id;
 
@@ -46,13 +46,13 @@ public class Sponsorship {
         this.sponsor = sponsor;
     }
 
-    public Set<Team> getTeams() {
-        return teams;
-    }
-
-    public void setTeams(Set<Team> teams) {
-        this.teams = teams;
-    }
+//    public Set<Team> getTeams() {
+//        return teams;
+//    }
+//
+//    public void setTeams(Set<Team> teams) {
+//        this.teams = teams;
+//    }
 
     public int getTournament_id() {
         return tournament_id;

@@ -1,8 +1,11 @@
 package com.example.foooball_app.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
+@EntityScan
 @Table(name = "players")
 public class Player {
     @Id
@@ -17,7 +20,6 @@ public class Player {
 
     private Date dateOfBirth;
 
-    private Team team;
 
     // Getters and setters
 
@@ -61,11 +63,5 @@ public class Player {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Team getTeam() {
-        return team;
-    }
 
-    public void setTeam(Team team) {
-        this.team = team;
-    }
 }
