@@ -11,13 +11,13 @@ public class Sponsorship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int sponsorshipId;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "sponsor_id" ,referencedColumnName = "sponsor_id")
-    @JsonBackReference
-    private Sponsor sponsor;
-    @OneToMany(mappedBy = "sponsorships" , cascade = CascadeType.ALL)
-    @JsonBackReference
-    private Set<Team> teams;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "sponsor_id" ,referencedColumnName = "sponsor_id")
+//    @JsonBackReference
+//    private Sponsor sponsor;
+//    @OneToMany(mappedBy = "sponsorships" , cascade = CascadeType.ALL)
+//    @JsonBackReference
+//    private Set<Team> teams;
 
     private int tournament_id;
 
@@ -38,21 +38,21 @@ public class Sponsorship {
         this.sponsorshipId = sponsorshipId;
     }
 
-    public Sponsor getSponsor() {
-        return sponsor;
-    }
-
-    public void setSponsor(Sponsor sponsor) {
-        this.sponsor = sponsor;
-    }
-
-    public Set<Team> getTeams() {
-        return teams;
-    }
-
-    public void setTeams(Set<Team> teams) {
-        this.teams = teams;
-    }
+//    public Sponsor getSponsor() {
+//        return sponsor;
+//    }
+//
+//    public void setSponsor(Sponsor sponsor) {
+//        this.sponsor = sponsor;
+//    }
+//
+//    public Set<Team> getTeams() {
+//        return teams;
+//    }
+//
+//    public void setTeams(Set<Team> teams) {
+//        this.teams = teams;
+//    }
 
     public int getTournament_id() {
         return tournament_id;
