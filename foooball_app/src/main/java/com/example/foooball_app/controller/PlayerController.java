@@ -2,6 +2,7 @@ package com.example.foooball_app.controller;
 
 import com.example.foooball_app.entity.Player;
 import com.example.foooball_app.request.PlayerCreateRequest;
+import com.example.foooball_app.request.PlayerUpdateRequest;
 import com.example.foooball_app.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,5 +27,10 @@ public class PlayerController {
     @GetMapping("/players/{playerId}")
     Player getPlayer(@PathVariable("playerId") int playerId){
         return playerService.getPlayer(playerId);
+    }
+
+    @PutMapping("/players/{playerId}")
+    Player updatePlayer(@PathVariable("playerId") int id, @RequestBody PlayerUpdateRequest req){
+        return playerService.updatePlayer(id, req);
     }
 }

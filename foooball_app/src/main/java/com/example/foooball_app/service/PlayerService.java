@@ -3,6 +3,7 @@ package com.example.foooball_app.service;
 import com.example.foooball_app.entity.Player;
 import com.example.foooball_app.repository.PlayerRepository;
 import com.example.foooball_app.request.PlayerCreateRequest;
+import com.example.foooball_app.request.PlayerUpdateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,16 @@ public class PlayerService {
 
     public Player getPlayer(int id){
         return playerRepository.findById(id).orElseThrow(() -> new RuntimeException("Player not found"));
+    }
+
+    public Player updatePlayer(int playerId, PlayerUpdateRequest req){
+        Player player = getPlayer(playerId);
+
+        player.setPlayerName(req.getPlayerName());
+        player.setNationality(req.getNationality());
+        player.setPosition(req.getPosition());
+        player.setDateOfBirth(req.getDateOfBirth());
+
+        return playerRepository.save(player);
     }
 }
