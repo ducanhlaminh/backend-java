@@ -1,5 +1,6 @@
 package com.example.foooball_app.controller;
 import com.example.foooball_app.dto.response.ApiResponse;
+import com.example.foooball_app.entity.Sponsorship;
 import com.example.foooball_app.service.TeamService;
 import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.dto.request.TeamRequest;
@@ -24,6 +25,12 @@ public class TeamController {
     ApiResponse<List<Team>> getTeam(@RequestParam(required = false) String country , @RequestParam(required = false)  String teamName   ){
         ApiResponse<List<Team>> apiResponse = new ApiResponse<>();
         apiResponse.setResult(teamService.getTeamWithService(country,teamName));
+        return apiResponse;
+    }
+    @GetMapping("/teams/sponsor/{team_id}")
+    ApiResponse<List<Sponsorship>> getTeam(@PathVariable int team_id   ){
+        ApiResponse<List<Sponsorship>> apiResponse = new ApiResponse<>();
+        apiResponse.setResult(teamService.getSponsorOfTeam(team_id));
         return apiResponse;
     }
     @PutMapping("/teams/{id}")

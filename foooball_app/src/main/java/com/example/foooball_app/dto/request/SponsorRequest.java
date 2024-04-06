@@ -1,32 +1,79 @@
 package com.example.foooball_app.dto.request;
 
+import com.example.foooball_app.entity.Sponsorship;
 import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.entity.Tournament;
 import jakarta.validation.constraints.Pattern;
 
+import java.util.Date;
+
 public class SponsorRequest {
     private int id;
     private String sponsorName;
-    @Pattern(regexp = "^[a-zA-Z\\\\s]+$", message = "Chỉ chấp nhận các ký tự chữ cái")
     private String sponsorType;
     private String country;
-    private Team team;
-    private Tournament tournament;
+    private int teamId;
+    private int tournamentId;
+    private Date startDate;
+    private Date endDate;
+    private Sponsorship sponsorship;
+    private int sponsorshipAmount;
+    private int sponsorshipId;
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public int getSponsorshipId() {
+        return sponsorshipId;
     }
 
-    public void setTournament(Tournament tournament) {
-        this.tournament = tournament;
+    public void setSponsorshipId(int sponsorshipId) {
+        this.sponsorshipId = sponsorshipId;
     }
 
-    public Team getTeam() {
-        return team;
+    public Sponsorship getSponsorship() {
+        return sponsorship;
     }
 
-    public Tournament getTournament() {
-        return tournament;
+    public void setSponsorship(Sponsorship sponsorship) {
+        this.sponsorship = sponsorship;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public int getSponsorshipAmount() {
+        return sponsorshipAmount;
+    }
+
+    public void setSponsorshipAmount(int sponsorshipAmount) {
+        this.sponsorshipAmount = sponsorshipAmount;
+    }
+
+    public int getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
+    }
+
+    public int getTournamentId() {
+        return tournamentId;
+    }
+
+    public void setTournamentId(int tournamentId) {
+        this.tournamentId = tournamentId;
     }
 
     public int getId() {
