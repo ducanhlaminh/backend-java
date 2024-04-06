@@ -33,4 +33,10 @@ public class PlayerController {
     Player updatePlayer(@PathVariable("playerId") int id, @RequestBody PlayerUpdateRequest req){
         return playerService.updatePlayer(id, req);
     }
+
+    @DeleteMapping("/players/{playerId}")
+    String deletePlayer(@PathVariable("playerId") int playerId){
+        playerService.deletePlayer(playerId);
+        return "Player has been deleted";
+    }
 }
