@@ -7,6 +7,15 @@ public class TeamRequest {
     private String teamName;
     @Pattern(regexp = "^[a-zA-Z\\\\s]+$", message = "Chỉ chấp nhận các ký tự chữ cái")
     private String country;
+    private int coach_id;
+
+    public int getCoach_id() {
+        return coach_id;
+    }
+
+    public void setCoach_id(int coach_id) {
+        this.coach_id = coach_id;
+    }
 
     public String getTeamName() {
         return teamName;

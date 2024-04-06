@@ -12,7 +12,7 @@ public class Ranking {
 
     private int tournament_id;
 
-    private Team team;
+//    private Team team;
 
     private int points;
 

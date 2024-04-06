@@ -1,7 +1,8 @@
 package com.example.foooball_app.service;
 import java.util.List;
-import com.example.foooball_app.entity.Team;
+
 import com.example.foooball_app.exception.AppError;
+import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.exception.ErrorCode;
 import com.example.foooball_app.repository.TeamRepository;
 import com.example.foooball_app.dto.request.TeamRequest;
@@ -22,6 +23,7 @@ public class TeamService {
         Team team = new Team();
         team.setTeamName(req.getTeamName());
         team.setCountry(req.getCountry());
+        team.setCoach_id(req.getCoach_id());
 
 
         if(TeamRepository.existsByTeamName(team.getTeamName())) {
@@ -54,4 +56,5 @@ public class TeamService {
             return true;
 
     }
+
 }
