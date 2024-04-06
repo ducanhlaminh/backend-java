@@ -5,7 +5,7 @@ public class CoachRequest {
 
     private String country;
 
-    private String team;
+//    private String team;
 
     private Integer yearsOfExperience;
 
@@ -19,13 +19,13 @@ public class CoachRequest {
         this.fullName = fullName;
     }
 
-    public String getTeam() {
-        return team;
-    }
-
-    public void setTeam(String team) {
-        this.team = team;
-    }
+//    public String getTeam() {
+//        return team;
+//    }
+//
+//    public void setTeam(String team) {
+//        this.team = team;
+//    }
 
     public String getCountry() {
         return country;

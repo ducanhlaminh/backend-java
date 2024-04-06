@@ -1,13 +1,16 @@
 package com.example.foooball_app.request;
 
+import javax.xml.crypto.Data;
+import java.sql.Date;
+
 public class TournamentRequest {
     private String tournamentName;
 
-    private String startDate;
+    private Date startDate;
 
-    private String endDate;
+    private Date endDate;
 
-    private String team;
+//    private String team;
 
 
     public String getTournamentName() {
@@ -18,27 +21,27 @@ public class TournamentRequest {
         this.tournamentName = tournamentName;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
-    public String getTeam() {
-        return team;
-    }
-
-    public void setTeam(String team) {
-        this.team = team;
-    }
+//    public String getTeam() {
+//        return team;
+//    }
+//
+//    public void setTeam(String team) {
+//        this.team = team;
+//    }
 }
