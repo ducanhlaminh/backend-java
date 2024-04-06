@@ -1,51 +1,88 @@
 package com.example.foooball_app.controller;
 
-
-import com.example.foooball_app.service.CoachService;
+import com.example.foooball_app.dto.response.ApiResponse;
+import com.example.foooball_app.dto.request.CoachRequest;
 import com.example.foooball_app.entity.Coach;
-import com.example.foooball_app.request.CoachRequest;
+import com.example.foooball_app.service.CoachService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
+
+@Slf4j
 @RestController
-@RequestMapping("/api/coaches")
+@RequestMapping("/coaches")
 public class CoachController {
+
     @Autowired
     private CoachService coachService;
 
-    @GetMapping
-    public List<Coach> getAllCoaches() {
-        return coachService.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public Coach getCoachById(@PathVariable Long id) {
-        return coachService.findById(id);
-    }
-
     @PostMapping
-    public Coach createCoach(@RequestBody Coach coach) {
-        return coachService.create(coach);
+    public ApiResponse<Coach> createCoach(@RequestBody CoachRequest coachRequest) {
+        ApiResponse<Coach> apiResponse = new ApiResponse<>();
+        apiResponse.setResult(coachService.createCoach(coachRequest));
+        return apiResponse;
+    }
+
+    @GetMapping
+    public ApiResponse<List<Coach>> getCoaches(
+            @RequestParam(required = false) String coachName,
+            @RequestParam(required = false) String country,
+            @RequestParam(required = false) String dateOfBirth,
+            @RequestParam(required = false) Integer yearsOfExperience) {
+        ApiResponse<List<Coach>> apiResponse = new ApiResponse<>();
+        apiResponse.setResult(coachService.getCoaches(coachName, country, dateOfBirth, yearsOfExperience));
+        return apiResponse;
     }
 
     @PutMapping("/{id}")
-    public Coach updateCoach(@PathVariable Long id, @RequestBody Coach coach) {
-        return coachService.update(id, coach);
+    public ApiResponse<Coach> updateCoach(@PathVariable Long id, @RequestBody CoachRequest coachRequest) {
+        ApiResponse<Coach> apiResponse = new ApiResponse<>();
+        apiResponse.setResult(coachService.updateCoach(id, coachRequest));
+        return apiResponse;
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCoach(@PathVariable Long id) {
-        coachService.delete(id);
+    public ApiResponse deleteCoach(@PathVariable Long id) {
+        ApiResponse apiResponse = new ApiResponse<>();
+        try {
+            if (coachService.deleteCoach(id)) {
+                apiResponse.setMessage("Xóa huấn luyện viên thành công");
+                apiResponse.setCode(1);
+            } else {
+                apiResponse.setMessage("Xóa huấn luyện viên thất bại");
+                apiResponse.setCode(0);
+            }
+        } catch (Exception e) {
+            // Handle exceptions during deletion (e.g., database errors)
+            apiResponse.setMessage("Có lỗi xảy ra khi xóa huấn luyện viên");
+            apiResponse.setCode(-1);
+            // Log the exception for further investigation
+            e.printStackTrace();
+        }
+        return apiResponse;
     }
 
-    @GetMapping("/filter")
-    public List<Coach> filterCoaches(
-            @RequestParam(required = false) String fullName,
-            @RequestParam(required = false) String country,
-            @RequestParam(required = false) String team,
-            @RequestParam(required = false) Integer yearsOfExperience
-    ) {
-        return coachService.filter(fullName, country, team, yearsOfExperience);
-    }
+    // New method for filtering coaches
+//    @GetMapping("/filter")
+//    public ApiResponse<List<Coach>> filterCoaches(
+//            @RequestParam(required = false) String coachName,
+//            @RequestParam(required = false) String country,
+//            @RequestParam(required = false) Date dateOfBirth,
+//            @RequestParam(required = false) Integer yearsOfExperience) {
+//        // Retrieve all coaches using CoachService
+//        List<Coach> allCoaches = coachService.findAll();
+//
+//        // Apply filtering using CoachService's filterCoaches method
+//        List<Coach> filteredCoaches = coachService.filterCoaches(allCoaches, coachName, country, String.valueOf(dateOfBirth), yearsOfExperience);
+//
+//        // Create and return ApiResponse with filtered results
+//        ApiResponse<List<Coach>> apiResponse = new ApiResponse<>();
+//        apiResponse.setResult(filteredCoaches);
+//        return apiResponse;
+//    }
+
+
 }
