@@ -1,6 +1,5 @@
 package com.example.foooball_app.entity;
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +8,7 @@ import java.util.List;
 public class Sponsor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "sponsor_id")
+    @Column(name = "sponsor_id",insertable=false, updatable=false)
     private int sponsorId;
 
     @OneToMany(mappedBy="inforSponsor",cascade = CascadeType.ALL)
@@ -20,6 +19,17 @@ public class Sponsor {
     private String sponsorType;
 
     private String country;
+
+    @OneToOne(mappedBy = "sponsor")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public List<Sponsorship> getSponsorship() {
         return sponsorship;
