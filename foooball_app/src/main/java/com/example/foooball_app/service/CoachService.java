@@ -72,4 +72,10 @@ public class CoachService {
                 .collect(Collectors.toList());
         return filteredCoaches;
     }
+
+    //    public Player changePlayerPosition(Long playerId, Integer newPosition) {
+//        Player player = playerRepository.findById(playerId).orElseThrow(() -> new RuntimeException("Cầu thủ không tồn tại"));
+//        player.setPosition(newPosition);
+//        return playerRepository.save(player);
+//    }
 }
