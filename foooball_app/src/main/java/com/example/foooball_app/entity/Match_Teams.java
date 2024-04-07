@@ -1,6 +1,7 @@
 package com.example.foooball_app.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,25 +9,39 @@ import jakarta.persistence.*;
 public class Match_Teams {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @Column(name = "match_team_id")
     private int matchTeamId;
 
+    @Column(name = "match_id")
     private int matchId;
-
-    private int teamId;
 
     private String type;
 
+    @ManyToOne
+    @JoinColumn(name = "team_team_id" )
+    @JsonManagedReference
+    private Team team;
 
-    @OneToOne
-    @JoinColumn(name = "match_id", referencedColumnName = "match_id")
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "match_match_id")
     @JsonBackReference
     private Match match;
 
-//    @ManyToOne
-//    @JoinColumn(name = "team_id", referencedColumnName = "team_id")
-//    @JsonBackReference
-//    private Team team;
+    public Match getMatch() {
+        return match;
+    }
+
+    public void setMatch(Match match) {
+        this.match = match;
+    }
 
     public int getMatchTeamId() {
         return matchTeamId;
@@ -44,14 +59,6 @@ public class Match_Teams {
         this.matchId = matchId;
     }
 
-    public int getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(int teamId) {
-        this.teamId = teamId;
-    }
-
     public String getType() {
         return type;
     }
@@ -60,19 +67,4 @@ public class Match_Teams {
         this.type = type;
     }
 
-    public Match getMatch() {
-        return match;
-    }
-
-    public void setMatch(Match match) {
-        this.match = match;
-    }
-
-//    public Team getTeam() {
-//        return team;
-//    }
-//
-//    public void setTeam(Team team) {
-//        this.team = team;
-//    }
 }

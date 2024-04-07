@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name = "matches")
 public class Match {
@@ -19,8 +21,8 @@ public class Match {
 
     private String result;
 
-    @OneToOne(mappedBy = "match")
-    private Match_Teams match_teams;
+    @OneToMany(mappedBy="match")
+    private List<Match_Teams> match_teams;
 
     @Column(name = "tournament_id", insertable=false, updatable=false)
     private int tournamentId;
@@ -79,11 +81,11 @@ public class Match {
         this.tournament = tournament;
     }
 
-    public Match_Teams getMatch_teams() {
+    public List<Match_Teams> getMatch_teams() {
         return match_teams;
     }
 
-    public void setMatch_teams(Match_Teams match_teams) {
+    public void setMatch_teams(List<Match_Teams> match_teams) {
         this.match_teams = match_teams;
     }
 }

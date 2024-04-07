@@ -22,7 +22,6 @@ public class MatchService {
         match.setResult(req.getResult());
         match.setTournamentId(req.getTournament_id());
 
-
         return matchRepository.save(match);
     }
 
