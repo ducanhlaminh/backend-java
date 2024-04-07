@@ -59,7 +59,9 @@ public class AuthenService {
                 .subject(user.getUsername())
                 .issuer("football.com")
                 .issueTime(new Date())
-                .expirationTime(new Date())
+                .expirationTime(new Date(
+                        Instant.now().plus(1, ChronoUnit.HOURS).toEpochMilli()
+                ))
                 .build();
 
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());
