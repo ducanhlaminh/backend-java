@@ -84,5 +84,27 @@ public class CoachController {
 //        return apiResponse;
 //    }
 
-
+//    @Autowired
+//    private TeamService teamService;
+//
+//    @PostMapping("/change-position")
+//    public ApiResponse<Player> changePosition(@RequestBody ChangePositionRequest req) {
+//        ApiResponse<Player> apiResponse = new ApiResponse<>();
+//
+//        Player player = playerService.findById(req.getPlayerId());
+//        if (player == null) {
+//            apiResponse.setCode(0);
+//            apiResponse.setMessage("Cầu thủ không tồn tại");
+//            return apiResponse;
+//        }
+//
+//        player.setPosition(req.getNewPosition());
+//        playerService.save(player);
+//
+//        apiResponse.setCode(1);
+//        apiResponse.setMessage("Cập nhật vị trí cầu thủ thành công");
+//        apiResponse.setResult(player);
+//
+//        return apiResponse;
+//    }
 }
