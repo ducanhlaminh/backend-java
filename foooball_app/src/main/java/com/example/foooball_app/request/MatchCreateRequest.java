@@ -12,12 +12,6 @@ public class MatchCreateRequest {
 
     private String result;
 
-    private int homeTeamId;
-
-    private int awayTeamId;
-
-    private int tournamentId;
-
     public Date getMatchDate() {
         return matchDate;
     }
@@ -42,27 +36,4 @@ public class MatchCreateRequest {
         this.result = result;
     }
 
-    public int getHomeTeamId() {
-        return homeTeamId;
-    }
-
-    public void setHomeTeamId(int homeTeamId) {
-        this.homeTeamId = homeTeamId;
-    }
-
-    public int getAwayTeamId() {
-        return awayTeamId;
-    }
-
-    public void setAwayTeamId(int awayTeamId) {
-        this.awayTeamId = awayTeamId;
-    }
-
-    public int getTournamentId() {
-        return tournamentId;
-    }
-
-    public void setTournamentId(int tournamentId) {
-        this.tournamentId = tournamentId;
-    }
 }

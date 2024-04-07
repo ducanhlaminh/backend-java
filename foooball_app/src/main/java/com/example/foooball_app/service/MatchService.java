@@ -16,9 +16,6 @@ public class MatchService {
         match.setMatchDate(req.getMatchDate());
         match.setStadium(req.getStadium());
         match.setResult(req.getResult());
-        match.setAwayTeamId(req.getAwayTeamId());
-        match.setAwayTeamId(req.getHomeTeamId());
-        match.setTournamentId(req.getTournamentId());
 
         return matchRepository.save(match);
     }

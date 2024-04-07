@@ -18,8 +18,8 @@ public class Match {
 
     private String result;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tournament_id", referencedColumnName = "tournament_id")
+    private int tournamentId;
+    @ManyToOne
     private Tournament tournament;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -36,8 +36,6 @@ public class Match {
     @Column(name = "away_team_id", insertable=false, updatable=false)
     private int awayTeamId;
 
-    @Column(name = "tournament_id", insertable=false, updatable=false)
-    private int tournamentId;
 
     public int getMatchId() {
         return matchId;
@@ -71,12 +69,12 @@ public class Match {
         this.result = result;
     }
 
-    public Tournament getTournament() {
-        return tournament;
+    public int getTournamentId() {
+        return tournamentId;
     }
 
-    public void setTournament(Tournament tournament) {
-        this.tournament = tournament;
+    public void setTournamentId(int tournamentId) {
+        this.tournamentId = tournamentId;
     }
 
     public Team getHomeTeam() {
@@ -111,11 +109,11 @@ public class Match {
         this.awayTeamId = awayTeamId;
     }
 
-    public int getTournamentId() {
-        return tournamentId;
+    public Tournament getTournament() {
+        return tournament;
     }
 
-    public void setTournamentId(int tournamentId) {
-        this.tournamentId = tournamentId;
+    public void setTournament(Tournament tournament) {
+        this.tournament = tournament;
     }
 }

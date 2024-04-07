@@ -1,7 +1,9 @@
 package com.example.foooball_app.entity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tournaments")
@@ -14,9 +16,9 @@ public class Tournament {
     private Date startDate;
     private Date endDate;
 
-    @OneToOne(mappedBy = "tournament")
-    private Match match;
-
+    @OneToMany(mappedBy = "tournament")
+    @JoinColumn(name = "match_id")
+    private List<Match> matches;
     // Constructors, Getters, and Setters
     // Constructors
     public Tournament() {}
@@ -59,5 +61,13 @@ public class Tournament {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public List<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(List<Match> matches) {
+        this.matches = matches;
     }
 }
