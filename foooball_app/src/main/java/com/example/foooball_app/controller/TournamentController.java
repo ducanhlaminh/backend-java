@@ -1,14 +1,15 @@
 package com.example.foooball_app.controller;
 
-import com.example.foooball_app.dto.request.TournamentRequest;
 import com.example.foooball_app.dto.response.ApiResponse;
+import java.util.List;
+
 import com.example.foooball_app.entity.Tournament;
+import com.example.foooball_app.entity.TournamentTeam;
 import com.example.foooball_app.service.TournamentService;
+import com.example.foooball_app.dto.request.TournamentRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -19,33 +20,37 @@ public class TournamentController {
     private TournamentService tournamentService;
 
     @PostMapping
-    public ApiResponse<Tournament> createTournament(@RequestBody TournamentRequest request) {
+    ApiResponse<Tournament> createTournament(@RequestBody TournamentRequest req) {
         ApiResponse<Tournament> apiResponse = new ApiResponse<>();
-        apiResponse.setResult(tournamentService.createTournament(request));
+        TournamentTeam tournamentTeam = new TournamentTeam(); // Assuming request contains team information
+        // Set team data on tournamentTeam based on request (e.g., req.getTeamId())
+        apiResponse.setResult(tournamentService.createTournamentService(req, tournamentTeam));
         return apiResponse;
     }
 
     @GetMapping
-    public ApiResponse<List<Tournament>> getTournaments(
-            @RequestParam(required = false) String tournamentName,
-            @RequestParam(required = false) String startDate,
-            @RequestParam(required = false) String endDate) {
+    ApiResponse<List<Tournament>> getTournaments(@RequestParam(required = false) String tournamentName,
+                                                 @RequestParam(required = false) String location,
+                                                 @RequestParam(required = false) String startDate,
+                                                 @RequestParam(required = false) String endDate) {
         ApiResponse<List<Tournament>> apiResponse = new ApiResponse<>();
-        apiResponse.setResult(tournamentService.getTournaments(tournamentName, startDate, endDate));
+        apiResponse.setResult(tournamentService.getTournaments(tournamentName, location, startDate, endDate));
         return apiResponse;
     }
 
     @PutMapping("/{id}")
-    public ApiResponse<Tournament> updateTournament(@PathVariable Long id, @RequestBody TournamentRequest request) {
+    ApiResponse<Tournament> updateTournament(@PathVariable int id, @RequestBody TournamentRequest req) {
         ApiResponse<Tournament> apiResponse = new ApiResponse<>();
-        apiResponse.setResult(tournamentService.updateTournament(id, request));
+        TournamentTeam tournamentTeam = new TournamentTeam(); // Assuming request contains updated team information
+        // Set team data on tournamentTeam based on request (e.g., req.getTeamId())
+        apiResponse.setResult(tournamentService.updateTournament(id, req, tournamentTeam));
         return apiResponse;
     }
 
-    @DeleteMapping("/{id}")
-    public ApiResponse deleteTournament(@PathVariable Long id) {
+    @DeleteMapping("/{id}/{tournamentTeamId}")
+    ApiResponse deleteTournament(@PathVariable int tournamentId, @PathVariable int tournamentTeamId) {
         ApiResponse apiResponse = new ApiResponse<>();
-        if (tournamentService.deleteTournament(id)) {
+        if (tournamentService.deleteTournament(tournamentId, tournamentTeamId)) {
             apiResponse.setMessage("Xóa giải đấu thành công");
             apiResponse.setCode(1);
         } else {
