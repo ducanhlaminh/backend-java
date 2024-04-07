@@ -1,4 +1,5 @@
 package com.example.foooball_app.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -16,9 +17,10 @@ public class Tournament {
     private Date startDate;
     private Date endDate;
 
-    @OneToMany(mappedBy = "tournament")
-    @JoinColumn(name = "match_id")
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Match> matches;
+
     // Constructors, Getters, and Setters
     // Constructors
     public Tournament() {}
@@ -67,7 +69,7 @@ public class Tournament {
         return matches;
     }
 
-    public void setMatches(List<Match> matches) {
-        this.matches = matches;
+    public void setMatches(List<Match> matchs) {
+        this.matches = matchs;
     }
 }

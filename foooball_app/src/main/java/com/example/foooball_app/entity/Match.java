@@ -1,6 +1,7 @@
 package com.example.foooball_app.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -18,23 +19,29 @@ public class Match {
 
     private String result;
 
+    @Column(name = "tournament_id", insertable=false, updatable=false)
     private int tournamentId;
+
     @ManyToOne
+    @JoinColumn(name = "tournament_id", referencedColumnName = "tournament_id")
+    @JsonManagedReference
     private Tournament tournament;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "home_team_id", referencedColumnName = "team_id")
-    private Team homeTeam;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "away_team_id", referencedColumnName = "team_id")
-    private Team awayTeam;
 
     @Column(name = "home_team_id", insertable=false, updatable=false)
     private int homeTeamId;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "home_team_id", referencedColumnName = "team_id")
+    @JsonManagedReference
+    private Team homeTeam;
+
     @Column(name = "away_team_id", insertable=false, updatable=false)
     private int awayTeamId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "away_team_id", referencedColumnName = "team_id")
+    @JsonManagedReference
+    private Team awayTeam;
 
 
     public int getMatchId() {
@@ -77,20 +84,12 @@ public class Match {
         this.tournamentId = tournamentId;
     }
 
-    public Team getHomeTeam() {
-        return homeTeam;
+    public Tournament getTournament() {
+        return tournament;
     }
 
-    public void setHomeTeam(Team homeTeam) {
-        this.homeTeam = homeTeam;
-    }
-
-    public Team getAwayTeam() {
-        return awayTeam;
-    }
-
-    public void setAwayTeam(Team awayTeam) {
-        this.awayTeam = awayTeam;
+    public void setTournament(Tournament tournament) {
+        this.tournament = tournament;
     }
 
     public int getHomeTeamId() {
@@ -101,6 +100,14 @@ public class Match {
         this.homeTeamId = homeTeamId;
     }
 
+    public Team getHomeTeam() {
+        return homeTeam;
+    }
+
+    public void setHomeTeam(Team homeTeam) {
+        this.homeTeam = homeTeam;
+    }
+
     public int getAwayTeamId() {
         return awayTeamId;
     }
@@ -109,11 +116,12 @@ public class Match {
         this.awayTeamId = awayTeamId;
     }
 
-    public Tournament getTournament() {
-        return tournament;
+    public Team getAwayTeam() {
+        return awayTeam;
     }
 
-    public void setTournament(Tournament tournament) {
-        this.tournament = tournament;
+    public void setAwayTeam(Team awayTeam) {
+        this.awayTeam = awayTeam;
     }
+
 }
