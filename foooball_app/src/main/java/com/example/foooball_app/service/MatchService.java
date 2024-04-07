@@ -21,15 +21,7 @@ public class MatchService {
         match.setStadium(req.getStadium());
         match.setResult(req.getResult());
         match.setTournamentId(req.getTournament_id());
-        match.setHomeTeamId(req.getHome_team_id());
-        match.setAwayTeamId(req.getAway_team_id());
 
-//        List<Match> matches = new ArrayList<Match>();
-//        matches.add(match);
-
-//        Tournament tournament = new Tournament();
-//        tournament.setMatches(matches);
-//        match.setTournament(tournament);
 
         return matchRepository.save(match);
     }

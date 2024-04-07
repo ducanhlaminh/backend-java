@@ -1,5 +1,6 @@
 package com.example.foooball_app.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,21 +13,16 @@ import java.util.List;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "team_id")
+//    @Column(name = "team_id")
     private int team_id;
 
     private String teamName;
 
     private String country;
 
-    @OneToOne (mappedBy = "homeTeam")
-    @JsonBackReference
-    private Match match1;
-
-    @OneToOne (mappedBy = "awayTeam")
-    @JsonBackReference
-    private Match match2;
-    // Getters and setters
+//    @OneToMany(mappedBy = "team")
+//    @JsonManagedReference
+//    private List<Team> teams;
 
     public int getTeamId() {
         return team_id;
@@ -52,19 +48,19 @@ public class Team {
         this.country = country;
     }
 
-    public Match getMatch1() {
-        return match1;
+    public int getTeam_id() {
+        return team_id;
     }
 
-    public void setMatch1(Match match1) {
-        this.match1 = match1;
+    public void setTeam_id(int team_id) {
+        this.team_id = team_id;
     }
 
-    public Match getMatch2() {
-        return match2;
-    }
-
-    public void setMatch2(Match match2) {
-        this.match2 = match2;
-    }
+//    public List<Team> getTeams() {
+//        return teams;
+//    }
+//
+//    public void setTeams(List<Team> teams) {
+//        this.teams = teams;
+//    }
 }

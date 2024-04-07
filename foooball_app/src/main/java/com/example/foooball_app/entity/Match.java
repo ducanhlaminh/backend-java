@@ -19,6 +19,9 @@ public class Match {
 
     private String result;
 
+    @OneToOne(mappedBy = "match")
+    private Match_Teams match_teams;
+
     @Column(name = "tournament_id", insertable=false, updatable=false)
     private int tournamentId;
 
@@ -26,22 +29,6 @@ public class Match {
     @JoinColumn(name = "tournament_id", referencedColumnName = "tournament_id")
     @JsonManagedReference
     private Tournament tournament;
-
-    @Column(name = "home_team_id", insertable=false, updatable=false)
-    private int homeTeamId;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "home_team_id", referencedColumnName = "team_id")
-    @JsonManagedReference
-    private Team homeTeam;
-
-    @Column(name = "away_team_id", insertable=false, updatable=false)
-    private int awayTeamId;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "away_team_id", referencedColumnName = "team_id")
-    @JsonManagedReference
-    private Team awayTeam;
 
 
     public int getMatchId() {
@@ -92,36 +79,11 @@ public class Match {
         this.tournament = tournament;
     }
 
-    public int getHomeTeamId() {
-        return homeTeamId;
+    public Match_Teams getMatch_teams() {
+        return match_teams;
     }
 
-    public void setHomeTeamId(int homeTeamId) {
-        this.homeTeamId = homeTeamId;
+    public void setMatch_teams(Match_Teams match_teams) {
+        this.match_teams = match_teams;
     }
-
-    public Team getHomeTeam() {
-        return homeTeam;
-    }
-
-    public void setHomeTeam(Team homeTeam) {
-        this.homeTeam = homeTeam;
-    }
-
-    public int getAwayTeamId() {
-        return awayTeamId;
-    }
-
-    public void setAwayTeamId(int awayTeamId) {
-        this.awayTeamId = awayTeamId;
-    }
-
-    public Team getAwayTeam() {
-        return awayTeam;
-    }
-
-    public void setAwayTeam(Team awayTeam) {
-        this.awayTeam = awayTeam;
-    }
-
 }
