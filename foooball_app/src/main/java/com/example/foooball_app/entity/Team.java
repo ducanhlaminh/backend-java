@@ -3,17 +3,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
+
+import java.util.List;
+
 @Entity
 @Table(name = "teams")
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "team_id")
     private int team_id;
 
     private String teamName;
 
     private String country;
 
+    @OneToOne (mappedBy = "homeTeam")
+    private Match match1;
+
+    @OneToOne (mappedBy = "awayTeam")
+    private Match match2;
     // Getters and setters
 
     public int getTeamId() {
@@ -38,5 +47,21 @@ public class Team {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Match getMatch1() {
+        return match1;
+    }
+
+    public void setMatch1(Match match1) {
+        this.match1 = match1;
+    }
+
+    public Match getMatch2() {
+        return match2;
+    }
+
+    public void setMatch2(Match match2) {
+        this.match2 = match2;
     }
 }

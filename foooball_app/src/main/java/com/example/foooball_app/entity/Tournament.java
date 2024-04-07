@@ -8,10 +8,14 @@ import java.util.Date;
 public class Tournament {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "tournament_id")
     private int tournamentId;
     private String tournamentName;
     private Date startDate;
     private Date endDate;
+
+    @OneToOne(mappedBy = "tournament")
+    private Match match;
 
     // Constructors, Getters, and Setters
     // Constructors
