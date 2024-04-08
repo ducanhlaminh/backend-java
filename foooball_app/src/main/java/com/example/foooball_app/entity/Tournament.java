@@ -1,7 +1,7 @@
 package com.example.foooball_app.entity;
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "tournaments")
@@ -9,20 +9,29 @@ public class Tournament {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int tournamentId;
+
+
+
+    ////    private List<TournamentTeam> tournamentTeam = new ArrayList<>();
+//
     private String tournamentName;
     private Date startDate;
     private Date endDate;
 
-    // Constructors, Getters, and Setters
-    // Constructors
-    public Tournament() {}
+//    private String team;
 
-    public Tournament(int tournamentId, String tournamentName, Date startDate, Date endDate) {
-        this.tournamentId = tournamentId;
-        this.tournamentName = tournamentName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
+
+    // Constructors
+//    public Tournament() {}
+//
+//    public Tournament(int tournamentId, String tournamentName, Date startDate, Date endDate) {
+//        this.tournamentId = tournamentId;
+//        this.tournamentName = tournamentName;
+//        this.startDate = startDate;
+//        this.endDate = endDate;
+////        this.team = team;
+//
+//    }
 
     // Getters and Setters
     public int getTournamentId() {
@@ -56,4 +65,22 @@ public class Tournament {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+//    public String getTeam() {
+//        return team;
+//    }
+//
+//    public void setTeam(String team1) {
+//        this.team = team;
+//    }
+
+
+//    public List<TournamentTeam> getTournamentTeam() {
+//        return tournamentTeam;
+//    }
+
+//    public void setTournamentTeam(List<TournamentTeam> tournamentTeam) {
+//        this.tournamentTeam = tournamentTeam;
+//    }
+
 }

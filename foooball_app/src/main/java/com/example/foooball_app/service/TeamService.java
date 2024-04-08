@@ -1,9 +1,11 @@
 package com.example.foooball_app.service;
 import java.util.List;
 
+//import com.example.foooball_app.entity.Sponsorship;
 import com.example.foooball_app.exception.AppError;
 import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.exception.ErrorCode;
+//import com.example.foooball_app.repository.SponsorShipRepository;
 import com.example.foooball_app.repository.TeamRepository;
 import com.example.foooball_app.dto.request.TeamRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +15,24 @@ import java.util.stream.Collectors;
 public class TeamService {
     @Autowired
     private TeamRepository TeamRepository;
+//    @Autowired
+//    private SponsorShipRepository SponsorShipRepository;
 
     public List<Team> getTeamWithService(String country , String teamName){
         List<Team> listTeam;
-         listTeam = TeamRepository.findAll();
-         return filter(listTeam,country,teamName) ;
+        listTeam = TeamRepository.findAll();
+        return filter(listTeam,country,teamName) ;
     }
+//    public List<Sponsorship> getSponsorOfTeam(int team_id){
+//        List<Sponsorship> listSponsorOfTeam;
+//        listSponsorOfTeam = SponsorShipRepository.findAllByTeamId(team_id);
+//        return listSponsorOfTeam ;
+//    }
     public Team createTeamService(TeamRequest req) {
         Team team = new Team();
         team.setTeamName(req.getTeamName());
         team.setCountry(req.getCountry());
+        team.setCoach_id(req.getCoachId());
 
 
         if(TeamRepository.existsByTeamName(team.getTeamName())) {
@@ -41,18 +51,19 @@ public class TeamService {
     }
     public Team updateTeam(int id ,TeamRequest teamData ) {
         Team existingTeam = TeamRepository.findById(id).orElseThrow(()-> new AppError(ErrorCode.USER_UNEXISTED));
-            if(teamData.getTeamName()!=null) {
-                existingTeam.setTeamName(teamData.getTeamName());
-            }
-            if(teamData.getCountry()!=null) {
-               existingTeam.setCountry(teamData.getCountry());
-           }
-            return TeamRepository.save(existingTeam);
+        if(teamData.getTeamName()!=null) {
+            existingTeam.setTeamName(teamData.getTeamName());
+        }
+        if(teamData.getCountry()!=null) {
+            existingTeam.setCountry(teamData.getCountry());
+        }
+        return TeamRepository.save(existingTeam);
     }
     public boolean deleteTeam(int id  ) {
-            TeamRepository.findById(id).orElseThrow(()-> new AppError(ErrorCode.USER_UNEXISTED));
-            TeamRepository.deleteById(id);
-            return true;
+        TeamRepository.findById(id).orElseThrow(()-> new AppError(ErrorCode.USER_UNEXISTED));
+        TeamRepository.deleteById(id);
+        return true;
 
     }
+
 }

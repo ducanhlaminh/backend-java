@@ -3,18 +3,43 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
+import java.util.Set;
 @Entity
 @Table(name = "teams")
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "team_id")
     private int teamId;
 
     private String teamName;
 
     private String country;
 
+    private int coach_id ;
+//    @OneToMany(mappedBy="team")
+//    private Set<Player> players;
     // Getters and setters
+
+
+
+    public int getCoach_id() {
+        return coach_id;
+    }
+
+    public void setCoach_id(int coach_id) {
+        this.coach_id = coach_id;
+    }
+
+//    public Set<Player> getPlayers() {
+//        return players;
+//    }
+//
+//    public void setPlayers(Set<Player> players) {
+//        this.players = players;
+//    }
 
     public int getTeamId() {
         return teamId;

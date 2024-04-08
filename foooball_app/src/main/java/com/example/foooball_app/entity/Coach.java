@@ -1,5 +1,5 @@
 package com.example.foooball_app.entity;
-import java.util.Date;
+import java.sql.Date;
 
 import jakarta.persistence.*;
 
@@ -8,15 +8,15 @@ import jakarta.persistence.*;
 public class Coach {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long  coachId;
+    private Long coachId;
 
-    private String fullName;
+    private String coachName;
 
     private String country;
 
     private Date dateOfBirth;
 
-    private  String team;
+//    private  Team teamId;
 
     private Integer yearsOfExperience;
 
@@ -30,12 +30,12 @@ public class Coach {
         this.coachId = coachId;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getCoachName() {
+        return coachName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setCoachName(String coachName) {
+        this.coachName = coachName;
     }
 
     public Date getDateOfBirth() {
@@ -54,13 +54,13 @@ public class Coach {
         this.country = country;
     }
 
-    public String getTeam() {
-        return team;
-    }
-
-    public void setTeam(String team) {
-        this.team = team;
-    }
+//    public String getTeam() {
+//        return team;
+//    }
+//
+//    public void setTeam(String team) {
+//        this.team = team;
+//    }
 
     public Integer getYearsOfExperience() {
         return yearsOfExperience;

@@ -3,6 +3,7 @@ package com.example.foooball_app.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+@Entity
 @Table(name = "players")
 public class Player {
     @Id
@@ -17,7 +18,7 @@ public class Player {
 
     private Date dateOfBirth;
 
-    private Team team;
+
 
     // Getters and setters
 
@@ -61,11 +62,11 @@ public class Player {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
+//    public Team getTeam() {
+//        return team;
+//    }
+//
+//    public void setTeam(Team team) {
+//        this.team = team;
+//    }
 }

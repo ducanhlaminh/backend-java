@@ -1,4 +1,4 @@
-package com.example.foooball_app.request;
+package com.example.foooball_app.dto.request;
 
 import javax.xml.crypto.Data;
 import java.sql.Date;
