@@ -1,5 +1,6 @@
 package com.example.foooball_app.controller;
 
+<<<<<<< HEAD
 import com.example.foooball_app.dto.request.ChangePositionRequest;
 import com.example.foooball_app.dto.response.ApiResponse;
 import com.example.foooball_app.dto.request.CoachRequest;
@@ -7,6 +8,12 @@ import com.example.foooball_app.entity.Coach;
 import com.example.foooball_app.entity.Player;
 import com.example.foooball_app.service.CoachService;
 import com.example.foooball_app.service.TeamService;
+=======
+import com.example.foooball_app.dto.response.ApiResponse;
+import com.example.foooball_app.dto.request.CoachRequest;
+import com.example.foooball_app.entity.Coach;
+import com.example.foooball_app.service.CoachService;
+>>>>>>> af9d94641fd062ce08cf4020196d90695601d54c
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -87,7 +94,10 @@ public class CoachController {
 //        return apiResponse;
 //    }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> af9d94641fd062ce08cf4020196d90695601d54c
 //    @Autowired
 //    private TeamService teamService;
 //
@@ -111,5 +121,9 @@ public class CoachController {
 //
 //        return apiResponse;
 //    }
+<<<<<<< HEAD
 
 }
+=======
+}
+>>>>>>> af9d94641fd062ce08cf4020196d90695601d54c

@@ -12,4 +12,8 @@ public interface CoachRepository extends JpaRepository<Coach, Long> {
     boolean existsByYearsOfExperience(Integer yearsOfExperience);
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> af9d94641fd062ce08cf4020196d90695601d54c

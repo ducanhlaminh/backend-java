@@ -1,7 +1,7 @@
 package com.example.foooball_app.exception;
 
 public enum ErrorCode {
-    USER_EXISTED(2,"USER EXISTED"),
+USER_EXISTED(2,"USER EXISTED"),
     SPONSOR_EXISTED(2,"Đã tồn tại nhà tài trợ này"),
 
     COACH_EXISTED(2,"Đã tồn tại huấn luyện viên này"),
