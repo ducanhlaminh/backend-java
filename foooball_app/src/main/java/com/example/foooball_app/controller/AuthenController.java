@@ -24,7 +24,7 @@ public class AuthenController {
     @PostMapping("/login")
     ApiResponse<String> loginController(@RequestBody AuthenRequest request){
         ApiResponse<String> apiResponse = new ApiResponse<>();
-        apiResponse.setResult(AuthenService.loginService(request));
+        apiResponse.setToken(AuthenService.loginService(request));
         return apiResponse;
     }
 }

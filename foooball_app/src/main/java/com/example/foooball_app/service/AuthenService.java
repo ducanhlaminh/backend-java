@@ -1,4 +1,5 @@
 package com.example.foooball_app.service;
+import com.example.foooball_app.enums.Role;
 import com.example.foooball_app.exception.AppError;
 import com.example.foooball_app.exception.ErrorCode;
 import com.nimbusds.jose.JWSHeader;
@@ -39,6 +40,7 @@ public class AuthenService {
         user.setUsername(request.getUsername());
         user.setRole(request.getRole());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setRole_enum(Role.SPONSOR);
         return UserRepository.save(user);
     }
     public String loginService(AuthenRequest request){

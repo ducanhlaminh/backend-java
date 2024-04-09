@@ -1,4 +1,5 @@
 package com.example.foooball_app.entity;
+import com.example.foooball_app.enums.Role;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +18,15 @@ public class User {
     @Column(name = "sponsor_id",insertable=false, updatable=false)
     private int sponsorId;
     private String role;
+    private Role role_enum;
+
+    public Role getRole_enum() {
+        return role_enum;
+    }
+
+    public void setRole_enum(Role role_enum) {
+        this.role_enum = role_enum;
+    }
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "sponsor_id", referencedColumnName = "sponsor_id")
