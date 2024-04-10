@@ -13,8 +13,11 @@ public class Tournament {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tournament_id")
     private int tournamentId;
+
     private String tournamentName;
+
     private Date startDate;
+
     private Date endDate;
 
     @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL)
