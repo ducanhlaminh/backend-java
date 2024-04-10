@@ -3,6 +3,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,8 +18,9 @@ import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
-    private final String[] PUBLIC_ENDPOINTS = {"login","sign-up"
+    private final String[] PUBLIC_ENDPOINTS = {"/login","/sign-up/btv","/sign-up/sponsor"
     };
     @Value("${jwt.signerKey}")
     private String signerKey;
@@ -33,7 +35,7 @@ public class SecurityConfig {
                     cors.configurationSource(request -> config);
                 });
         httpSecurity.authorizeHttpRequests(request ->
-                request.requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
+                request.requestMatchers(PUBLIC_ENDPOINTS).permitAll()
                         .anyRequest().authenticated());
 
         httpSecurity.oauth2ResourceServer(oauth2 ->

@@ -8,7 +8,7 @@ public enum ErrorCode {
     SPONSOR_UNEXISTED(2,"Không tìm nhà tài trợ này", HttpStatus.BAD_REQUEST),
     UNAUTHENTICATED(1006, "Unauthenticated", HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED(1007, "You do not have permission", HttpStatus.FORBIDDEN),
-    INVALID_DOB(1008, "Your age must be at least {min}", HttpStatus.BAD_REQUEST),
+    LOGIN_FAIL(1008, "Thong tin dang nhap khong chinh xac", HttpStatus.BAD_REQUEST),
     UNCATEGORIZED_EXCEPTION(9999, "Uncategorized error", HttpStatus.INTERNAL_SERVER_ERROR);
     ErrorCode(int code, String message, HttpStatusCode statusCode) {
         this.code = code;

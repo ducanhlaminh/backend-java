@@ -7,17 +7,13 @@ import jakarta.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
     private int userId;
 
 
     private String username;
 
-
+    private String token;
     private String password;
-    @Column(name = "sponsor_id",insertable=false, updatable=false)
-    private int sponsorId;
-    private String role;
     private Role role_enum;
 
     public Role getRole_enum() {
@@ -29,16 +25,23 @@ public class User {
     }
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "sponsor_id", referencedColumnName = "sponsor_id")
+    @JoinColumn(name = "userSponsorId", referencedColumnName = "sponsorId")
     private Sponsor sponsor;
 
-    public int getSponsorId() {
-        return sponsorId;
+    public String getToken() {
+        return token;
     }
 
-    public void setSponsorId(int sponsorId) {
-        this.sponsorId = sponsorId;
+    public void setToken(String token) {
+        this.token = token;
     }
+    //    public int getSponsorId() {
+//        return userSponsorId;
+//    }
+//
+//    public void setSponsorId(int sponsorId) {
+//        this.userSponsorId = sponsorId;
+//    }
 
     public Sponsor getSponsor() {
         return sponsor;
@@ -72,13 +75,6 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     // Getters and setters
 }

@@ -8,7 +8,6 @@ import java.util.List;
 public class Sponsor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "sponsor_id",insertable=false, updatable=false)
     private int sponsorId;
 
     @OneToMany(mappedBy="inforSponsor",cascade = CascadeType.ALL)
