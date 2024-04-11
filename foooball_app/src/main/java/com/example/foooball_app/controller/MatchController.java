@@ -5,10 +5,7 @@ import com.example.foooball_app.entity.Match;
 import com.example.foooball_app.dto.request.MatchRequest;
 import com.example.foooball_app.service.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +25,13 @@ public class MatchController {
     ApiResponse<List<Match>> getMatches(){
         ApiResponse apiResponse = new ApiResponse<>();
         apiResponse.setResult(matchService.getMatches());
+        return apiResponse;
+    }
+
+    @GetMapping("/matches/{match_id}")
+    ApiResponse<Match> getMatch(@PathVariable int match_id){
+        ApiResponse apiResponse = new ApiResponse<>();
+        apiResponse.setResult(matchService.getMatch(match_id));
         return apiResponse;
     }
 }

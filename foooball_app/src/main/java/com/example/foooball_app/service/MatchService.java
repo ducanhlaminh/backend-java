@@ -41,4 +41,8 @@ public class MatchService {
     public List<Match> getMatches(){
         return matchRepository.findAll();
     }
+
+    public Match getMatch(int id){
+        return matchRepository.findById(id).orElseThrow();
+    }
 }
