@@ -14,7 +14,6 @@ public class GlobalExceptionHandler {
     ResponseEntity<ApiResponse> handlingAppException(AppError exception){
         ErrorCode errorCode = exception.getErrCode();
         ApiResponse apiResponse = new ApiResponse();
-
         apiResponse.setCode(errorCode.getCode());
         apiResponse.setMessage(errorCode.getMessage());
 

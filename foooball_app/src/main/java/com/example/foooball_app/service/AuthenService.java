@@ -45,7 +45,6 @@ public class AuthenService {
     }
     public User signUpSponsorService(AuthenRequest request){
         boolean exitUser = UserRepository.existsUserByUsername(request.getUsername());
-        ApiResponse<User> apiResponse = new ApiResponse<>();
         User user = new User();
         if(exitUser){
             throw new AppError(ErrorCode.USER_EXISTED);
@@ -80,7 +79,7 @@ public class AuthenService {
                 .expirationTime(new Date(
                         Instant.now().plus(1, ChronoUnit.HOURS).toEpochMilli()
                 ))
-                .claim("scope",Role.BTV)
+                .claim("scope",user.getRole_enum())
                 .build();
 
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());

@@ -20,7 +20,7 @@ import java.util.Collections;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-    private final String[] PUBLIC_ENDPOINTS = {"/login","/sign-up/btv","/sign-up/sponsor"
+    private final String[] PUBLIC_ENDPOINTS = {"/login","/sign-up/btv","/sign-up/sponsor","/teams"
     };
     @Value("${jwt.signerKey}")
     private String signerKey;

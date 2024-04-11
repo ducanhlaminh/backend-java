@@ -6,6 +6,8 @@ import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.dto.request.TeamRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
 import java.util.List;
@@ -21,8 +23,13 @@ public class TeamController {
         apiResponse.setResult(teamService.createTeamService(req));
         return apiResponse;
     }
+
     @GetMapping("/teams")
+//    @PreAuthorize("hasRole('BTV')")
     ApiResponse<List<Team>> getTeam(@RequestParam(required = false) String country , @RequestParam(required = false)  String teamName   ){
+        var authen = SecurityContextHolder.getContext().getAuthentication();
+        log.warn(authen.getName());
+        authen.getAuthorities().forEach(grantedAuthority -> log.warn(grantedAuthority.getAuthority()));
         ApiResponse<List<Team>> apiResponse = new ApiResponse<>();
         apiResponse.setResult(teamService.getTeamWithService(country,teamName));
         return apiResponse;
