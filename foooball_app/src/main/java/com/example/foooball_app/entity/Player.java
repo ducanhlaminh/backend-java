@@ -1,5 +1,6 @@
 package com.example.foooball_app.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -21,8 +22,15 @@ public class Player {
     @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
-
     // Getters and setters
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
     public int getPlayerId() {
         return playerId;
@@ -63,13 +71,4 @@ public class Player {
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
 }

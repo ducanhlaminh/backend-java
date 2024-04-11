@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
@@ -20,6 +19,7 @@ public class Team {
 
     private String country;
 
+
     @OneToMany(mappedBy = "team")
     @JsonBackReference
     private List<Match_Teams> teams;
@@ -28,13 +28,7 @@ public class Team {
     @JsonBackReference
     private List<Player> players;
 
-    public int getTeamId() {
-        return team_id;
-    }
 
-    public void setTeamId(int teamId) {
-        this.team_id = teamId;
-    }
     public String getTeamName() {
         return teamName;
     }

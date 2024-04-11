@@ -1,7 +1,7 @@
 package com.example.foooball_app.controller;
 
 import com.example.foooball_app.entity.Match;
-import com.example.foooball_app.request.MatchRequest;
+import com.example.foooball_app.dto.request.MatchRequest;
 import com.example.foooball_app.service.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

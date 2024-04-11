@@ -6,7 +6,7 @@ import com.example.foooball_app.entity.Tournament;
 import com.example.foooball_app.repository.MatchRepository;
 import com.example.foooball_app.repository.TeamRepository;
 import com.example.foooball_app.repository.TournamentRepository;
-import com.example.foooball_app.request.MatchRequest;
+import com.example.foooball_app.dto.request.MatchRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
