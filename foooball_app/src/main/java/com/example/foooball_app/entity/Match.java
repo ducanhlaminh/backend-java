@@ -21,17 +21,13 @@ public class Match {
 
     private String result;
 
-    @OneToMany(mappedBy="match")
-    private List<Match_Teams> match_teams;
-
-    @Column(name = "tournament_id", insertable=false, updatable=false)
-    private int tournamentId;
-
     @ManyToOne
-    @JoinColumn(name = "tournament_id", referencedColumnName = "tournament_id")
+    @JoinColumn(name = "tournament_id")
     @JsonManagedReference
     private Tournament tournament;
 
+    @OneToMany(mappedBy="match")
+    private List<Match_Teams> match_teams;
 
     public int getMatchId() {
         return matchId;
@@ -63,14 +59,6 @@ public class Match {
 
     public void setResult(String result) {
         this.result = result;
-    }
-
-    public int getTournamentId() {
-        return tournamentId;
-    }
-
-    public void setTournamentId(int tournamentId) {
-        this.tournamentId = tournamentId;
     }
 
     public Tournament getTournament() {

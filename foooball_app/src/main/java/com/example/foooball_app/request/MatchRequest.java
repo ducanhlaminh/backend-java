@@ -1,11 +1,8 @@
 package com.example.foooball_app.request;
 
-import com.example.foooball_app.entity.Team;
-import com.example.foooball_app.entity.Tournament;
-
 import java.util.Date;
 
-public class MatchCreateRequest {
+public class MatchRequest {
     private Date matchDate;
 
     private String stadium;

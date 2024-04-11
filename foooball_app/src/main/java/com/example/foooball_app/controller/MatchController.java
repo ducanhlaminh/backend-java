@@ -1,7 +1,7 @@
 package com.example.foooball_app.controller;
 
 import com.example.foooball_app.entity.Match;
-import com.example.foooball_app.request.MatchCreateRequest;
+import com.example.foooball_app.request.MatchRequest;
 import com.example.foooball_app.service.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class MatchController {
     private MatchService matchService;
 
     @PostMapping("/matches")
-    Match createMatch(@RequestBody MatchCreateRequest req){
+    Match createMatch(@RequestBody MatchRequest req){
         return matchService.createMatchService(req);
     }
 
