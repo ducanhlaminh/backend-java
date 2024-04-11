@@ -4,8 +4,7 @@ import com.example.foooball_app.entity.Player;
 import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.repository.PlayerRepository;
 import com.example.foooball_app.repository.TeamRepository;
-import com.example.foooball_app.request.PlayerCreateRequest;
-import com.example.foooball_app.request.PlayerUpdateRequest;
+import com.example.foooball_app.request.PlayerRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +19,7 @@ public class PlayerService {
     @Autowired
     private TeamRepository teamRepository;
 
-    public Player createPlayerService(PlayerCreateRequest req){
+    public Player createPlayerService(PlayerRequest req){
         Player player = new Player();
         player.setPlayerName(req.getPlayerName());
         player.setNationality(req.getNationality());
@@ -43,13 +42,18 @@ public class PlayerService {
         return playerRepository.findById(id).orElseThrow(() -> new RuntimeException("Player not found"));
     }
 
-    public Player updatePlayer(int playerId, PlayerUpdateRequest req){
+    public Player updatePlayer(int playerId, PlayerRequest req){
         Player player = getPlayer(playerId);
 
         player.setPlayerName(req.getPlayerName());
         player.setNationality(req.getNationality());
         player.setPosition(req.getPosition());
         player.setDateOfBirth(req.getDateOfBirth());
+
+        Optional<Team> optionalTeam = teamRepository.findById(req.getTeam_id());
+        if(optionalTeam.isPresent()){
+            player.setTeam(optionalTeam.get());
+        }
 
         return playerRepository.save(player);
     }

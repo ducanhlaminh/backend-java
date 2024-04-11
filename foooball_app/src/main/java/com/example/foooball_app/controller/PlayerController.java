@@ -1,8 +1,7 @@
 package com.example.foooball_app.controller;
 
 import com.example.foooball_app.entity.Player;
-import com.example.foooball_app.request.PlayerCreateRequest;
-import com.example.foooball_app.request.PlayerUpdateRequest;
+import com.example.foooball_app.request.PlayerRequest;
 import com.example.foooball_app.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,7 @@ public class PlayerController {
     private PlayerService playerService;
 
     @PostMapping("/players")
-    Player createPlayer(@RequestBody PlayerCreateRequest req){
+    Player createPlayer(@RequestBody PlayerRequest req){
         return playerService.createPlayerService(req);
     }
 
@@ -30,8 +29,8 @@ public class PlayerController {
     }
 
     @PutMapping("/players/{playerId}")
-    Player updatePlayer(@PathVariable("playerId") int id, @RequestBody PlayerUpdateRequest req){
-        return playerService.updatePlayer(id, req);
+    Player updatePlayer(@PathVariable("playerId") int playerId, @RequestBody PlayerRequest req){
+        return playerService.updatePlayer(playerId, req);
     }
 
     @DeleteMapping("/players/{playerId}")

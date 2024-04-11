@@ -4,7 +4,7 @@ import com.example.foooball_app.entity.Team;
 
 import java.util.Date;
 
-public class PlayerCreateRequest {
+public class PlayerRequest {
     private String playerName;
 
     private String nationality;
