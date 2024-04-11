@@ -1,4 +1,4 @@
-package com.example.foooball_app.request;
+package com.example.foooball_app.dto.request;
 
 import com.example.foooball_app.entity.Team;
 

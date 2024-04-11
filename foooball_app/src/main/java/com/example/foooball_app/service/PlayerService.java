@@ -6,7 +6,7 @@ import com.example.foooball_app.exception.AppError;
 import com.example.foooball_app.exception.ErrorCode;
 import com.example.foooball_app.repository.PlayerRepository;
 import com.example.foooball_app.repository.TeamRepository;
-import com.example.foooball_app.request.PlayerRequest;
+import com.example.foooball_app.dto.request.PlayerRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

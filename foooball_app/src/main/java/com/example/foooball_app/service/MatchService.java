@@ -35,12 +35,6 @@ public class MatchService {
             match.setTournament(optionalTournament.get());
         }
 
-
-        Optional<Team> optionalTeamHome = teamRepository.findById(req.getHome_team_id());
-        if(optionalTeamHome.isPresent()){
-
-        }
-
         return matchRepository.save(match);
     }
 

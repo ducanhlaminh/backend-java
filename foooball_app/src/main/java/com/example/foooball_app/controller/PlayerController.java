@@ -2,7 +2,7 @@ package com.example.foooball_app.controller;
 
 import com.example.foooball_app.entity.Player;
 import com.example.foooball_app.dto.response.ApiResponse;
-import com.example.foooball_app.request.PlayerRequest;
+import com.example.foooball_app.dto.request.PlayerRequest;
 import com.example.foooball_app.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
