@@ -9,4 +9,5 @@ spring:
       show-sql: true
 server:
   port: 8888
-
+jwt :
+  signerKey: "NKKS4kqj8D/vJGpT67VajIFTuVRHnOkDUjTA+8ChGRXYv/YJdlyH1tpDIQb2Yif+"

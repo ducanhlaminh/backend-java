@@ -1,13 +1,17 @@
 package com.example.foooball_app.entity;
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "sponsors")
 public class Sponsor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "sponsor_id")
     private int sponsorId;
+
+    @OneToMany(mappedBy="inforSponsor",cascade = CascadeType.ALL)
+    private List<Sponsorship> sponsorship = new ArrayList<>();;
 
     private String sponsorName;
 
@@ -15,7 +19,27 @@ public class Sponsor {
 
     private String country;
 
-    // Getters and setters
+    @OneToOne(mappedBy = "sponsor")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Sponsorship> getSponsorship() {
+        return sponsorship;
+    }
+
+    public void setSponsorship(List<Sponsorship> sponsorship) {
+        this.sponsorship = sponsorship;
+    }
+
+
+// Getters and setters
 
     public int getSponsorId() {
         return sponsorId;

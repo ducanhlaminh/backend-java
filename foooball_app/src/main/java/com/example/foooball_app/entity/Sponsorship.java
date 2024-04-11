@@ -1,6 +1,9 @@
 package com.example.foooball_app.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.ToString;
+import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.Date;
 import java.util.Set;
@@ -10,8 +13,12 @@ import java.util.Set;
 public class Sponsorship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "sponsorship_id")
     private int sponsorshipId;
 
+
+    @Column(name = "team_id")
+    private int teamId;
 
     private int tournament_id;
 
@@ -20,9 +27,28 @@ public class Sponsorship {
     private Date endDate;
 
     private int sponsorshipAmount;
-
+    @ManyToOne
+    @JoinColumn(name="sponsor_id", nullable=false)
+    @JsonBackReference
+    private Sponsor inforSponsor;
     // Getters and setters
 
+
+    public int getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
+    }
+
+    public Sponsor getInforSponsor() {
+        return inforSponsor;
+    }
+
+    public void setInforSponsor(Sponsor inforSponsor) {
+        this.inforSponsor = inforSponsor;
+    }
 
     public int getSponsorshipId() {
         return sponsorshipId;
@@ -72,11 +98,12 @@ public class Sponsorship {
         this.endDate = endDate;
     }
 
-    public double getSponsorshipAmount() {
+    public int getSponsorshipAmount() {
         return sponsorshipAmount;
     }
 
     public void setSponsorshipAmount(int sponsorshipAmount) {
         this.sponsorshipAmount = sponsorshipAmount;
     }
+
 }
