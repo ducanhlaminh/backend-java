@@ -9,6 +9,7 @@ import com.example.foooball_app.repository.SponsorShipRepository;
 import com.example.foooball_app.repository.TeamRepository;
 import com.example.foooball_app.dto.request.TeamRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import java.util.stream.Collectors;
 @Service
@@ -17,7 +18,6 @@ public class TeamService {
     private TeamRepository TeamRepository;
     @Autowired
     private SponsorShipRepository SponsorShipRepository;
-
     public List<Team> getTeamWithService(String country , String teamName){
         List<Team> listTeam;
          listTeam = TeamRepository.findAll();

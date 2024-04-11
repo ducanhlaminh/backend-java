@@ -1,4 +1,5 @@
 package com.example.foooball_app.config;
+import com.example.foooball_app.enums.Role;
 import org.springframework.http.HttpMethod;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +21,7 @@ import java.util.Collections;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-    private final String[] PUBLIC_ENDPOINTS = {"/login","/sign-up/btv","/sign-up/sponsor","/teams"
+    private final String[] PUBLIC_ENDPOINTS = {"/login","/sign-up/btv","/sign-up/sponsor"
     };
     @Value("${jwt.signerKey}")
     private String signerKey;

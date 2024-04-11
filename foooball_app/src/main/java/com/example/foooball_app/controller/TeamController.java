@@ -25,7 +25,7 @@ public class TeamController {
     }
 
     @GetMapping("/teams")
-//    @PreAuthorize("hasRole('BTV')")
+    @PreAuthorize("hasAnyAuthority('SCOPE_SPONSOR')")
     ApiResponse<List<Team>> getTeam(@RequestParam(required = false) String country , @RequestParam(required = false)  String teamName   ){
         var authen = SecurityContextHolder.getContext().getAuthentication();
         log.warn(authen.getName());
@@ -35,12 +35,14 @@ public class TeamController {
         return apiResponse;
     }
     @GetMapping("/teams/sponsor/{team_id}")
+    @PreAuthorize("hasAuthority('SCOPE_BTV')")
     ApiResponse<List<Sponsorship>> getTeam(@PathVariable int team_id   ){
         ApiResponse<List<Sponsorship>> apiResponse = new ApiResponse<>();
         apiResponse.setResult(teamService.getSponsorOfTeam(team_id));
         return apiResponse;
     }
     @PutMapping("/teams/{id}")
+    @PreAuthorize("hasAuthority('SCOPE_BTV')")
     ApiResponse<Team> updateTeam(@PathVariable int id , @RequestBody TeamRequest teamData   ){
         ApiResponse<Team> apiResponse = new ApiResponse<>();
         apiResponse.setResult(teamService.updateTeam(id,teamData));
