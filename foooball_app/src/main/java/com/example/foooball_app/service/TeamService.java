@@ -23,7 +23,6 @@ public class TeamService {
         Team team = new Team();
         team.setTeamName(req.getTeamName());
         team.setCountry(req.getCountry());
-        team.setCoach_id(req.getCoach_id());
 
 
         if(TeamRepository.existsByTeamName(team.getTeamName())) {

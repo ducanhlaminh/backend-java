@@ -14,7 +14,6 @@ public class Goal {
 
 //    private Match match;
 
-
 //    private Player player;
 
     private Time time;
@@ -33,14 +32,15 @@ public class Goal {
 //        return match;
 //    }
 
+//
 //    public void setMatch(Match match) {
 //        this.match = match;
 //    }
-
+//
 //    public Player getPlayer() {
 //        return player;
 //    }
-
+//
 //    public void setPlayer(Player player) {
 //        this.player = player;
 //    }

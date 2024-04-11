@@ -1,52 +1,33 @@
 package com.example.foooball_app.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
-import org.springframework.boot.context.properties.bind.DefaultValue;
+import java.util.List;
 
-import java.util.Set;
 @Entity
 @Table(name = "teams")
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int teamId;
+    @Column(name = "team_id")
+    private int team_id;
 
     private String teamName;
 
     private String country;
 
-    private int coach_id ;
-    @OneToMany(mappedBy="team")
-    private Set<Player> players;
-    // Getters and setters
 
+    @OneToMany(mappedBy = "team")
+    @JsonBackReference
+    private List<Match_Teams> teams;
 
+    @OneToMany(mappedBy = "team")
+    @JsonBackReference
+    private List<Player> players;
 
-    public int getCoach_id() {
-        return coach_id;
-    }
-
-    public void setCoach_id(int coach_id) {
-        this.coach_id = coach_id;
-    }
-
-    public Set<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(Set<Player> players) {
-        this.players = players;
-    }
-
-    public int getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(int teamId) {
-        this.teamId = teamId;
-    }
 
     public String getTeamName() {
         return teamName;
@@ -62,5 +43,20 @@ public class Team {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    public List<Match_Teams> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Match_Teams> teams) {
+        this.teams = teams;
     }
 }

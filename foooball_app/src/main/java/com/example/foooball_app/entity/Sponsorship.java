@@ -11,13 +11,7 @@ public class Sponsorship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int sponsorshipId;
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "sponsor_id" ,referencedColumnName = "sponsor_id")
-//    @JsonBackReference
-//    private Sponsor sponsor;
-//    @OneToMany(mappedBy = "sponsorships" , cascade = CascadeType.ALL)
-//    @JsonBackReference
-//    private Set<Team> teams;
+
 
     private int tournament_id;
 
