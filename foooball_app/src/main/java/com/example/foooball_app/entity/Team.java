@@ -24,13 +24,9 @@ public class Team {
     @JsonBackReference
     private List<Match_Teams> teams;
 
-    public List<Match_Teams> getTeams() {
-        return teams;
-    }
-
-    public void setTeams(List<Match_Teams> teams) {
-        this.teams = teams;
-    }
+    @OneToMany(mappedBy = "team")
+    @JsonBackReference
+    private List<Player> players;
 
     public int getTeamId() {
         return team_id;
@@ -39,7 +35,6 @@ public class Team {
     public void setTeamId(int teamId) {
         this.team_id = teamId;
     }
-
     public String getTeamName() {
         return teamName;
     }
@@ -55,5 +50,19 @@ public class Team {
     public void setCountry(String country) {
         this.country = country;
     }
+    public List<Player> getPlayers() {
+        return players;
+    }
 
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    public List<Match_Teams> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Match_Teams> teams) {
+        this.teams = teams;
+    }
 }

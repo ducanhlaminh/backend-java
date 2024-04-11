@@ -18,7 +18,9 @@ public class Player {
 
     private Date dateOfBirth;
 
-//    private Team team;
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
 
     // Getters and setters
 
@@ -62,11 +64,12 @@ public class Player {
         this.dateOfBirth = dateOfBirth;
     }
 
-//    public Team getTeam() {
-//        return team;
-//    }
-//
-//    public void setTeam(Team team) {
-//        this.team = team;
-//    }
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
 }
