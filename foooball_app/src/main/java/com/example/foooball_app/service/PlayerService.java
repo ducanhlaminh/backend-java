@@ -2,6 +2,8 @@ package com.example.foooball_app.service;
 
 import com.example.foooball_app.entity.Player;
 import com.example.foooball_app.entity.Team;
+import com.example.foooball_app.exception.AppError;
+import com.example.foooball_app.exception.ErrorCode;
 import com.example.foooball_app.repository.PlayerRepository;
 import com.example.foooball_app.repository.TeamRepository;
 import com.example.foooball_app.request.PlayerRequest;
@@ -39,7 +41,7 @@ public class PlayerService {
     }
 
     public Player getPlayer(int id){
-        return playerRepository.findById(id).orElseThrow(() -> new RuntimeException("Player not found"));
+        return playerRepository.findById(id).orElseThrow(() -> new AppError(ErrorCode.USER_EXISTED));
     }
 
     public Player updatePlayer(int playerId, PlayerRequest req){
