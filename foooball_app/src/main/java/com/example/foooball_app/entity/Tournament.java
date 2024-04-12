@@ -24,7 +24,7 @@ public class Tournament {
     @JsonBackReference
     private List<Match> matches;
 
-    @OneToMany(mappedBy = "tournament")
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL)
     @OrderBy("points DESC")
     private List<Ranking> ranking;
 

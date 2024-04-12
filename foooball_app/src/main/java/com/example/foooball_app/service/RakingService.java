@@ -56,4 +56,10 @@ public class RakingService {
             return tournaments;
         }
     }
+
+    public Ranking updateRanking(RakingRequest req){
+        Ranking ranking = rankingRepository.findByTournamentTournamentIdAndTeamTeamId(req.getTournament_id(), req.getTeam_id());
+        ranking.setPoints(ranking.getPoints() + req.getPoints());
+        return rankingRepository.save(ranking);
+    }
 }

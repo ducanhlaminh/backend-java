@@ -12,7 +12,7 @@ public class Ranking {
     @Column(name = "ranking_id")
     private int rankingId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "tournament_id")
     @JsonBackReference
     private Tournament tournament;
@@ -22,7 +22,6 @@ public class Ranking {
     private Team team;
 
     private int points;
-
 
     // Getters and setters
 

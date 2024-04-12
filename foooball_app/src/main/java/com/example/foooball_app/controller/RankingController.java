@@ -23,9 +23,16 @@ public class RankingController {
     }
 
     @GetMapping("/rankings/")
-    ApiResponse getRankings(@RequestParam(required = false) String tournament_id){
+    ApiResponse<List<Tournament>> getRankings(@RequestParam(required = false) String tournament_id){
         ApiResponse apiResponse = new ApiResponse<>();
         apiResponse.setResult(rankingService.getRankings(tournament_id));
+        return apiResponse;
+    }
+
+    @GetMapping("/rankings")
+    ApiResponse<Ranking> updateRanking(@RequestBody RakingRequest req){
+        ApiResponse apiResponse = new ApiResponse<>();
+        apiResponse.setResult(rankingService.updateRanking(req));
         return apiResponse;
     }
 }

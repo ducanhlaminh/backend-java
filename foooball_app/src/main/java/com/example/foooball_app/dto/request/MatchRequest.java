@@ -11,7 +11,6 @@ public class MatchRequest {
 
     private int tournament_id;
 
-
     public Date getMatchDate() {
         return matchDate;
     }
