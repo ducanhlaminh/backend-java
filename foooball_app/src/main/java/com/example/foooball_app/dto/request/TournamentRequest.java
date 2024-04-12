@@ -1,97 +1,47 @@
-<<<<<<< HEAD
-package com.example.foooball_app.dto.request;
+ package com.example.foooball_app.dto.request;
+ import java.util.Set;
+ import java.util.Date;
+ import com.example.foooball_app.entity.*;
+ public class TournamentRequest {
+     private String tournamentName;
 
-import javax.xml.crypto.Data;
-import java.sql.Date;
+     private Date startDate;
 
-public class TournamentRequest {
-    private String tournamentName;
+     private Date endDate;
+    
+     private Set<TournamentTeam> tournamentTeam;
 
-    private Date startDate;
+     // Getters and Setters
+     public String getTournamentName() {
+         return tournamentName;
+     }
 
-    private Date endDate;
+     public void setTournamentName(String tournamentName) {
+         this.tournamentName = tournamentName;
+     }
 
-//    private String team;
+     public Date getStartDate() {
+         return startDate;
+     }
 
+     public void setStartDate(Date startDate) {
+         this.startDate = startDate;
+     }
 
-    public String getTournamentName() {
-        return tournamentName;
-    }
+     public Date getEndDate() {
+         return endDate;
+     }
 
-    public void setTournamentName(String tournamentName) {
-        this.tournamentName = tournamentName;
-    }
+     public void setEndDate(Date endDate) {
+         this.endDate = endDate;
+     }
 
-    public Date getStartDate() {
-        return startDate;
-    }
+     public Set<TournamentTeam> getTournamentTeam() {
+         return tournamentTeam;
+     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
+     public void setTournamentTeam(Set<TournamentTeam> tournamentTeam) {
+         this.tournamentTeam = tournamentTeam;
+     }
 
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-//    public String getTeam() {
-//        return team;
-//    }
-//
-//    public void setTeam(String team) {
-//        this.team = team;
-//    }
-}
-=======
-package com.example.foooball_app.dto.request;
-
-import javax.xml.crypto.Data;
-import java.sql.Date;
-
-public class TournamentRequest {
-    private String tournamentName;
-
-    private Date startDate;
-
-    private Date endDate;
-
-//    private String team;
-
-
-    public String getTournamentName() {
-        return tournamentName;
-    }
-
-    public void setTournamentName(String tournamentName) {
-        this.tournamentName = tournamentName;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-//    public String getTeam() {
-//        return team;
-//    }
-//
-//    public void setTeam(String team) {
-//        this.team = team;
-//    }
-}
->>>>>>> af9d94641fd062ce08cf4020196d90695601d54c
+ }
