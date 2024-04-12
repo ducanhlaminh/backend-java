@@ -29,17 +29,17 @@ public class TournamentController {
     @Autowired
     private TournamentRepository tournamentRepository;
     private TeamRepository teamRepository;
-
-    @PostMapping("/tournaments")
-    public ApiResponse<Tournament> createTournament(@RequestBody TournamentRequest request) {
-        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
-        Tournament tournament = new Tournament();
-        tournament.setTournamentName(request.getTournamentName());
-        tournament.setStartDate(request.getStartDate());
-        tournament.setEndDate(request.getEndDate());
-        apiResponse.setResult(tournamentService.createTournament(tournament));
-        return apiResponse;
-    }
+//
+//    @PostMapping("/tournaments")
+//    public ApiResponse<Tournament> createTournament(@RequestBody TournamentRequest request) {
+//        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
+//        Tournament tournament = new Tournament();
+//        tournament.setTournamentName(request.getTournamentName());
+//        tournament.setStartDate(request.getStartDate());
+//        tournament.setEndDate(request.getEndDate());
+//        apiResponse.setResult(tournamentService.createTournament(tournament));
+//        return apiResponse;
+//    }
 
     @GetMapping("/tournaments")
     public ApiResponse<List<Tournament>> getTournaments(@RequestParam(required = false) String tournamentName,
@@ -50,17 +50,17 @@ public class TournamentController {
         return apiResponse;
     }
 
-    @PutMapping("/tournaments/{id}")
-    public ApiResponse<Tournament> updateTournament(@PathVariable int id, @RequestBody TournamentRequest request) {
-        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
-        Tournament tournament = new Tournament();
-        tournament.setTournamentId(id);
-        tournament.setTournamentName(request.getTournamentName());
-        tournament.setStartDate(request.getStartDate());
-        tournament.setEndDate(request.getEndDate());
-        apiResponse.setResult(tournamentService.updateTournament(tournament));
-        return apiResponse;
-    }
+//    @PutMapping("/tournaments/{id}")
+//    public ApiResponse<Tournament> updateTournament(@PathVariable int id, @RequestBody TournamentRequest request) {
+//        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
+//        Tournament tournament = new Tournament();
+//        tournament.setTournamentId(id);
+//        tournament.setTournamentName(request.getTournamentName());
+//        tournament.setStartDate(request.getStartDate());
+//        tournament.setEndDate(request.getEndDate());
+//        apiResponse.setResult(tournamentService.updateTournament(tournament));
+//        return apiResponse;
+//    }
 
     @DeleteMapping("/tournaments/{id}")
     public ApiResponse deleteTournament(@PathVariable int id) {

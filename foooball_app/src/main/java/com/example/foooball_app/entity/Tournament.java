@@ -9,25 +9,17 @@ import java.util.List;
 public class Tournament {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-
     private int tournamentId;
     private String tournamentName;
     private Date startDate;
     private Date endDate;
 
-    @OneToMany(mappedBy = "tournament")
-    private List<TournamentTeam> tournamentTeam;
+//    @OneToMany(mappedBy = "tournament")
+//    private List<TournamentTeam> tournamentTeam;
     // Constructors, Getters, and Setters
     // Constructors
-    public Tournament() {}
 
-    public Tournament(int tournamentId, String tournamentName, Date startDate, Date endDate) {
-        this.tournamentId = tournamentId;
-        this.tournamentName = tournamentName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
+
 
     // Getters and Setters
     public int getTournamentId() {
@@ -62,11 +54,11 @@ public class Tournament {
         this.endDate = endDate;
     }
 
-    public List<TournamentTeam> getTournamentTeam() {
-        return tournamentTeam;
-    }
-
-    public void setTournamentTeam(List<TournamentTeam> tournamentTeam) {
-        this.tournamentTeam = tournamentTeam;
-    }
+//    public List<TournamentTeam> getTournamentTeam() {
+//        return tournamentTeam;
+//    }
+//
+//    public void setTournamentTeam(List<TournamentTeam> tournamentTeam) {
+//        this.tournamentTeam = tournamentTeam;
+//    }
 }

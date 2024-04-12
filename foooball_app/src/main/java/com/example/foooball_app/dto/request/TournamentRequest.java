@@ -9,7 +9,7 @@
 
      private Date endDate;
     
-     private Set<TournamentTeam> tournamentTeam;
+//     private Set<TournamentTeam> tournamentTeam;
 
      // Getters and Setters
      public String getTournamentName() {
@@ -36,12 +36,12 @@
          this.endDate = endDate;
      }
 
-     public Set<TournamentTeam> getTournamentTeam() {
-         return tournamentTeam;
-     }
-
-     public void setTournamentTeam(Set<TournamentTeam> tournamentTeam) {
-         this.tournamentTeam = tournamentTeam;
-     }
+//     public Set<TournamentTeam> getTournamentTeam() {
+//         return tournamentTeam;
+//     }
+//
+//     public void setTournamentTeam(Set<TournamentTeam> tournamentTeam) {
+//         this.tournamentTeam = tournamentTeam;
+//     }
 
  }
