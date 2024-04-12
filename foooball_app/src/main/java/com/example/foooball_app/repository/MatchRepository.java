@@ -1,10 +1,9 @@
 package com.example.foooball_app.repository;
 
-import com.example.foooball_app.entity.Player;
+import com.example.foooball_app.entity.Match;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PlayerRepository extends JpaRepository<Player,Integer> {
+public interface MatchRepository extends JpaRepository<Match, Integer> {
 }

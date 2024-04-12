@@ -5,10 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
-import org.springframework.boot.context.properties.bind.DefaultValue;
+import java.util.List;
 
 import java.util.Set;
 import java.util.List;
+
 
 @Entity
 @Table(name = "teams")
@@ -18,6 +19,7 @@ public class Team {
     @Column(name = "team_id")
     private int teamId;
 
+
     private String teamName;
 
     private String country;
@@ -26,8 +28,7 @@ public class Team {
 //    @JsonManagedReference
 //    private List<Tournament> tournament;
 
-    @OneToMany(mappedBy="team")
-    private Set<Player> players;
+
 
     // Getters and setters
     @OneToOne(cascade = CascadeType.ALL)
@@ -43,13 +44,9 @@ public class Team {
         this.coach = coach;
     }
 
-    public Set<Player> getPlayers() {
-        return players;
-    }
 
-    public void setPlayers(Set<Player> players) {
-        this.players = players;
-    }
+
+
 
 
 
@@ -71,6 +68,15 @@ public class Team {
         this.teamId = teamId;
     }
 
+    @OneToMany(mappedBy = "team")
+    @JsonBackReference
+    private List<Match_Teams> teams;
+
+    @OneToMany(mappedBy = "team")
+    @JsonBackReference
+    private List<Player> players;
+
+
     public String getTeamName() {
         return teamName;
     }
@@ -85,5 +91,15 @@ public class Team {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+
+
+    public List<Match_Teams> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Match_Teams> teams) {
+        this.teams = teams;
     }
 }

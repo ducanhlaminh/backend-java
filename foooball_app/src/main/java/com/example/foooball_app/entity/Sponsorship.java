@@ -16,6 +16,7 @@ public class Sponsorship {
     @Column(name = "sponsorship_id")
     private int sponsorshipId;
 
+
     @Column(name = "team_id")
     private int teamId;
 

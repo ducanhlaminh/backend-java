@@ -15,3 +15,4 @@ public interface TournamentRepository extends JpaRepository<Tournament, Integer>
 
     // Optional<Tournament> findById(Integer tournamentId);
 }
+

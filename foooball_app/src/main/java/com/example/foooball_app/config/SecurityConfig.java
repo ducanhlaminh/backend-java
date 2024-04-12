@@ -22,8 +22,7 @@ import java.util.Collections;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-    private final String[] PUBLIC_ENDPOINTS = {"/login","/sign-up/btv","/sign-up/sponsor"
-    };
+
     @Value("${jwt.signerKey}")
     private String signerKey;
     @Bean
@@ -36,9 +35,6 @@ public class SecurityConfig {
                     config.setAllowedHeaders(Arrays.asList("*"));
                     cors.configurationSource(request -> config);
                 });
-        httpSecurity.authorizeHttpRequests(request ->
-                request.requestMatchers(PUBLIC_ENDPOINTS).permitAll()
-                        .anyRequest().authenticated());
 
         httpSecurity.oauth2ResourceServer(oauth2 ->
                 oauth2.jwt(jwtConfigurer ->

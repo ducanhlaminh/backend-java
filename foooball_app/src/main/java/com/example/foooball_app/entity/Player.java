@@ -20,8 +20,7 @@ public class Player {
     private Date dateOfBirth;
 
     @ManyToOne
-    @JoinColumn(name="team_id", nullable=false)
-    @JsonBackReference
+    @JoinColumn(name = "team_id")
     private Team team;
 
     // Getters and setters
@@ -73,7 +72,5 @@ public class Player {
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
-
 }
 
