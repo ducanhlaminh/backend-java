@@ -17,20 +17,15 @@ public class Team {
 
     private String country;
 
-    private int coach_id ;
+
+
     @OneToMany(mappedBy="team")
     private Set<Player> players;
     // Getters and setters
 
 
 
-    public int getCoach_id() {
-        return coach_id;
-    }
 
-    public void setCoach_id(int coach_id) {
-        this.coach_id = coach_id;
-    }
 
     public Set<Player> getPlayers() {
         return players;
