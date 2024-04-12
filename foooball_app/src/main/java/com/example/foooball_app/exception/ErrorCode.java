@@ -6,7 +6,10 @@ USER_EXISTED(2,"USER EXISTED"),
 
     COACH_EXISTED(2,"Đã tồn tại huấn luyện viên này"),
     TOURNAMENT_EXISTED(2,"Đã tồn tại giải đấu này"),
-
+    
+    TOURNAMENT_TEAM_EXISTED(2,"Đã tồn tại TOURNAMENT_TEAM này"),
+    TOURNAMENT_TEAM_UNEXISTED(2,"Không tìm thấy TOURNAMENT_TEAM này"),
+    
     USER_UNEXISTED(2,"Không tìm thấy người dùng này"),
 
     COACH_UNEXISTED(2,"Không tìm thấy huấn luyện viên này"),
