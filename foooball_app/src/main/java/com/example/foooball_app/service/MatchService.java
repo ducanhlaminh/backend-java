@@ -45,4 +45,19 @@ public class MatchService {
     public Match getMatch(int id){
         return matchRepository.findById(id).orElseThrow();
     }
+
+    public Match updateMatch(int matchId, MatchRequest req){
+        Match match = getMatch(matchId);
+        match.setMatchDate(req.getMatchDate());
+        match.setStadium(req.getStadium());
+        match.setResult(req.getResult());
+
+        Optional<Tournament> optionalTournament = tournamentRepository.findById(req.getTournament_id());
+        if(optionalTournament.isPresent()){
+            match.setTournament(optionalTournament.get());
+        }
+
+        return matchRepository.save(match);
+
+    }
 }

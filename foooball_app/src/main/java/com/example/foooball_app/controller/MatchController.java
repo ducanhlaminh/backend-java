@@ -34,4 +34,11 @@ public class MatchController {
         apiResponse.setResult(matchService.getMatch(match_id));
         return apiResponse;
     }
+
+    @PutMapping("/matches/{match_id}")
+    ApiResponse<Match> updateMatch(@PathVariable int match_id, @RequestBody MatchRequest req) {
+        ApiResponse apiResponse = new ApiResponse<>();
+        apiResponse.setResult(matchService.updateMatch(match_id,req));
+        return apiResponse;
+    }
 }

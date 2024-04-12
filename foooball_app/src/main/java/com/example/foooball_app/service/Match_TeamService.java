@@ -44,4 +44,25 @@ public class Match_TeamService {
     public List<Match_Teams> getMatchTeams(){
         return match_teamRepository.findAll();
     }
+
+    public Match_Teams getMatchTeam(int id){
+        return match_teamRepository.findById(id).orElseThrow();
+    }
+
+    public Match_Teams updateMatchTeam(int id, Match_TeamRequest req){
+        Match_Teams match_teams = getMatchTeam(id);
+        match_teams.setType(req.getType());
+
+        Optional<Team> optionalTeam = teamRepository.findById(req.getTeam_team_id());
+        if(optionalTeam.isPresent()){
+            match_teams.setTeam(optionalTeam.get());
+        }
+
+        Optional<Match> optionalMatch = matchRepository.findById(req.getMatch_match_id());
+        if(optionalMatch.isPresent()){
+            match_teams.setMatch(optionalMatch.get());
+        }
+
+        return match_teamRepository.save(match_teams);
+    }
 }
