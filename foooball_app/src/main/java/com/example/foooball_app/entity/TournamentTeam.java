@@ -1,106 +1,53 @@
-<<<<<<< HEAD
-package com.example.foooball_app.entity;
+ package com.example.foooball_app.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
-import jakarta.persistence.*;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import java.sql.Date;
-@Entity
-@Table(name = "tournament_teams")
-public class TournamentTeam {
+ import jakarta.persistence.*;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "tournament_id")
-    private int tournamentTeamId;
+ @Entity
+ @Table(name = "tournament_teams")
+ public class TournamentTeam {
 
-    @Column(name = "team_id")
-    private int teamId;
-//    @ManyToOne
-//    @JoinColumn(name = "tournament_id", referencedColumnName = "tournament_id")
-//    @JsonBackReference
-    private Tournament tournament;
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private int id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "team_id", referencedColumnName = "team_id")
-//    @JsonBackReference
-//    private Team team;
+     @ManyToOne
+     @JoinColumn(name = "tournament_id")
+     private Tournament tournament;
 
-    // Getters and setters
+     @ManyToOne
+     @JoinColumn(name = "team_id")
+     private Team teams; // Assuming a Team entity exists
 
-    public int getTournamentTeamId() {
-        return tournamentTeamId;
-    }
+     // Getters and Setters (omitted for brevity)
 
-    public void setTournamentTeamId(int tournamentTeamId) {
-        this.tournamentTeamId = tournamentTeamId;
-    }
+     public TournamentTeam() {}
 
-    public Tournament getTournament() {
-        return tournament;
-    }
+     public TournamentTeam(Tournament tournament, Team teams) {
+         this.tournament = tournament;
+         this.teams = teams;
+     }
 
-    public void setTournament(Tournament tournament) {
-        this.tournament = tournament;
-    }
+     public int getId() {
+         return id;
+     }
 
-//    public Team getTeam() {
-//        return team;
-//    }
-//
-//    public void setTeam(Team team) {
-//        this.team = team;
-//    }
-=======
-package com.example.foooball_app.entity;
+     public void setId(int id) {
+         this.id = id;
+     }
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
+     public Tournament getTournament(){
+         return tournament;
+     }
 
-@Entity
-@Table(name = "tournament_teams")
-public class TournamentTeam {
+     public void setTournament(Tournament tournament){
+         this.tournament = tournament;
+     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int tournamentTeamId;
+     public Team getTeams() {
+         return teams;
+     }
 
-    @ManyToOne
-    @JoinColumn(name = "tournament_id", referencedColumnName = "tournament_id")
-    @JsonBackReference
-    private Tournament tournament;
-
-    @ManyToOne
-    @JoinColumn(name = "team_id", referencedColumnName = "team_id")
-    @JsonBackReference
-    private Team team;
-
-    // Getters and setters
-
-    public int getTournamentTeamId() {
-        return tournamentTeamId;
-    }
-
-    public void setTournamentTeamId(int tournamentTeamId) {
-        this.tournamentTeamId = tournamentTeamId;
-    }
-
-    public Tournament getTournament() {
-        return tournament;
-    }
-
-    public void setTournament(Tournament tournament) {
-        this.tournament = tournament;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
->>>>>>> af9d94641fd062ce08cf4020196d90695601d54c
-}
+     public void setTeams(Team teams) {
+         this.teams = teams;
+     }
+ }
