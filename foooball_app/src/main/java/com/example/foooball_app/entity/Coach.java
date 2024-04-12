@@ -2,6 +2,7 @@ package com.example.foooball_app.entity;
 import java.util.Date;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -18,7 +19,7 @@ public class Coach {
 
     private String country;
     @OneToOne(mappedBy = "coach")
-    @JsonManagedReference
+    @JsonBackReference
     private Team team;
 
 
