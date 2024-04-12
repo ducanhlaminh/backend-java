@@ -10,8 +10,8 @@ public interface TournamentRepository extends JpaRepository<Tournament, Integer>
 
     boolean existsByTournamentName(String tournamentName);
 
-     boolean existsByStartDateAfter(Date startDate);
-     boolean existsByEndDateBefore(Date endDate);
+    boolean existsByStartDateAfter(Date startDate);
+    boolean existsByEndDateBefore(Date endDate);
 
-    // Optional<Tournament> findById(Integer tournamentId);
+//    Optional<Tournament> findById(int tournamentId);
 }

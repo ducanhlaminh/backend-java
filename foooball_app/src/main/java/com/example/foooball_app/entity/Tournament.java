@@ -14,8 +14,8 @@ public class Tournament {
     private Date startDate;
     private Date endDate;
 
-//    @OneToMany(mappedBy = "tournament")
-//    private List<TournamentTeam> tournamentTeam;
+    @OneToMany(mappedBy = "tournament")
+    private List<TournamentTeam> tournamentTeam;
     // Constructors, Getters, and Setters
     // Constructors
 
@@ -54,11 +54,11 @@ public class Tournament {
         this.endDate = endDate;
     }
 
-//    public List<TournamentTeam> getTournamentTeam() {
-//        return tournamentTeam;
-//    }
-//
-//    public void setTournamentTeam(List<TournamentTeam> tournamentTeam) {
-//        this.tournamentTeam = tournamentTeam;
-//    }
+    public List<TournamentTeam> getTournamentTeam() {
+        return tournamentTeam;
+    }
+
+    public void setTournamentTeam(List<TournamentTeam> tournamentTeam) {
+        this.tournamentTeam = tournamentTeam;
+    }
 }

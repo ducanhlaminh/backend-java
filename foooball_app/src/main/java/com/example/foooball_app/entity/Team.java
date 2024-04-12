@@ -5,6 +5,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
+import java.util.List;
 import java.util.Set;
 @Entity
 @Table(name = "teams")
@@ -19,8 +20,8 @@ public class Team {
     private String country;
 
     private int coach_id ;
-//    @OneToMany(mappedBy="team")
-//    private Set<Player> players;
+    @OneToMany(mappedBy = "team")
+    private List<TournamentTeam> team;
     // Getters and setters
 
 
@@ -63,5 +64,13 @@ public class Team {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public List<TournamentTeam> getTeam() {
+        return team;
+    }
+
+    public void setTeam(List<TournamentTeam> team) {
+        this.team = team;
     }
 }

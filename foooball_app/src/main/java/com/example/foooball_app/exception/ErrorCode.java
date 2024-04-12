@@ -16,7 +16,8 @@ USER_EXISTED(2,"USER EXISTED"),
 
     TOURNAMENT_UNEXISTED(2,"Không tìm thấy giải đấu này"),
 
-    SPONSOR_UNEXISTED(2,"Không tìm nhà tài trợ này");
+    SPONSOR_UNEXISTED(2,"Không tìm nhà tài trợ này"),
+    TEAM_UNEXISTED(2,"Không tìm thấy đội bóng này" );
 
 
 
