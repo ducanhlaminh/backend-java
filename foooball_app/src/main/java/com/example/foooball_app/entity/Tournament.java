@@ -15,18 +15,10 @@ public class Tournament {
     private Date startDate;
     private Date endDate;
 
+
     // Constructors, Getters, and Setters
     // Constructors
-    public Tournament() {}
 
-
-
-    public Tournament(int tournamentId, String tournamentName, Date startDate, Date endDate) {
-        this.tournamentId = tournamentId;
-        this.tournamentName = tournamentName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
 
     // Getters and Setters
     public int getTournamentId() {
@@ -60,4 +52,12 @@ public class Tournament {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+//    public List<TournamentTeam> getTournamentTeam() {
+//        return tournamentTeam;
+//    }
+//
+//    public void setTournamentTeam(List<TournamentTeam> tournamentTeam) {
+//        this.tournamentTeam = tournamentTeam;
+//    }
 }

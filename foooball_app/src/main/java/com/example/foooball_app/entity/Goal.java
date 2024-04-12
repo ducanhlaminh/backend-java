@@ -1,3 +1,4 @@
+
 package com.example.foooball_app.entity;
 import java.sql.Time;
 import jakarta.persistence.GeneratedValue;

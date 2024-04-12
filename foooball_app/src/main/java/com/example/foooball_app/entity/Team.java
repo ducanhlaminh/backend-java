@@ -9,23 +9,26 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.Set;
 import java.util.List;
+
 @Entity
 @Table(name = "teams")
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "team_id")
     private int teamId;
 
     private String teamName;
 
     private String country;
 
-    @OneToMany(mappedBy = "tournament")
-    @JsonManagedReference
-    private List<Tournament> tournament;
+//    @OneToMany(mappedBy = "tournament")
+//    @JsonManagedReference
+//    private List<Tournament> tournament;
 
     @OneToMany(mappedBy="team")
     private Set<Player> players;
+
     // Getters and setters
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "coach_id", referencedColumnName = "coach_id")
@@ -47,6 +50,18 @@ public class Team {
     public void setPlayers(Set<Player> players) {
         this.players = players;
     }
+
+
+
+
+
+//    public Set<Player> getPlayers() {
+//        return players;
+//    }
+//
+//    public void setPlayers(Set<Player> players) {
+//        this.players = players;
+//    }
 
     public int getTeamId() {
         return teamId;

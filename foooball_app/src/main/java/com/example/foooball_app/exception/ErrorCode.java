@@ -9,8 +9,20 @@ public enum ErrorCode {
     UNAUTHENTICATED(1006, "Unauthenticated", HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED(1007, "You do not have permission", HttpStatus.FORBIDDEN),
     LOGIN_FAIL(1008, "Thong tin dang nhap khong chinh xac", HttpStatus.BAD_REQUEST),
-    UNCATEGORIZED_EXCEPTION(9999, "Uncategorized error", HttpStatus.INTERNAL_SERVER_ERROR);
+    UNCATEGORIZED_EXCEPTION(9999, "Uncategorized error", HttpStatus.INTERNAL_SERVER_ERROR),
+    COACH_EXISTED(2,"Đã tồn tại huấn luyện viên này", HttpStatus.BAD_REQUEST),
+    TOURNAMENT_EXISTED(2,"Đã tồn tại giải đấu này", HttpStatus.BAD_REQUEST),
+
+    TOURNAMENT_TEAM_EXISTED(2,"Đã tồn tại TOURNAMENT_TEAM này", HttpStatus.BAD_REQUEST),
+    TOURNAMENT_TEAM_UNEXISTED(2,"Không tìm thấy TOURNAMENT_TEAM này", HttpStatus.BAD_REQUEST),
+
+
+    COACH_UNEXISTED(2,"Không tìm thấy huấn luyện viên này", HttpStatus.BAD_REQUEST),
+
+    TOURNAMENT_UNEXISTED(2,"Không tìm thấy giải đấu này", HttpStatus.BAD_REQUEST);
+
     ErrorCode(int code, String message, HttpStatusCode statusCode) {
+
         this.code = code;
         this.message = message;
         this.statusCode = statusCode;

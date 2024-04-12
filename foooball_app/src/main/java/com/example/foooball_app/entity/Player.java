@@ -23,6 +23,7 @@ public class Player {
     @JoinColumn(name="team_id", nullable=false)
     @JsonBackReference
     private Team team;
+
     // Getters and setters
 
     public Team getTeam() {
@@ -75,3 +76,4 @@ public class Player {
 
 
 }
+
