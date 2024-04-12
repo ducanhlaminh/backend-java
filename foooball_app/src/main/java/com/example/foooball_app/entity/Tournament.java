@@ -1,7 +1,9 @@
 package com.example.foooball_app.entity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tournaments")
@@ -16,6 +18,8 @@ public class Tournament {
     // Constructors, Getters, and Setters
     // Constructors
     public Tournament() {}
+
+
 
     public Tournament(int tournamentId, String tournamentName, Date startDate, Date endDate) {
         this.tournamentId = tournamentId;
