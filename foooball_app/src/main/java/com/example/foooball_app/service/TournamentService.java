@@ -1,18 +1,22 @@
-<<<<<<< HEAD
 package com.example.foooball_app.service;
 
+import com.example.foooball_app.dto.request.TournamentRequest;
+import com.example.foooball_app.dto.response.ApiResponse;
+import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.entity.Tournament;
 import com.example.foooball_app.entity.TournamentTeam;
 import com.example.foooball_app.exception.AppError;
 import com.example.foooball_app.exception.ErrorCode;
+import com.example.foooball_app.repository.TeamRepository;
 import com.example.foooball_app.repository.TournamentRepository;
+//import com.example.foooball_app.repository.TournamentTeamRepository;
 import com.example.foooball_app.repository.TournamentTeamRepository;
-import com.example.foooball_app.dto.request.TournamentRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,138 +28,57 @@ public class TournamentService {
     @Autowired
     private TournamentTeamRepository tournamentTeamRepository;
 
-    public List<Tournament> getTournaments(String tournamentName, String location, String startDate, String endDate) {
-        List<Tournament> tournaments = tournamentRepository.findAll();
-        return filter(tournaments, tournamentName, location, startDate, endDate);
-    }
-
-//    public Tournament createTournamentService(TournamentRequest req, TournamentTeam tournamentTeamData) {
-//        if (tournamentRepository.existsByTournamentName(req.getTournamentName())) {
-//            throw new AppError(ErrorCode.TOURNAMENT_EXISTED);
-//        }
-//
-//        List<TournamentTeam> tournamentTeams = new ArrayList<>();
-//        tournamentTeams.add(tournamentTeamData);
-//
-//        Tournament tournament = new Tournament();
-//        tournament.setTournamentName(req.getTournamentName());
-//        tournament.setStartDate(req.getStartDate());
-//        tournament.setEndDate(req.getEndDate());
-//        // Add other tournament fields as needed
-//
-//        tournament.setTournamentTeam(tournamentTeams);
-//        tournamentTeamData.setTournament(tournament);
-//        return tournamentRepository.save(tournament);
-//    }
-
-    public List<Tournament> filter(List<Tournament> tournaments, String tournamentName, String location, String startDate, String endDate) {
-        List<Tournament> filteredTournaments = tournaments.stream()
-                .filter(tournament -> (tournamentName == null || tournament.getTournamentName().equalsIgnoreCase(tournamentName)))
-                .filter(tournament -> (startDate == null || tournament.getStartDate().toString().contains(startDate))) // Assuming startDate is a date object
-                .filter(tournament -> (endDate == null || tournament.getEndDate().toString().contains(endDate))) // Assuming endDate is a date object
-                .collect(Collectors.toList());
-        return filteredTournaments;
-   }
-
-//    public Tournament updateTournament(int id, TournamentRequest tournamentData, TournamentTeam tournamentTeamData) {
-//        Tournament existingTournament = tournamentRepository.findById((long) id).orElseThrow(() -> new AppError(ErrorCode.TOURNAMENT_UNEXISTED));
-//        existingTournament.setTournamentName(tournamentData.getTournamentName());
-//        existingTournament.setStartDate(tournamentData.getStartDate());
-//        existingTournament.setEndDate(tournamentData.getEndDate());
-//
-//        TournamentTeam existingTournamentTeam = tournamentTeamRepository.findById(tournamentTeamData.getTournamentTeamId()).orElseThrow(() -> new AppError(ErrorCode.TOURNAMENT_UNEXISTED));
-//        // Update tournamentTeam data if needed
-//
-//        tournamentTeamRepository.save(existingTournamentTeam);
-//        return tournamentRepository.save(existingTournament);
-//    }
-
-    public boolean deleteTournament(int tournamentId, int tournamentTeamId) {
-        tournamentRepository.findById((long) tournamentId).orElseThrow(() -> new AppError(ErrorCode.TOURNAMENT_UNEXISTED));
-        tournamentTeamRepository.findById(tournamentTeamId).orElseThrow(() -> new AppError(ErrorCode.TOURNAMENT_UNEXISTED));
-        tournamentRepository.deleteById((long) tournamentId);
-        tournamentTeamRepository.deleteById(tournamentTeamId);
-        return true;
-    }
-}
-=======
-package com.example.foooball_app.service;
-
-import com.example.foooball_app.entity.Tournament;
-import com.example.foooball_app.entity.TournamentTeam;
-import com.example.foooball_app.exception.AppError;
-import com.example.foooball_app.exception.ErrorCode;
-import com.example.foooball_app.repository.TournamentRepository;
-import com.example.foooball_app.repository.TournamentTeamRepository;
-import com.example.foooball_app.dto.request.TournamentRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-@Service
-public class TournamentService {
-
     @Autowired
-    private TournamentRepository tournamentRepository;
+    private TeamRepository teamRepository;
 
-    @Autowired
-    private TournamentTeamRepository tournamentTeamRepository;
-
-    public List<Tournament> getTournaments(String tournamentName, String location, String startDate, String endDate) {
+    public List<Tournament> getTournaments(String tournamentName, Date startDate, Date endDate) {
         List<Tournament> tournaments = tournamentRepository.findAll();
-        return filter(tournaments, tournamentName, location, startDate, endDate);
+        return filter(tournaments, tournamentName, startDate, endDate);
     }
 
-    public Tournament createTournamentService(TournamentRequest req, TournamentTeam tournamentTeamData) {
-        if (tournamentRepository.existsByTournamentName(req.getTournamentName())) {
+    public Tournament createTournament(Tournament tournament) {
+        if (tournamentRepository.existsByTournamentName(tournament.getTournamentName())) {
             throw new AppError(ErrorCode.TOURNAMENT_EXISTED);
         }
-
-        List<TournamentTeam> tournamentTeams = new ArrayList<>();
-        tournamentTeams.add(tournamentTeamData);
-
-        Tournament tournament = new Tournament();
-        tournament.setTournamentName(req.getTournamentName());
-        tournament.setStartDate(req.getStartDate());
-        tournament.setEndDate(req.getEndDate());
-        // Add other tournament fields as needed
-
-        tournament.setTournamentTeam(tournamentTeams);
-        tournamentTeamData.setTournament(tournament);
         return tournamentRepository.save(tournament);
     }
 
-    public List<Tournament> filter(List<Tournament> tournaments, String tournamentName, String location, String startDate, String endDate) {
-        List<Tournament> filteredTournaments = tournaments.stream()
-                .filter(tournament -> (tournamentName == null || tournament.getTournamentName().equalsIgnoreCase(tournamentName)))
-                .filter(tournament -> (startDate == null || tournament.getStartDate().toString().contains(startDate))) // Assuming startDate is a date object
-                .filter(tournament -> (endDate == null || tournament.getEndDate().toString().contains(endDate))) // Assuming endDate is a date object
-                .collect(Collectors.toList());
-        return filteredTournaments;
+    public Tournament updateTournament(Tournament tournament) {
+        Optional<Tournament> existingTournament = tournamentRepository.findById(tournament.getTournamentId());
+        if (!existingTournament.isPresent()) {
+            throw new AppError(ErrorCode.TOURNAMENT_UNEXISTED);
+        }
+        Tournament updatedTournament = existingTournament.get();
+        updatedTournament.setTournamentName(tournament.getTournamentName());
+        updatedTournament.setStartDate(tournament.getStartDate());
+        updatedTournament.setEndDate(tournament.getEndDate());
+        return tournamentRepository.save(updatedTournament);
     }
 
-    public Tournament updateTournament(int id, TournamentRequest tournamentData, TournamentTeam tournamentTeamData) {
-        Tournament existingTournament = tournamentRepository.findById((long) id).orElseThrow(() -> new AppError(ErrorCode.TOURNAMENT_UNEXISTED));
-        existingTournament.setTournamentName(tournamentData.getTournamentName());
-        existingTournament.setStartDate(tournamentData.getStartDate());
-        existingTournament.setEndDate(tournamentData.getEndDate());
-
-        TournamentTeam existingTournamentTeam = tournamentTeamRepository.findById(tournamentTeamData.getTournamentTeamId()).orElseThrow(() -> new AppError(ErrorCode.TOURNAMENT_UNEXISTED));
-        // Update tournamentTeam data if needed
-
-        tournamentTeamRepository.save(existingTournamentTeam);
-        return tournamentRepository.save(existingTournament);
-    }
-
-    public boolean deleteTournament(int tournamentId, int tournamentTeamId) {
-        tournamentRepository.findById((long) tournamentId).orElseThrow(() -> new AppError(ErrorCode.TOURNAMENT_UNEXISTED));
-        tournamentTeamRepository.findById(tournamentTeamId).orElseThrow(() -> new AppError(ErrorCode.TOURNAMENT_UNEXISTED));
-        tournamentRepository.deleteById((long) tournamentId);
-        tournamentTeamRepository.deleteById(tournamentTeamId);
+    public boolean deleteTournament(int tournamentId) {
+        tournamentRepository.findById(tournamentId).orElseThrow(() -> new AppError(ErrorCode.TOURNAMENT_UNEXISTED));
+        tournamentRepository.deleteById(tournamentId);
         return true;
     }
+
+    private List<Tournament> filter(List<Tournament> tournaments, String tournamentName, Date startDate, Date endDate) {
+        return tournaments.stream()
+                .filter(t -> (tournamentName == null || t.getTournamentName().equalsIgnoreCase(tournamentName)))
+                .filter(t -> (startDate == null || t.getStartDate().before(new Date(System.currentTimeMillis() + (endDate == null ? 0 : endDate.getTime())))))
+                .filter(t -> (endDate == null || t.getEndDate().after(new Date(System.currentTimeMillis() + (startDate == null ? 0 : startDate.getTime())))))
+                .collect(Collectors.toList());
+    }
+
+    // public TournamentTeam addTeamToTournament(Tournament tournament, Team team) {
+    //     TournamentTeam tournamentTeam = new TournamentTeam(tournament, team);
+    //     return tournamentTeamRepository.save(tournamentTeam);
+    // }
+
+    // public void removeTeamFromTournament(int tournamentId, int teamId) {
+    //     Optional<TournamentTeam> existingTournamentTeam = tournamentTeamRepository.findByTournamentIdAndTeamId(tournamentId, teamId);
+    //     if (!existingTournamentTeam.isPresent()) {
+    //         throw new AppError(ErrorCode.TOURNAMENT_TEAM_UNEXISTED);
+    //     }
+    //     tournamentTeamRepository.deleteById(existingTournamentTeam.get().getId());
+    // }
 }
->>>>>>> af9d94641fd062ce08cf4020196d90695601d54c
