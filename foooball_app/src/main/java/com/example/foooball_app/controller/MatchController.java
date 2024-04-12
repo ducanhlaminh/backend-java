@@ -41,4 +41,12 @@ public class MatchController {
         apiResponse.setResult(matchService.updateMatch(match_id,req));
         return apiResponse;
     }
+
+    @DeleteMapping("/matches/{match_id}")
+    ApiResponse<String> deleteMatch(@PathVariable int match_id){
+        matchService.deleteMatch(match_id);
+        ApiResponse apiResponse = new ApiResponse<>();
+        apiResponse.setResult("Match has been deleted");
+        return apiResponse;
+    }
 }

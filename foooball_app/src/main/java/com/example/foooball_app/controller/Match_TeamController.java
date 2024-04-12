@@ -41,4 +41,12 @@ public class Match_TeamController {
         apiResponse.setResult(match_teamService.updateMatchTeam(match_teamId,req));
         return apiResponse;
     }
+
+    @DeleteMapping("/match_teams/{match_teamId}")
+    ApiResponse<String> deleteMatch_Team(@PathVariable int match_teamId){
+        match_teamService.deleteMatch_Team(match_teamId);
+        ApiResponse apiResponse = new ApiResponse<>();
+        apiResponse.setResult("Match_Team has been deleted");
+        return apiResponse;
+    }
 }

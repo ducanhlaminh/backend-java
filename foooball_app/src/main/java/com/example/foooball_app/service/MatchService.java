@@ -60,4 +60,8 @@ public class MatchService {
         return matchRepository.save(match);
 
     }
+
+    public void deleteMatch(int id){
+        matchRepository.deleteById(id);
+    }
 }

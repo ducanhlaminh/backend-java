@@ -65,4 +65,8 @@ public class Match_TeamService {
 
         return match_teamRepository.save(match_teams);
     }
+
+    public void deleteMatch_Team(int id){
+        match_teamRepository.deleteById(id);
+    }
 }
