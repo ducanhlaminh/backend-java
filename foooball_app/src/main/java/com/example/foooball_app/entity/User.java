@@ -1,3 +1,4 @@
+
 package com.example.foooball_app.entity;
 import com.example.foooball_app.enums.Role;
 import jakarta.persistence.*;

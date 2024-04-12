@@ -22,6 +22,7 @@ public class Player {
     @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
+
     // Getters and setters
 
     public Team getTeam() {
@@ -72,3 +73,4 @@ public class Player {
         this.dateOfBirth = dateOfBirth;
     }
 }
+

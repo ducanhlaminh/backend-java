@@ -1,12 +1,19 @@
+
 package com.example.foooball_app.repository;
 
 import com.example.foooball_app.entity.Tournament;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.sql.Date;
+import java.util.Optional;
 
-@Repository
-public interface TournamentRepository extends JpaRepository<Tournament,Integer> {
+public interface TournamentRepository extends JpaRepository<Tournament, Integer> {
+
+    boolean existsByTournamentName(String tournamentName);
+
+     boolean existsByStartDateAfter(Date startDate);
+     boolean existsByEndDateBefore(Date endDate);
+
+    // Optional<Tournament> findById(Integer tournamentId);
 }
+

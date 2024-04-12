@@ -9,11 +9,12 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
 import javax.crypto.spec.SecretKeySpec;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.web.cors.CorsConfiguration;
-
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -37,12 +38,25 @@ public class SecurityConfig {
 
         httpSecurity.oauth2ResourceServer(oauth2 ->
                 oauth2.jwt(jwtConfigurer ->
-                                jwtConfigurer.decoder(jwtDecoder())
-        ));
+                                jwtConfigurer.decoder(jwtDecoder()))
+                                        .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
+        );
         httpSecurity.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
 
         return httpSecurity.build();
     }
+
+    @Bean
+    JwtAuthenticationConverter jwtAuthenticationConverter(){
+        JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+        jwtGrantedAuthoritiesConverter.setAuthorityPrefix("");
+
+        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
+
+        return jwtAuthenticationConverter;
+    }
+
     @Bean
     public JwtDecoder jwtDecoder(){
         SecretKeySpec secretKeySpec = new SecretKeySpec(signerKey.getBytes(), "HS512");

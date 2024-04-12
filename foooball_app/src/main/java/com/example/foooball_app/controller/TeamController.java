@@ -25,6 +25,7 @@ public class TeamController {
     }
 
     @GetMapping("/teams")
+    @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
 
     ApiResponse<List<Team>> getTeam(@RequestParam(required = false) String country , @RequestParam(required = false)  String teamName   ){
         var authen = SecurityContextHolder.getContext().getAuthentication();

@@ -12,7 +12,6 @@ public class Card {
     private int cardId;
 
 
-    private Match match;
 
 
     private Player player;

@@ -20,6 +20,7 @@ public class Tournament {
 
     private Date endDate;
 
+
     @OneToMany(mappedBy = "tournament")
     @JsonBackReference
     private List<Match> matches;
@@ -31,14 +32,7 @@ public class Tournament {
 
     // Constructors, Getters, and Setters
     // Constructors
-    public Tournament() {}
 
-    public Tournament(int tournamentId, String tournamentName, Date startDate, Date endDate) {
-        this.tournamentId = tournamentId;
-        this.tournamentName = tournamentName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
 
     // Getters and Setters
     public int getTournamentId() {
@@ -72,6 +66,7 @@ public class Tournament {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
 
     public List<Match> getMatches() {
         return matches;

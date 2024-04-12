@@ -8,3 +8,4 @@ import org.springframework.stereotype.Repository;
 public interface SponsorRepository extends JpaRepository<Sponsor,Integer> {
     boolean existsBySponsorName( String sponsorName);
 }
+

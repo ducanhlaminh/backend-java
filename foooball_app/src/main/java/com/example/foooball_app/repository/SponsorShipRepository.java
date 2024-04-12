@@ -12,3 +12,4 @@ import java.util.Optional;
 public interface SponsorShipRepository extends JpaRepository<Sponsorship,Integer> {
     List<Sponsorship> findAllByTeamId( int team_id);
 }
+

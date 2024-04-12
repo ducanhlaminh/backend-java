@@ -7,6 +7,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
 import java.util.List;
 
+import java.util.Set;
+import java.util.List;
+
+
 @Entity
 @Table(name = "teams")
 public class Team {
@@ -15,10 +19,54 @@ public class Team {
     @Column(name = "team_id")
     private int teamId;
 
+
     private String teamName;
 
     private String country;
 
+//    @OneToMany(mappedBy = "tournament")
+//    @JsonManagedReference
+//    private List<Tournament> tournament;
+
+
+
+    // Getters and setters
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "coach_id", referencedColumnName = "coach_id")
+    @JsonManagedReference
+    private Coach coach;
+
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public void setCoach(Coach coach) {
+        this.coach = coach;
+    }
+
+
+
+
+
+
+
+
+
+//    public Set<Player> getPlayers() {
+//        return players;
+//    }
+//
+//    public void setPlayers(Set<Player> players) {
+//        this.players = players;
+//    }
+
+    public int getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
+    }
 
     @OneToMany(mappedBy = "team")
     @JsonBackReference
@@ -49,13 +97,8 @@ public class Team {
     public void setCountry(String country) {
         this.country = country;
     }
-    public List<Player> getPlayers() {
-        return players;
-    }
 
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
+
 
     public List<Match_Teams> getTeams() {
         return teams;
