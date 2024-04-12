@@ -1,32 +1,34 @@
 package com.example.foooball_app.entity;
-import java.sql.Date;
+import java.util.Date;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "coachs")
+@Table(name = "coaches")
 public class Coach {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long coachId;
+    private int coachId;
 
+    @Column(nullable = false)
     private String coachName;
 
     private String country;
 
+    @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
-//    private  Team teamId;
+//    private  String team;
 
     private Integer yearsOfExperience;
 
     // Getters and setters
 
-    public Long  getCoachId() {
+    public int  getCoachId() {
         return coachId;
     }
 
-    public void setCoachId(Long coachId) {
+    public void setCoachId(int coachId) {
         this.coachId = coachId;
     }
 
@@ -69,4 +71,5 @@ public class Coach {
     public void setYearsOfExperience(Integer yearsOfExperience) {
         this.yearsOfExperience = yearsOfExperience;
     }
+
 }
