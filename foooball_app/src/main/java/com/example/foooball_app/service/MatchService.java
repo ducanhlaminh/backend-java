@@ -30,6 +30,8 @@ public class MatchService {
         match.setStadium(req.getStadium());
         match.setResult(req.getResult());
 
+
+
         Optional<Tournament> optionalTournament = tournamentRepository.findById(req.getTournament_id());
         if(optionalTournament.isPresent()){
             match.setTournament(optionalTournament.get());

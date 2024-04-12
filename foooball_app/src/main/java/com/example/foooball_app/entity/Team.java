@@ -28,6 +28,10 @@ public class Team {
     @JsonBackReference
     private List<Player> players;
 
+    @OneToMany(mappedBy = "team")
+    @JsonBackReference
+    private List<Ranking> rankings;
+
 
     public String getTeamName() {
         return teamName;
@@ -58,5 +62,13 @@ public class Team {
 
     public void setTeams(List<Match_Teams> teams) {
         this.teams = teams;
+    }
+
+    public List<Ranking> getRankings() {
+        return rankings;
+    }
+
+    public void setRankings(List<Ranking> rankings) {
+        this.rankings = rankings;
     }
 }

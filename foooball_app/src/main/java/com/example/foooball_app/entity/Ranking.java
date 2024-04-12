@@ -1,32 +1,62 @@
 package com.example.foooball_app.entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 
+import java.util.List;
+@Entity
 @Table(name = "rankings")
 public class Ranking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ranking_id")
     private int rankingId;
 
-    private int tournament_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tournament_id")
+    @JsonBackReference
+    private Tournament tournament;
 
-//    private Team team;
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
 
     private int points;
 
-    private int matchesPlayed;
-
-    private int wins;
-
-    private int draws;
-
-    private int losses;
-
-    private int goalsFor;
-
-    private int goalsAgainst;
 
     // Getters and setters
+
+    public int getRankingId() {
+        return rankingId;
+    }
+
+    public void setRankingId(int rankingId) {
+        this.rankingId = rankingId;
+    }
+
+    public Tournament getTournament() {
+        return tournament;
+    }
+
+    public void setTournament(Tournament tournament) {
+        this.tournament = tournament;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+
 }
