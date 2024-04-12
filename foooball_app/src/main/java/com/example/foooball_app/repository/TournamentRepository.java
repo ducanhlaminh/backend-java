@@ -2,18 +2,16 @@ package com.example.foooball_app.repository;
 
 import com.example.foooball_app.entity.Tournament;
 import org.springframework.data.jpa.repository.JpaRepository;
-<<<<<<< HEAD
-import org.springframework.stereotype.Repository;
-=======
->>>>>>> af9d94641fd062ce08cf4020196d90695601d54c
 
-public interface TournamentRepository extends JpaRepository<Tournament, Long> {
+import java.sql.Date;
+import java.util.Optional;
+
+public interface TournamentRepository extends JpaRepository<Tournament, Integer> {
 
     boolean existsByTournamentName(String tournamentName);
-<<<<<<< HEAD
 
+     boolean existsByStartDateAfter(Date startDate);
+     boolean existsByEndDateBefore(Date endDate);
 
+    // Optional<Tournament> findById(Integer tournamentId);
 }
-=======
-}
->>>>>>> af9d94641fd062ce08cf4020196d90695601d54c
