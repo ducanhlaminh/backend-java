@@ -29,8 +29,8 @@ public class TeamController {
 
     ApiResponse<List<Team>> getTeam(@RequestParam(required = false) String country , @RequestParam(required = false)  String teamName   ){
         var authen = SecurityContextHolder.getContext().getAuthentication();
-        log.warn(authen.getName());
-        authen.getAuthorities().forEach(grantedAuthority -> log.warn(grantedAuthority.getAuthority()));
+//        log.warn(authen.getName());
+//        authen.getAuthorities().forEach(grantedAuthority -> log.warn(grantedAuthority.getAuthority()));
         ApiResponse<List<Team>> apiResponse = new ApiResponse<>();
         apiResponse.setResult(teamService.getTeamWithService(country,teamName));
         return apiResponse;
