@@ -30,15 +30,11 @@ public class MatchService {
         match.setStadium(req.getStadium());
         match.setResult(req.getResult());
 
+
+
         Optional<Tournament> optionalTournament = tournamentRepository.findById(req.getTournament_id());
         if(optionalTournament.isPresent()){
             match.setTournament(optionalTournament.get());
-        }
-
-
-        Optional<Team> optionalTeamHome = teamRepository.findById(req.getHome_team_id());
-        if(optionalTeamHome.isPresent()){
-
         }
 
         return matchRepository.save(match);
@@ -46,5 +42,28 @@ public class MatchService {
 
     public List<Match> getMatches(){
         return matchRepository.findAll();
+    }
+
+    public Match getMatch(int id){
+        return matchRepository.findById(id).orElseThrow();
+    }
+
+    public Match updateMatch(int matchId, MatchRequest req){
+        Match match = getMatch(matchId);
+        match.setMatchDate(req.getMatchDate());
+        match.setStadium(req.getStadium());
+        match.setResult(req.getResult());
+
+        Optional<Tournament> optionalTournament = tournamentRepository.findById(req.getTournament_id());
+        if(optionalTournament.isPresent()){
+            match.setTournament(optionalTournament.get());
+        }
+
+        return matchRepository.save(match);
+
+    }
+
+    public void deleteMatch(int id){
+        matchRepository.deleteById(id);
     }
 }

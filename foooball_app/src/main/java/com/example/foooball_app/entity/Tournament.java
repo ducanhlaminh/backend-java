@@ -29,6 +29,11 @@ public class Tournament {
     @JsonBackReference
     private List<TournamentTeam> tournamentTeam;
 
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL)
+    @OrderBy("points DESC")
+    private List<Ranking> ranking;
+
+
     // Constructors, Getters, and Setters
     // Constructors
 
@@ -74,4 +79,13 @@ public class Tournament {
     public void setMatches(List<Match> matchs) {
         this.matches = matchs;
     }
+
+    public List<Ranking> getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(List<Ranking> ranking) {
+        this.ranking = ranking;
+    }
+
 }
