@@ -35,4 +35,9 @@ public class RankingController {
         apiResponse.setResult(rankingService.updateRanking(req));
         return apiResponse;
     }
+
+    @GetMapping("/deleterank")
+    public void test(){
+        rankingService.test();
+    }
 }

@@ -62,4 +62,8 @@ public class RakingService {
         ranking.setPoints(ranking.getPoints() + req.getPoints());
         return rankingRepository.save(ranking);
     }
+
+    public void test(){
+        tournamentRepository.deleteById(1);
+    }
 }

@@ -20,8 +20,15 @@ public class Tournament {
 
     private Date endDate;
 
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<Sponsorship> sponsorships;
 
-    @OneToMany(mappedBy = "tournament")
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<TournamentTeam> tournamentTeam;
+
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<Match> matches;
 

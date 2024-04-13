@@ -9,7 +9,9 @@
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private int id;
 
-
+     @ManyToOne
+     @JoinColumn(name = "tournament_id")
+     private Tournament tournament;
 
      @ManyToOne
      @JoinColumn(name = "team_id")

@@ -31,6 +31,10 @@ public class Sponsorship {
     @JoinColumn(name="sponsor_id", nullable=false)
     @JsonBackReference
     private Sponsor inforSponsor;
+
+    @ManyToOne
+    @JoinColumn(name = "tounament_id")
+    private Tournament tournament;
     // Getters and setters
 
 
