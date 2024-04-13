@@ -1,10 +1,12 @@
 package com.example.foooball_app.service;
 import java.util.List;
 
+import com.example.foooball_app.entity.Coach;
 import com.example.foooball_app.entity.Sponsorship;
 import com.example.foooball_app.exception.AppError;
 import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.exception.ErrorCode;
+import com.example.foooball_app.repository.CoachRepository;
 import com.example.foooball_app.repository.SponsorShipRepository;
 
 import com.example.foooball_app.repository.TeamRepository;
@@ -17,6 +19,8 @@ import java.util.stream.Collectors;
 public class TeamService {
     @Autowired
     private TeamRepository TeamRepository;
+    @Autowired
+    private CoachRepository CoachRepository;
     @Autowired
     private SponsorShipRepository SponsorShipRepository;
 
@@ -32,21 +36,20 @@ public class TeamService {
     }
 
     public Team createTeamService(TeamRequest req) {
+
+        if(TeamRepository.existsByTeamName(req.getTeamName())) {
+            throw new AppError(ErrorCode.USER_EXISTED);
+        }
         Team team = new Team();
         team.setTeamName(req.getTeamName());
         team.setCountry(req.getCountry());
-
-
-        if(TeamRepository.existsByTeamName(team.getTeamName())) {
-            throw new AppError(ErrorCode.USER_EXISTED);
-        }
         return TeamRepository.save(team);
     }
     public List<Team> filter(List<Team> teams,String country, String teamName) {
         List<Team> filteredTeams;
         filteredTeams = teams.stream()
                 .filter(team -> (country == null || team.getCountry().toLowerCase().equals(country)))
-                .filter(team -> (teamName == null || team.getTeamName().toLowerCase().equals(teamName)))
+                .filter(team -> (teamName == null || team.getTeamName().toLowerCase().contains(teamName)))
                 .collect(Collectors.toList());
 
         return filteredTeams;
@@ -62,8 +65,9 @@ public class TeamService {
         return TeamRepository.save(existingTeam);
     }
     public boolean deleteTeam(int id  ) {
-        TeamRepository.findById(id).orElseThrow(()-> new AppError(ErrorCode.USER_UNEXISTED));
-        TeamRepository.deleteById(id);
+
+        Team team =TeamRepository.findById(id).orElseThrow(()-> new AppError(ErrorCode.USER_UNEXISTED));
+        TeamRepository.deleteById(team.getTeamId());
         return true;
 
     }

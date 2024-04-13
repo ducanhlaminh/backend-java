@@ -1,6 +1,7 @@
 package com.example.foooball_app.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -21,6 +22,7 @@ public class Player {
 
     @ManyToOne
     @JoinColumn(name = "team_id")
+    @JsonBackReference
     private Team team;
 
     // Getters and setters

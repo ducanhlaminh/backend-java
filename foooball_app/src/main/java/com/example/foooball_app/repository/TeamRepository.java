@@ -12,5 +12,4 @@ public interface TeamRepository extends JpaRepository<Team,Integer> {
 
 
 
-    Optional<List<Team>> findAllByCountryAndTeamName( String country, String teamName);
 }

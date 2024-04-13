@@ -24,17 +24,39 @@ public class Team {
 
     private String country;
 
-//    @OneToMany(mappedBy = "tournament")
-//    @JsonManagedReference
-//    private List<Tournament> tournament;
-
-
+    @OneToMany(mappedBy = "teams")
+    @JsonManagedReference
+    private List<TournamentTeam> tournamentTeam;
 
     // Getters and setters
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "coach_id", referencedColumnName = "coach_id")
     @JsonManagedReference
     private Coach coach;
+
+    @OneToMany(mappedBy = "team")
+    @JsonBackReference
+    private List<Match_Teams> teams;
+
+    @OneToMany(mappedBy = "team")
+    @JsonManagedReference
+    private List<Player> players;
+
+    public List<TournamentTeam> getTournamentTeam() {
+        return tournamentTeam;
+    }
+
+    public void setTournamentTeam(List<TournamentTeam> tournamentTeam) {
+        this.tournamentTeam = tournamentTeam;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
 
     public Coach getCoach() {
         return coach;
@@ -44,22 +66,6 @@ public class Team {
         this.coach = coach;
     }
 
-
-
-
-
-
-
-
-
-//    public Set<Player> getPlayers() {
-//        return players;
-//    }
-//
-//    public void setPlayers(Set<Player> players) {
-//        this.players = players;
-//    }
-
     public int getTeamId() {
         return teamId;
     }
@@ -67,15 +73,6 @@ public class Team {
     public void setTeamId(int teamId) {
         this.teamId = teamId;
     }
-
-    @OneToMany(mappedBy = "team")
-    @JsonBackReference
-    private List<Match_Teams> teams;
-
-    @OneToMany(mappedBy = "team")
-    @JsonBackReference
-    private List<Player> players;
-
 
     public String getTeamName() {
         return teamName;

@@ -25,6 +25,10 @@ public class Tournament {
     @JsonBackReference
     private List<Match> matches;
 
+    @OneToMany(mappedBy = "tournament")
+    @JsonBackReference
+    private List<TournamentTeam> tournamentTeam;
+
     // Constructors, Getters, and Setters
     // Constructors
 
