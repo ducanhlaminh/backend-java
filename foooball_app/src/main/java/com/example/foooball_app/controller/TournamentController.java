@@ -1,6 +1,7 @@
 package com.example.foooball_app.controller;
 
 import com.example.foooball_app.dto.request.TournamentRequest;
+import com.example.foooball_app.dto.request.TournamentTeamRequest;
 import com.example.foooball_app.dto.response.ApiResponse;
 import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.entity.Tournament;
@@ -26,20 +27,16 @@ public class TournamentController {
     @Autowired
     private TournamentService tournamentService;
 
-    @Autowired
-    private TournamentRepository tournamentRepository;
-    private TeamRepository teamRepository;
-//
-//    @PostMapping("/tournaments")
-//    public ApiResponse<Tournament> createTournament(@RequestBody TournamentRequest request) {
-//        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
-//        Tournament tournament = new Tournament();
-//        tournament.setTournamentName(request.getTournamentName());
-//        tournament.setStartDate(request.getStartDate());
-//        tournament.setEndDate(request.getEndDate());
-//        apiResponse.setResult(tournamentService.createTournament(tournament));
-//        return apiResponse;
-//    }
+    @PostMapping("/tournaments")
+    public ApiResponse<Tournament> createTournament(@RequestBody TournamentRequest request) {
+        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
+        Tournament tournament = new Tournament();
+        tournament.setTournamentName(request.getTournamentName());
+        tournament.setStartDate(request.getStartDate());
+        tournament.setEndDate(request.getEndDate());
+        apiResponse.setResult(tournamentService.createTournament(tournament));
+        return apiResponse;
+    }
 
     @GetMapping("/tournaments")
     public ApiResponse<List<Tournament>> getTournaments(@RequestParam(required = false) String tournamentName,
@@ -50,17 +47,17 @@ public class TournamentController {
         return apiResponse;
     }
 
-//    @PutMapping("/tournaments/{id}")
-//    public ApiResponse<Tournament> updateTournament(@PathVariable int id, @RequestBody TournamentRequest request) {
-//        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
-//        Tournament tournament = new Tournament();
-//        tournament.setTournamentId(id);
-//        tournament.setTournamentName(request.getTournamentName());
-//        tournament.setStartDate(request.getStartDate());
-//        tournament.setEndDate(request.getEndDate());
-//        apiResponse.setResult(tournamentService.updateTournament(tournament));
-//        return apiResponse;
-//    }
+    @PutMapping("/tournaments/{id}")
+    public ApiResponse<Tournament> updateTournament(@PathVariable int id, @RequestBody TournamentRequest request) {
+        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
+        Tournament tournament = new Tournament();
+        tournament.setTournamentId(id);
+        tournament.setTournamentName(request.getTournamentName());
+        tournament.setStartDate(request.getStartDate());
+        tournament.setEndDate(request.getEndDate());
+        apiResponse.setResult(tournamentService.updateTournament(tournament));
+        return apiResponse;
+    }
 
     @DeleteMapping("/tournaments/{id}")
     public ApiResponse deleteTournament(@PathVariable int id) {
@@ -74,28 +71,17 @@ public class TournamentController {
         }
         return apiResponse;
     }
-//    @PostMapping("/tournaments/{tournamentId}/teams/{teamId}")
-//    public ApiResponse<TournamentTeam> addTeamToTournament(@PathVariable int tournamentId, @PathVariable int teamId) {
-//        ApiResponse<TournamentTeam> apiResponse = new ApiResponse<>();
-//        Optional<Tournament> existingTournament = tournamentRepository.findById(tournamentId);
-//        Optional<Team> existingTeam = teamRepository.findById(teamId);
-//        if (!existingTournament.isPresent()) {
-//            throw new AppError(ErrorCode.TOURNAMENT_UNEXISTED);
-//        }
-//        if (!existingTeam.isPresent()) {
-//            throw new AppError(ErrorCode.TEAM_UNEXISTED);
-//        }
-//        TournamentTeam tournamentTeam = tournamentService.addTeamToTournament(existingTournament.get(), existingTeam.get());
-//        apiResponse.setResult(tournamentTeam);
+//    @PostMapping("/tournaments/{id}/teams")
+//    public ApiResponse<Tournament> addTeamsToTournament(@PathVariable int id, @RequestBody List<TournamentTeamRequest> tournamentTeamRequests) {
+//        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
+//        apiResponse.setResult(tournamentService.addTeamsToTournament(id, tournamentTeamRequests));
 //        return apiResponse;
 //    }
 //
-//    @DeleteMapping("/tournaments/{tournamentId}/teams/{teamId}")
-//    public ApiResponse deleteTeamFromTournament(@PathVariable int tournamentId, @PathVariable int teamId) {
-//        ApiResponse apiResponse = new ApiResponse<>();
-//        tournamentService.removeTeamFromTournament(tournamentId, teamId);
-//        apiResponse.setMessage("Đã xóa đội khỏi giải đấu");
-//        apiResponse.setCode(1);
+//    @PostMapping("/tournaments/{tournamentId}/teams/{teamId}")
+//    public ApiResponse<Tournament> removeTeamFromTournament(@PathVariable int tournamentId, @PathVariable int teamId) {
+//        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
+//        apiResponse.setResult(tournamentService.removeTeamFromTournament(tournamentId, teamId));
 //        return apiResponse;
 //    }
 }
