@@ -1,4 +1,5 @@
 package com.example.foooball_app.entity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -9,12 +10,14 @@ import java.util.List;
 public class Tournament {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "tournament_id")
     private int tournamentId;
     private String tournamentName;
     private Date startDate;
     private Date endDate;
 
-    @OneToMany(mappedBy = "tournament")
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<TournamentTeam> tournamentTeam;
     // Constructors, Getters, and Setters
     // Constructors

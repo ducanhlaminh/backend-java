@@ -71,17 +71,17 @@ public class TournamentController {
         }
         return apiResponse;
     }
-//    @PostMapping("/tournaments/{id}/teams")
-//    public ApiResponse<Tournament> addTeamsToTournament(@PathVariable int id, @RequestBody List<TournamentTeamRequest> tournamentTeamRequests) {
-//        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
-//        apiResponse.setResult(tournamentService.addTeamsToTournament(id, tournamentTeamRequests));
-//        return apiResponse;
-//    }
-//
-//    @PostMapping("/tournaments/{tournamentId}/teams/{teamId}")
-//    public ApiResponse<Tournament> removeTeamFromTournament(@PathVariable int tournamentId, @PathVariable int teamId) {
-//        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
-//        apiResponse.setResult(tournamentService.removeTeamFromTournament(tournamentId, teamId));
-//        return apiResponse;
-//    }
+    @PostMapping("/tournaments/{tournamentId}/teams")
+    public ApiResponse<Tournament> addTeamsToTournament(@PathVariable int tournamentId, @RequestBody List<TournamentTeamRequest> tournamentTeamRequests) {
+        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
+        apiResponse.setResult(tournamentService.addTeamsToTournament(tournamentId, tournamentTeamRequests));
+        return apiResponse;
+    }
+
+    @DeleteMapping("/tournaments/{tournamentId}/teams/{teamId}")
+    public ApiResponse<Tournament> removeTeamFromTournament(@PathVariable int tournamentId, @PathVariable int teamId) {
+        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
+        apiResponse.setResult(tournamentService.removeTeamFromTournament(tournamentId, teamId));
+        return apiResponse;
+    }
 }

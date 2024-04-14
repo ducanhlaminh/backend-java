@@ -1,4 +1,5 @@
 package com.example.foooball_app.entity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,13 +15,11 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "team_id")
     private int teamId;
-
     private String teamName;
-
     private String country;
-
     private int coach_id ;
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<TournamentTeam> team;
     // Getters and setters
 

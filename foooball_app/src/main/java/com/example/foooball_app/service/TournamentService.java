@@ -10,7 +10,7 @@ import com.example.foooball_app.exception.AppError;
 import com.example.foooball_app.exception.ErrorCode;
 import com.example.foooball_app.repository.TeamRepository;
 import com.example.foooball_app.repository.TournamentRepository;
-//import com.example.foooball_app.repository.TournamentTeamRepository;
+import com.example.foooball_app.repository.TournamentTeamRepository;
 import com.example.foooball_app.repository.TournamentTeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,37 +65,37 @@ public class TournamentService {
                 .filter(t -> (endDate == null || t.getEndDate().after(new Date(System.currentTimeMillis() + (startDate == null ? 0 : startDate.getTime())))))
                 .collect(Collectors.toList());
     }
-//    @Autowired
-//    private TeamRepository teamRepository;
-//    @Autowired
-//    private TournamentTeamRepository tournamentTeamRepository;
-//
-//    public Tournament addTeamsToTournament(int tournamentId, List<TournamentTeamRequest> tournamentTeamRequests) {
-//        Optional<Tournament> tournament = tournamentRepository.findById(tournamentId);
-//        if (!tournament.isPresent()) {
-//            throw new AppError(ErrorCode.TOURNAMENT_UNEXISTED);
-//        }
-//
-//        List<TournamentTeam> tournamentTeams = tournamentTeamRequests.stream()
-//                .map(ttr -> new TournamentTeam(tournament.get(), teamRepository.findById(ttr.getTeamId()).orElseThrow(() -> new AppError(ErrorCode.TEAM_UNEXISTED))))
-//                .collect(Collectors.toList());
-//
-//        tournamentTeamRepository.saveAll(tournamentTeams);
-//        return tournament.get();
-//    }
-//
-//    public Tournament removeTeamFromTournament(int tournamentId, int teamId) {
-//        Optional<Tournament> tournament = tournamentRepository.findById(tournamentId);
-//        if (!tournament.isPresent()) {
-//            throw new AppError(ErrorCode.TOURNAMENT_UNEXISTED);
-//        }
-//
-//        Optional<TournamentTeam> tournamentTeam = tournamentTeamRepository.findByTournamentIdAndTeamId(tournamentId, teamId);
-//        if (!tournamentTeam.isPresent()) {
-//            throw new AppError(ErrorCode.TOURNAMENT_TEAM_UNEXISTED);
-//        }
-//
-//        tournamentTeamRepository.delete(tournamentTeam.get());
-//        return tournament.get();
-//    }
+    @Autowired
+    private TeamRepository teamRepository;
+    @Autowired
+    private TournamentTeamRepository tournamentTeamRepository;
+
+    public Tournament addTeamsToTournament(int tournamentId, List<TournamentTeamRequest> tournamentTeamRequests) {
+        Optional<Tournament> tournament = tournamentRepository.findById(tournamentId);
+        if (!tournament.isPresent()) {
+            throw new AppError(ErrorCode.TOURNAMENT_UNEXISTED);
+        }
+
+        List<TournamentTeam> tournamentTeams = tournamentTeamRequests.stream()
+                .map(ttr -> new TournamentTeam(tournament.get(), teamRepository.findById(ttr.getTeamId()).orElseThrow(() -> new AppError(ErrorCode.TEAM_UNEXISTED))))
+                .collect(Collectors.toList());
+
+        tournamentTeamRepository.saveAll(tournamentTeams);
+        return tournament.get();
+    }
+
+    public Tournament removeTeamFromTournament(int tournamentId, int teamId) {
+        Optional<Tournament> tournament = tournamentRepository.findById(tournamentId);
+        if (!tournament.isPresent()) {
+            throw new AppError(ErrorCode.TOURNAMENT_UNEXISTED);
+        }
+
+        Optional<TournamentTeam> tournamentTeam = tournamentTeamRepository.findByTournamentIdAndTeamId(tournamentId, teamId);
+        if (!tournamentTeam.isPresent()) {
+            throw new AppError(ErrorCode.TOURNAMENT_TEAM_UNEXISTED);
+        }
+
+        tournamentTeamRepository.delete(tournamentTeam.get());
+        return tournament.get();
+    }
 }

@@ -10,10 +10,10 @@
      private int id;
 
      @ManyToOne
-     @JoinColumn(name = "tournament_id")
+     @JoinColumn(name = "tournament_id", referencedColumnName = "tournament_id")
      private Tournament tournament;
      @ManyToOne
-     @JoinColumn(name = "team_id")
+     @JoinColumn(name = "team_id", referencedColumnName = "team_id")
      private Team team;
 
      // Getters and Setters (omitted for brevity)
