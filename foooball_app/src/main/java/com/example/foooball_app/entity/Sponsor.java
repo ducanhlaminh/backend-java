@@ -1,4 +1,7 @@
 package com.example.foooball_app.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +13,7 @@ public class Sponsor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int sponsorId;
 
-    @OneToMany(mappedBy="inforSponsor",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="inforSponsor")
     private List<Sponsorship> sponsorship = new ArrayList<>();;
 
     private String sponsorName;
@@ -20,6 +23,7 @@ public class Sponsor {
     private String country;
 
     @OneToOne(mappedBy = "sponsor")
+    @JsonManagedReference
     private User user;
 
     public User getUser() {

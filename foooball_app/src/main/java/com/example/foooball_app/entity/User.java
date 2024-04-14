@@ -1,6 +1,7 @@
 
 package com.example.foooball_app.entity;
 import com.example.foooball_app.enums.Role;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -26,6 +27,7 @@ public class User {
     }
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonBackReference
     @JoinColumn(name = "userSponsorId", referencedColumnName = "sponsorId")
     private Sponsor sponsor;
 

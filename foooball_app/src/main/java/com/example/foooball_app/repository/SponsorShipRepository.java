@@ -10,6 +10,6 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 public interface SponsorShipRepository extends JpaRepository<Sponsorship,Integer> {
-    List<Sponsorship> findAllByTeamId( int team_id);
+//    List<Sponsorship> findSponsorshipByF( int team_id);
 }
 

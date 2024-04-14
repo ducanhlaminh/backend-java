@@ -21,10 +21,8 @@ public class SponsorController {
         ApiResponse<Sponsor> apiResponse = new ApiResponse<>();
         Sponsorship sponsorship = new Sponsorship();
         sponsorship.setSponsorshipAmount(req.getSponsorshipAmount());
-        sponsorship.setTeamId(req.getTeamId());
         sponsorship.setEndDate(req.getEndDate());
         sponsorship.setStartDate(req.getStartDate());
-        sponsorship.setTournament_id(req.getTournamentId());
         apiResponse.setResult(SponsorService.createSponsorService(req,sponsorship));
         return apiResponse;
     }
@@ -41,10 +39,8 @@ public class SponsorController {
         ApiResponse<Sponsor> apiResponse = new ApiResponse<>();
         Sponsorship sponsorship = new Sponsorship();
         sponsorship.setSponsorshipAmount(req.getSponsorshipAmount());
-        sponsorship.setTeamId(req.getTeamId());
         sponsorship.setEndDate(req.getEndDate());
         sponsorship.setStartDate(req.getStartDate());
-        sponsorship.setTournament_id(req.getTournamentId());
         sponsorship.setSponsorshipId(req.getSponsorshipId());
         System.out.println(req.getSponsorshipId());
         apiResponse.setResult(SponsorService.updateSponsor(id,req,sponsorship));

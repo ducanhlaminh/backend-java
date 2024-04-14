@@ -1,5 +1,6 @@
  package com.example.foooball_app.entity;
  import com.fasterxml.jackson.annotation.JsonBackReference;
+ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  import com.fasterxml.jackson.annotation.JsonManagedReference;
  import jakarta.persistence.*;
 
@@ -14,21 +15,28 @@
 
      @ManyToOne
      @JoinColumn(name = "team_id")
-     @JsonBackReference
+     @JsonIgnoreProperties("tournamentTeam")
      private Team teams;
 
      @ManyToOne
      @JoinColumn(name = "tournament_id")
-     @JsonManagedReference
+     @JsonIgnoreProperties("tournamentTeam")
      private Tournament tournament;
      // Getters and Setters (omitted for brevity)
 
-     public TournamentTeam() {}
 
 //     public TournamentTeam(Tournament tournament, Team teams) {
 //         this.tournament = tournament;
 //         this.teams = teams;
 //     }
+
+     public Tournament getTournament() {
+         return tournament;
+     }
+
+     public void setTournament(Tournament tournament) {
+         this.tournament = tournament;
+     }
 
      public int getId() {
          return id;

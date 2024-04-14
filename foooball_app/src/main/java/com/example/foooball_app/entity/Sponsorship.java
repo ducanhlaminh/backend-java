@@ -1,5 +1,6 @@
 package com.example.foooball_app.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
@@ -13,33 +14,33 @@ import java.util.Set;
 public class Sponsorship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "sponsorship_id")
     private int sponsorshipId;
 
-
-    @Column(name = "team_id")
-    private int teamId;
-
-    private int tournament_id;
 
     private Date startDate;
 
     private Date endDate;
 
     private int sponsorshipAmount;
+
+    @ManyToOne
+    @JsonIgnoreProperties( {"players", "tournamentTeam","user"})
+    @JoinColumn(name = "team_id")
+    private Team teamInfor;
+
     @ManyToOne
     @JoinColumn(name="sponsor_id", nullable=false)
-    @JsonBackReference
+    @JsonIgnoreProperties("sponsorship")
     private Sponsor inforSponsor;
     // Getters and setters
 
 
-    public int getTeamId() {
-        return teamId;
+    public Team getTeamInfor() {
+        return teamInfor;
     }
 
-    public void setTeamId(int teamId) {
-        this.teamId = teamId;
+    public void setTeamInfor(Team teamInfor) {
+        this.teamInfor = teamInfor;
     }
 
     public Sponsor getInforSponsor() {
@@ -74,13 +75,7 @@ public class Sponsorship {
 //        this.teams = teams;
 //    }
 
-    public int getTournament_id() {
-        return tournament_id;
-    }
 
-    public void setTournament_id(int tournament_id) {
-        this.tournament_id = tournament_id;
-    }
 
     public Date getStartDate() {
         return startDate;

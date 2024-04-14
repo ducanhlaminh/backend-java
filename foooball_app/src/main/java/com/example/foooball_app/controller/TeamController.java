@@ -36,8 +36,8 @@ public class TeamController {
         return apiResponse;
     }
     @GetMapping("/teams/sponsor/{team_id}")
-    ApiResponse<List<Sponsorship>> getTeam(@PathVariable int team_id   ){
-        ApiResponse<List<Sponsorship>> apiResponse = new ApiResponse<>();
+    ApiResponse<Sponsorship> getTeam(@PathVariable int team_id   ){
+        ApiResponse<Sponsorship> apiResponse = new ApiResponse<>();
         apiResponse.setResult(teamService.getSponsorOfTeam(team_id));
         return apiResponse;
     }

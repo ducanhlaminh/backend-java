@@ -29,9 +29,9 @@ public class TeamService {
         listTeam = TeamRepository.findAll();
         return filter(listTeam,country,teamName) ;
     }
-    public List<Sponsorship> getSponsorOfTeam(int team_id){
-        List<Sponsorship> listSponsorOfTeam;
-        listSponsorOfTeam = SponsorShipRepository.findAllByTeamId(team_id);
+    public Sponsorship getSponsorOfTeam(int team_id){
+        Sponsorship listSponsorOfTeam;
+        listSponsorOfTeam = SponsorShipRepository.findById(team_id).orElseThrow(()-> new AppError(ErrorCode.USER_EXISTED));
         return listSponsorOfTeam ;
     }
 

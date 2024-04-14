@@ -62,9 +62,7 @@ public class SponsorService {
                 existingSponsor.setSponsorType(sponsorData.getSponsorType());
         System.out.println(sponsorshipData.getSponsorshipId());
         Sponsorship existingSponsorship = SponsorShipRepository.findById(sponsorshipData.getSponsorshipId()).orElseThrow(()-> new AppError(ErrorCode.SPONSOR_UNEXISTED));
-        existingSponsorship.setTournament_id(sponsorData.getTournamentId());
         existingSponsorship.setSponsorshipAmount(sponsorData.getSponsorshipAmount());
-        existingSponsorship.setTeamId(sponsorData.getTeamId());
         existingSponsorship.setStartDate(sponsorData.getStartDate());
         existingSponsorship.setEndDate(sponsorData.getEndDate());
 
