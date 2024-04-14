@@ -1,16 +1,13 @@
 package com.example.foooball_app.service;
 import java.util.List;
 
-import com.example.foooball_app.entity.Coach;
-import com.example.foooball_app.entity.Sponsorship;
+import com.example.foooball_app.entity.*;
 import com.example.foooball_app.exception.AppError;
-import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.exception.ErrorCode;
-import com.example.foooball_app.repository.CoachRepository;
-import com.example.foooball_app.repository.SponsorShipRepository;
+import com.example.foooball_app.repository.*;
 
-import com.example.foooball_app.repository.TeamRepository;
 import com.example.foooball_app.dto.request.TeamRequest;
+import com.example.foooball_app.dto.request.RequestTeemToTournament;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -23,6 +20,10 @@ public class TeamService {
     private CoachRepository CoachRepository;
     @Autowired
     private SponsorShipRepository SponsorShipRepository;
+    @Autowired
+    private TournamentTeamRepository TournamentTeamRepository;
+    @Autowired
+    private TournamentRepository TournamentRepository;
 
     public List<Team> getTeamWithService(String country , String teamName){
         List<Team> listTeam;
@@ -33,6 +34,21 @@ public class TeamService {
         Sponsorship listSponsorOfTeam;
         listSponsorOfTeam = SponsorShipRepository.findById(team_id).orElseThrow(()-> new AppError(ErrorCode.USER_EXISTED));
         return listSponsorOfTeam ;
+    }
+
+    public TournamentTeam createTeamToTournament(RequestTeemToTournament req) {
+        List<TournamentTeam> tournaments = TournamentTeamRepository.findAll();
+        for (TournamentTeam tournamentTeam : tournaments){
+          if(tournamentTeam.getTeams().getTeamId() == req.getTeam_id() && tournamentTeam.getTournament().getTournamentId() == req.getTournament_id()) {
+              throw new AppError(ErrorCode.USER_EXISTED);
+          }
+        }
+        TournamentTeam tournamentTeam = new TournamentTeam();
+        Tournament tournament = TournamentRepository.findById(req.getTournament_id()).orElseThrow();
+        Team team = TeamRepository.findById(req.getTeam_id()).orElseThrow();
+        tournamentTeam.setTournament(tournament);
+        tournamentTeam.setTeams(team);
+        return TournamentTeamRepository.save(tournamentTeam);
     }
 
     public Team createTeamService(TeamRequest req) {

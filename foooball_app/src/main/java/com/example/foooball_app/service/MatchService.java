@@ -28,7 +28,7 @@ public class MatchService {
         Match match = new Match();
         match.setMatchDate(req.getMatchDate());
         match.setStadium(req.getStadium());
-        match.setResult(req.getResult());
+//        match.setResult(req.getResult());
 
 
 
@@ -52,7 +52,7 @@ public class MatchService {
         Match match = getMatch(matchId);
         match.setMatchDate(req.getMatchDate());
         match.setStadium(req.getStadium());
-        match.setResult(req.getResult());
+//        match.setResult(req.getResult());
 
         Optional<Tournament> optionalTournament = tournamentRepository.findById(req.getTournament_id());
         if(optionalTournament.isPresent()){

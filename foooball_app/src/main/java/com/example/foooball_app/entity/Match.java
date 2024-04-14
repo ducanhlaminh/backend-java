@@ -19,7 +19,6 @@ public class Match {
 
     private String stadium;
 
-    private String result;
 
     @ManyToOne
     @JoinColumn(name = "tournament_id")
@@ -53,13 +52,6 @@ public class Match {
         this.stadium = stadium;
     }
 
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
 
     public Tournament getTournament() {
         return tournament;

@@ -8,32 +8,29 @@ import jakarta.validation.constraints.Pattern;
 import java.util.Date;
 
 public class SponsorRequest {
-    private int id;
-    private String sponsorName;
+//    private int id;
+    private int sponsorId;
     private String sponsorType;
     private String country;
-    private int teamId;
-    private int tournamentId;
+    private int sponsorshipAmount;
     private Date startDate;
     private Date endDate;
-    private Sponsorship sponsorship;
-    private int sponsorshipAmount;
-    private int sponsorshipId;
+    private int teamId;
 
-    public int getSponsorshipId() {
-        return sponsorshipId;
+    public int getSponsorId() {
+        return sponsorId;
     }
 
-    public void setSponsorshipId(int sponsorshipId) {
-        this.sponsorshipId = sponsorshipId;
+    public void setSponsorId(int sponsorId) {
+        this.sponsorId = sponsorId;
     }
 
-    public Sponsorship getSponsorship() {
-        return sponsorship;
+    public int getSponsorshipAmount() {
+        return sponsorshipAmount;
     }
 
-    public void setSponsorship(Sponsorship sponsorship) {
-        this.sponsorship = sponsorship;
+    public void setSponsorshipAmount(int sponsorshipAmount) {
+        this.sponsorshipAmount = sponsorshipAmount;
     }
 
     public Date getStartDate() {
@@ -52,14 +49,6 @@ public class SponsorRequest {
         this.endDate = endDate;
     }
 
-    public int getSponsorshipAmount() {
-        return sponsorshipAmount;
-    }
-
-    public void setSponsorshipAmount(int sponsorshipAmount) {
-        this.sponsorshipAmount = sponsorshipAmount;
-    }
-
     public int getTeamId() {
         return teamId;
     }
@@ -67,31 +56,6 @@ public class SponsorRequest {
     public void setTeamId(int teamId) {
         this.teamId = teamId;
     }
-
-    public int getTournamentId() {
-        return tournamentId;
-    }
-
-    public void setTournamentId(int tournamentId) {
-        this.tournamentId = tournamentId;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getSponsorName() {
-        return sponsorName;
-    }
-
-    public void setSponsorName(String sponsorName) {
-        this.sponsorName = sponsorName;
-    }
-
     public String getSponsorType() {
         return sponsorType;
     }
@@ -107,4 +71,12 @@ public class SponsorRequest {
     public void setCountry(String country) {
         this.country = country;
     }
+
+//    public Sponsorship getSponsorship() {
+//        return sponsorship;
+//    }
+//
+//    public void setSponsorship(Sponsorship sponsorship) {
+//        this.sponsorship = sponsorship;
+//    }
 }

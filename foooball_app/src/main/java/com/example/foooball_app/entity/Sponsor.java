@@ -14,7 +14,7 @@ public class Sponsor {
     private int sponsorId;
 
     @OneToMany(mappedBy="inforSponsor")
-    private List<Sponsorship> sponsorship = new ArrayList<>();;
+    private List<Sponsorship> sponsorship;
 
     private String sponsorName;
 

@@ -16,14 +16,12 @@ import com.example.foooball_app.dto.request.SponsorRequest;
 public class SponsorController {
     @Autowired
     private SponsorService SponsorService;
+
     @PostMapping("/sponsors")
-    ApiResponse<Sponsor> createSponsor(@RequestBody SponsorRequest req){
-        ApiResponse<Sponsor> apiResponse = new ApiResponse<>();
-        Sponsorship sponsorship = new Sponsorship();
-        sponsorship.setSponsorshipAmount(req.getSponsorshipAmount());
-        sponsorship.setEndDate(req.getEndDate());
-        sponsorship.setStartDate(req.getStartDate());
-        apiResponse.setResult(SponsorService.createSponsorService(req,sponsorship));
+    ApiResponse<Sponsorship> createSponsor(@RequestBody SponsorRequest req){
+        ApiResponse<Sponsorship> apiResponse = new ApiResponse<>();
+
+        apiResponse.setResult(SponsorService.createSponsorService(req));
         return apiResponse;
     }
 
@@ -38,25 +36,24 @@ public class SponsorController {
     ApiResponse<Sponsor> updateSponsor(@PathVariable int id , @RequestBody SponsorRequest req   ){
         ApiResponse<Sponsor> apiResponse = new ApiResponse<>();
         Sponsorship sponsorship = new Sponsorship();
-        sponsorship.setSponsorshipAmount(req.getSponsorshipAmount());
-        sponsorship.setEndDate(req.getEndDate());
-        sponsorship.setStartDate(req.getStartDate());
-        sponsorship.setSponsorshipId(req.getSponsorshipId());
-        System.out.println(req.getSponsorshipId());
+//        sponsorship.setSponsorshipAmount(req.getSponsorshipAmount());
+//        sponsorship.setEndDate(req.getEndDate());
+//        sponsorship.setStartDate(req.getStartDate());
+//        sponsorship.setSponsorshipId(req.getSponsorshipId());
+//        System.out.println(req.getSponsorshipId());
         apiResponse.setResult(SponsorService.updateSponsor(id,req,sponsorship));
         return apiResponse;
     }
-    @DeleteMapping("/sponsors/{id_sponsor}/{id_sponsorship}")
-    ApiResponse deleteSponsor(@PathVariable int id_sponsor, @PathVariable int id_sponsorship    ){
+    @DeleteMapping("/sponsors/{id_sponsor}/{id_sponsorShip}")
+    ApiResponse deleteSponsor(@PathVariable int id_sponsor ,@PathVariable int id_sponsorShip  ){
         ApiResponse apiResponse = new ApiResponse<>();
-        if(SponsorService.deleteSponsor(id_sponsor,id_sponsorship)){
+        if(SponsorService.deleteSponsor(id_sponsor,id_sponsorShip)){
             apiResponse.setMessage("Xóa đội bóng thành công");
             apiResponse.setCode(1);
         }else{
             apiResponse.setMessage("Xóa đội bóng thất bại");
             apiResponse.setCode(0);
         }
-
         return apiResponse;
     }
 }

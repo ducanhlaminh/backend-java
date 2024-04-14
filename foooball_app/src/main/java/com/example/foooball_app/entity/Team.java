@@ -54,6 +54,16 @@ public class Team {
     @JsonBackReference
     private List<Ranking> rankings;
 
+
+
+    public List<Sponsorship> getTeamSponship() {
+        return teamSponship;
+    }
+
+    public void setTeamSponship(List<Sponsorship> teamSponship) {
+        this.teamSponship = teamSponship;
+    }
+
     public List<TournamentTeam> getTournamentTeam() {
         return tournamentTeam;
     }

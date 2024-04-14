@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SponsorRepository extends JpaRepository<Sponsor,Integer> {
-    boolean existsBySponsorName( String sponsorName);
+    Sponsor findBySponsorName( String sponsorName);
 }
 
