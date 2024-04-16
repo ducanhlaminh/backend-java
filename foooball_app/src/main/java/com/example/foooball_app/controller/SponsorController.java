@@ -7,6 +7,7 @@ import com.example.foooball_app.service.SponsorService;
 import com.example.foooball_app.entity.Sponsor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.example.foooball_app.dto.request.SponsorRequest;
 
@@ -16,7 +17,7 @@ import com.example.foooball_app.dto.request.SponsorRequest;
 public class SponsorController {
     @Autowired
     private SponsorService SponsorService;
-
+    @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
     @PostMapping("/sponsors")
     ApiResponse<Sponsorship> createSponsor(@RequestBody SponsorRequest req){
         ApiResponse<Sponsorship> apiResponse = new ApiResponse<>();
@@ -24,14 +25,14 @@ public class SponsorController {
         apiResponse.setResult(SponsorService.createSponsorService(req));
         return apiResponse;
     }
-
+    @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
     @GetMapping("/sponsors")
     ApiResponse<List<Sponsor>> getSponsor(@RequestParam(required = false) String sponsorName , @RequestParam(required = false)  String sponsorType, @RequestParam(required = false)  String country   ){
         ApiResponse<List<Sponsor>> apiResponse = new ApiResponse<>();
         apiResponse.setResult(SponsorService.getSponsorWithService(sponsorName,sponsorType,country));
         return apiResponse;
     }
-
+    @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
     @PutMapping("/sponsors/{id}")
     ApiResponse<Sponsor> updateSponsor(@PathVariable int id , @RequestBody SponsorRequest req   ){
         ApiResponse<Sponsor> apiResponse = new ApiResponse<>();

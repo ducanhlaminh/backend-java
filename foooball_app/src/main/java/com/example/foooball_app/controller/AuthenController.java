@@ -3,6 +3,7 @@ import com.example.foooball_app.dto.request.AuthenRequest;
 import com.example.foooball_app.dto.response.ApiResponse;
 import com.example.foooball_app.dto.response.ResponseLogin;
 
+import com.example.foooball_app.entity.Sponsor;
 import com.example.foooball_app.entity.User;
 import com.example.foooball_app.service.AuthenService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,8 @@ public class AuthenController {
     }
     @PostMapping("/sign-up/sponsor")
     ApiResponse signUpSponsorController(@RequestBody AuthenRequest request){
-        ApiResponse<User> apiResponse = new ApiResponse<>();
+        ApiResponse<Sponsor> apiResponse = new ApiResponse<>();
+
         apiResponse.setResult( AuthenService.signUpSponsorService(request));
         return apiResponse;
     }

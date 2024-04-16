@@ -13,9 +13,35 @@ public class AuthenRequest {
 
 
     private String role;
+    private String sponsorName;
+    private String sponsorType;
+    private String country;
 
+    public String getSponsorName() {
+        return sponsorName;
+    }
 
-//    private Sponsor sponsor;
+    public void setSponsorName(String sponsorName) {
+        this.sponsorName = sponsorName;
+    }
+
+    public String getSponsorType() {
+        return sponsorType;
+    }
+
+    public void setSponsorType(String sponsorType) {
+        this.sponsorType = sponsorType;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    //    private Sponsor sponsor;
 
     public int getUserId() {
         return userId;

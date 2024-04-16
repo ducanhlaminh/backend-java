@@ -6,6 +6,7 @@ import com.example.foooball_app.entity.Coach;
 import com.example.foooball_app.service.CoachService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class CoachController {
 
     @Autowired
     private CoachService coachService;
+    @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
 
     @PostMapping("/coaches")
     public ApiResponse<Coach> createCoach(@RequestBody CoachRequest request) {
@@ -27,6 +29,7 @@ public class CoachController {
         apiResponse.setResult(coachService.createCoach(coach));
         return apiResponse;
     }
+    @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
 
     @GetMapping("/coaches")
     public ApiResponse<List<Coach>> getCoaches(@RequestParam(required = false) String coachName,
@@ -35,6 +38,7 @@ public class CoachController {
         apiResponse.setResult(coachService.getCoaches(coachName, country));
         return apiResponse;
     }
+    @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
 
     @PutMapping("/coaches/{id}")
     public ApiResponse<Coach> updateCoach(@PathVariable int id, @RequestBody CoachRequest request) {
@@ -47,6 +51,7 @@ public class CoachController {
         apiResponse.setResult(coachService.updateCoach(coach));
         return apiResponse;
     }
+    @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
 
     @DeleteMapping("/coaches/{id}")
     public ApiResponse deleteCoach(@PathVariable int id) {

@@ -1,8 +1,10 @@
 package com.example.foooball_app.service;
 import com.example.foooball_app.dto.response.ApiResponse;
+import com.example.foooball_app.entity.Sponsor;
 import com.example.foooball_app.enums.Role;
 import com.example.foooball_app.exception.AppError;
 import com.example.foooball_app.exception.ErrorCode;
+import com.example.foooball_app.repository.SponsorRepository;
 import com.nimbusds.jose.JWSHeader;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,9 +34,11 @@ public class AuthenService {
     @Value("${jwt.signerKey}")
     protected String SIGNER_KEY;
 
+
     @Autowired
     private UserRepository UserRepository;
-
+    @Autowired
+    private SponsorRepository SponsorRepository;
     public User signUpBtvService(AuthenRequest request){
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         User user = new User();
@@ -43,9 +47,11 @@ public class AuthenService {
         user.setRole_enum(Role.BTV);
         return UserRepository.save(user);
     }
-    public User signUpSponsorService(AuthenRequest request){
+    public Sponsor signUpSponsorService(AuthenRequest request){
         boolean exitUser = UserRepository.existsUserByUsername(request.getUsername());
         User user = new User();
+        Sponsor sponsor = new Sponsor();
+
         if(exitUser){
             throw new AppError(ErrorCode.USER_EXISTED);
         }else{
@@ -54,8 +60,17 @@ public class AuthenService {
             user.setUsername(request.getUsername());
             user.setPassword(passwordEncoder.encode(request.getPassword()));
             user.setRole_enum(Role.SPONSOR);
+
+            log.info(request.getSponsorName());
+            sponsor.setSponsorName(request.getSponsorName());
+            sponsor.setSponsorType(request.getSponsorType());
+            sponsor.setCountry(request.getCountry());
+            user.setSponsor(sponsor);
+            sponsor.setUser(user);
+
+            UserRepository.save(user);
         }
-        return  UserRepository.save(user);
+        return  SponsorRepository.save(sponsor);
     }
     public User loginService(AuthenRequest request){
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);

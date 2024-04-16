@@ -20,6 +20,7 @@ public class TeamController {
     @Autowired
     private TeamService teamService;
     @PostMapping("/teams")
+    @PreAuthorize("hasAnyAuthority('BTV')")
     ApiResponse<Team> createTeam(@RequestBody @Valid TeamRequest req){
         ApiResponse<Team> apiResponse = new ApiResponse<>();
         apiResponse.setResult(teamService.createTeamService(req));
@@ -37,26 +38,30 @@ public class TeamController {
         apiResponse.setResult(teamService.getTeamWithService(country,teamName));
         return apiResponse;
     }
+    @PreAuthorize("hasAnyAuthority('BTV')")
+
     @GetMapping("/teams/sponsor/{team_id}")
     ApiResponse<Sponsorship> getTeam(@PathVariable int team_id   ){
         ApiResponse<Sponsorship> apiResponse = new ApiResponse<>();
         apiResponse.setResult(teamService.getSponsorOfTeam(team_id));
         return apiResponse;
     }
-
+    @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
     @PostMapping("/teams-tournament")
     ApiResponse<TournamentTeam> createTeamToTournament(@RequestBody RequestTeemToTournament data   ){
         ApiResponse<TournamentTeam> apiResponse = new ApiResponse<>();
         apiResponse.setResult(teamService.createTeamToTournament(data));
         return apiResponse;
     }
-
+    @PreAuthorize("hasAnyAuthority('BTV')")
     @PutMapping("/teams/{id}")
     ApiResponse<Team> updateTeam(@PathVariable int id , @RequestBody TeamRequest teamData   ){
         ApiResponse<Team> apiResponse = new ApiResponse<>();
         apiResponse.setResult(teamService.updateTeam(id,teamData));
         return apiResponse;
     }
+    @PreAuthorize("hasAnyAuthority('BTV')")
+
     @DeleteMapping("/teams/{id}")
     ApiResponse deleteTeam(@PathVariable int id    ){
         ApiResponse apiResponse = new ApiResponse<>();

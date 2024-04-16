@@ -5,6 +5,7 @@ import com.example.foooball_app.entity.Match;
 import com.example.foooball_app.dto.request.MatchRequest;
 import com.example.foooball_app.service.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,35 +14,35 @@ import java.util.List;
 public class MatchController {
     @Autowired
     private MatchService matchService;
-
+    @PreAuthorize("hasAnyAuthority('BTV')")
     @PostMapping("/matches")
     ApiResponse<Match> createMatch(@RequestBody MatchRequest req){
         ApiResponse apiResponse = new ApiResponse<>();
         apiResponse.setResult(matchService.createMatchService(req));
         return apiResponse;
     }
-
+    @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
     @GetMapping("/matches")
     ApiResponse<List<Match>> getMatches(){
         ApiResponse apiResponse = new ApiResponse<>();
         apiResponse.setResult(matchService.getMatches());
         return apiResponse;
     }
-
+    @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
     @GetMapping("/matches/{match_id}")
     ApiResponse<Match> getMatch(@PathVariable int match_id){
         ApiResponse apiResponse = new ApiResponse<>();
         apiResponse.setResult(matchService.getMatch(match_id));
         return apiResponse;
     }
-
+    @PreAuthorize("hasAnyAuthority('BTV')")
     @PutMapping("/matches/{match_id}")
     ApiResponse<Match> updateMatch(@PathVariable int match_id, @RequestBody MatchRequest req) {
         ApiResponse apiResponse = new ApiResponse<>();
         apiResponse.setResult(matchService.updateMatch(match_id,req));
         return apiResponse;
     }
-
+    @PreAuthorize("hasAnyAuthority('BTV')")
     @DeleteMapping("/matches/{match_id}")
     ApiResponse<String> deleteMatch(@PathVariable int match_id){
         matchService.deleteMatch(match_id);
