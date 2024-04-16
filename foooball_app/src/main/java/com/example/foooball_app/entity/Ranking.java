@@ -38,10 +38,12 @@ public class Ranking {
         this.tournament = tournament;
     }
 
+    public List<Ranking_Team> getRankingTeams() {
+        return rankingTeams;
+    }
 
-
-
-
-
+    public void setRankingTeams(List<Ranking_Team> rankingTeams) {
+        this.rankingTeams = rankingTeams;
+    }
 }
 

@@ -31,7 +31,6 @@ public class Tournament {
     private List<TournamentTeam> tournamentTeam;
 
     @OneToOne(mappedBy = "tournament", cascade = CascadeType.ALL)
-    @OrderBy("points DESC")
     private Ranking ranking;
 
 

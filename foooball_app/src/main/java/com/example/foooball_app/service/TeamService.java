@@ -48,6 +48,8 @@ public class TeamService {
         Team team = TeamRepository.findById(req.getTeam_id()).orElseThrow();
         tournamentTeam.setTournament(tournament);
         tournamentTeam.setTeams(team);
+
+        tournament.getRanking().setRankingTeams(team);
         return TournamentTeamRepository.save(tournamentTeam);
     }
 
