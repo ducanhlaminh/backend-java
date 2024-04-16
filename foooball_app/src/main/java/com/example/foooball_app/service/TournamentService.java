@@ -3,11 +3,13 @@ package com.example.foooball_app.service;
 import com.example.foooball_app.dto.request.TournamentRequest;
 import com.example.foooball_app.dto.request.TournamentTeamRequest;
 import com.example.foooball_app.dto.response.ApiResponse;
+import com.example.foooball_app.entity.Ranking;
 import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.entity.Tournament;
 import com.example.foooball_app.entity.TournamentTeam;
 import com.example.foooball_app.exception.AppError;
 import com.example.foooball_app.exception.ErrorCode;
+import com.example.foooball_app.repository.RankingRepository;
 import com.example.foooball_app.repository.TeamRepository;
 import com.example.foooball_app.repository.TournamentRepository;
 //import com.example.foooball_app.repository.TournamentTeamRepository;
@@ -25,7 +27,8 @@ public class TournamentService {
 
     @Autowired
     private TournamentRepository tournamentRepository;
-
+    @Autowired
+    private RankingRepository RankingRepository;
 
 
     public List<Tournament> getTournaments(String tournamentName, Date startDate, Date endDate) {
@@ -33,11 +36,14 @@ public class TournamentService {
         return filter(tournaments, tournamentName, startDate, endDate);
     }
 
-    public Tournament createTournament(Tournament tournament) {
+    public Ranking createTournament(Tournament tournament) {
         if (tournamentRepository.existsByTournamentName(tournament.getTournamentName())) {
             throw new AppError(ErrorCode.TOURNAMENT_EXISTED);
         }
-        return tournamentRepository.save(tournament);
+        Tournament tournamentResult = tournamentRepository.save(tournament);
+        Ranking ranking = new Ranking();
+        ranking.setTournament(tournamentResult);
+        return RankingRepository.save(ranking);
     }
 
     public Tournament updateTournament(Tournament tournament) {

@@ -30,14 +30,22 @@ public class Tournament {
     @JsonIgnoreProperties("tournament")
     private List<TournamentTeam> tournamentTeam;
 
-    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "tournament", cascade = CascadeType.ALL)
     @OrderBy("points DESC")
-    private List<Ranking> ranking;
+    private Ranking ranking;
 
 
     // Constructors, Getters, and Setters
     // Constructors
 
+
+    public Ranking getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(Ranking ranking) {
+        this.ranking = ranking;
+    }
 
     public List<TournamentTeam> getTournamentTeam() {
         return tournamentTeam;
@@ -89,12 +97,6 @@ public class Tournament {
         this.matches = matchs;
     }
 
-    public List<Ranking> getRanking() {
-        return ranking;
-    }
 
-    public void setRanking(List<Ranking> ranking) {
-        this.ranking = ranking;
-    }
 
 }

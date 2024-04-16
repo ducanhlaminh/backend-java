@@ -3,6 +3,7 @@ package com.example.foooball_app.controller;
 import com.example.foooball_app.dto.request.TournamentRequest;
 import com.example.foooball_app.dto.request.TournamentTeamRequest;
 import com.example.foooball_app.dto.response.ApiResponse;
+import com.example.foooball_app.entity.Ranking;
 import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.entity.Tournament;
 import com.example.foooball_app.entity.TournamentTeam;
@@ -28,8 +29,8 @@ public class TournamentController {
     private TournamentService tournamentService;
 
     @PostMapping("/tournaments")
-    public ApiResponse<Tournament> createTournament(@RequestBody TournamentRequest request) {
-        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
+    public ApiResponse<Ranking> createTournament(@RequestBody TournamentRequest request) {
+        ApiResponse<Ranking> apiResponse = new ApiResponse<>();
         Tournament tournament = new Tournament();
         tournament.setTournamentName(request.getTournamentName());
         tournament.setStartDate(request.getStartDate());

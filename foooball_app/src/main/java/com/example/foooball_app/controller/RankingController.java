@@ -29,10 +29,10 @@ public class RankingController {
         return apiResponse;
     }
 
-    @GetMapping("/rankings")
-    ApiResponse<Ranking> updateRanking(@RequestBody RakingRequest req){
-        ApiResponse apiResponse = new ApiResponse<>();
-        apiResponse.setResult(rankingService.updateRanking(req));
-        return apiResponse;
-    }
+//    @GetMapping("/rankings")
+//    ApiResponse<Ranking> updateRanking(@RequestBody RakingRequest req){
+//        ApiResponse apiResponse = new ApiResponse<>();
+//        apiResponse.setResult(rankingService.updateRanking(req));
+//        return apiResponse;
+//    }
 }

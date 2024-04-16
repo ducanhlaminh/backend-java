@@ -12,16 +12,13 @@ public class Ranking {
     @Column(name = "ranking_id")
     private int rankingId;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "tournament_id")
-    @JsonBackReference
     private Tournament tournament;
 
-    @ManyToOne
-    @JoinColumn(name = "team_id")
-    private Team team;
+    @OneToMany(mappedBy = "ranking")
+    private List<Ranking_Team> rankingTeams;
 
-    private int points;
 
     // Getters and setters
 
@@ -41,21 +38,9 @@ public class Ranking {
         this.tournament = tournament;
     }
 
-    public Team getTeam() {
-        return team;
-    }
 
-    public void setTeam(Team team) {
-        this.team = team;
-    }
 
-    public int getPoints() {
-        return points;
-    }
 
-    public void setPoints(int points) {
-        this.points = points;
-    }
 
 
 }

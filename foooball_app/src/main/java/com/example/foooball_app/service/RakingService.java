@@ -30,17 +30,17 @@ public class RakingService {
 
     public Ranking createRanking(RakingRequest req){
         Ranking ranking = new Ranking();
-        ranking.setPoints(req.getPoints());
-
-        Optional<Team> optionalTeam = teamRepository.findById(req.getTeam_id());
-        if(optionalTeam.isPresent()){
-            ranking.setTeam(optionalTeam.get());
-        }
-
-        Optional<Tournament> optionalTournament = tournamentRepository.findById(req.getTournament_id());
-        if(optionalTournament.isPresent()){
-            ranking.setTournament(optionalTournament.get());
-        }
+//        ranking.setPoints(req.getPoints());
+//
+//        Optional<Team> optionalTeam = teamRepository.findById(req.getTeam_id());
+//        if(optionalTeam.isPresent()){
+//            ranking.setTeam(optionalTeam.get());
+//        }
+//
+//        Optional<Tournament> optionalTournament = tournamentRepository.findById(req.getTournament_id());
+//        if(optionalTournament.isPresent()){
+//            ranking.setTournament(optionalTournament.get());
+//        }
 
         return rankingRepository.save(ranking);
     }
@@ -57,9 +57,9 @@ public class RakingService {
         }
     }
 
-    public Ranking updateRanking(RakingRequest req){
-        Ranking ranking = rankingRepository.findByTournamentTournamentIdAndTeamTeamId(req.getTournament_id(), req.getTeam_id());
-        ranking.setPoints(ranking.getPoints() + req.getPoints());
-        return rankingRepository.save(ranking);
-    }
+//    public Ranking updateRanking(RakingRequest req){
+//        Ranking ranking = rankingRepository.findByTournamentTournamentIdAndTeamTeamId(req.getTournament_id(), req.getTeam_id());
+//        ranking.setPoints(ranking.getPoints() + req.getPoints());
+//        return rankingRepository.save(ranking);
+//    }
 }

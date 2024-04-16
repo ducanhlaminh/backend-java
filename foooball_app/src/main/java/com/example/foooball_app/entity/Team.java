@@ -52,7 +52,7 @@ public class Team {
 
     @OneToMany(mappedBy = "team")
     @JsonBackReference
-    private List<Ranking> rankings;
+    private List<Ranking_Team> rankings;
 
 
 
@@ -129,11 +129,11 @@ public class Team {
         this.teams = teams;
     }
 
-    public List<Ranking> getRankings() {
+    public List<Ranking_Team> getRankings() {
         return rankings;
     }
 
-    public void setRankings(List<Ranking> rankings) {
+    public void setRankings(List<Ranking_Team> rankings) {
         this.rankings = rankings;
     }
 }
