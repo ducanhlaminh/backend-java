@@ -1,5 +1,6 @@
 package com.example.foooball_app.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -14,6 +15,7 @@ public class Ranking {
 
     @OneToOne
     @JoinColumn(name = "tournament_id")
+    @JsonIgnoreProperties("ranking")
     private Tournament tournament;
 
     @OneToMany(mappedBy = "ranking")

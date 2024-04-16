@@ -49,7 +49,12 @@ public class TeamService {
         tournamentTeam.setTournament(tournament);
         tournamentTeam.setTeams(team);
 
-        tournament.getRanking().setRankingTeams(team);
+        List<Ranking_Team> listTeam = tournament.getRanking().getRankingTeams();
+        Ranking_Team rankingTeam = new Ranking_Team();
+        rankingTeam.setTeam(team);
+        listTeam.add(rankingTeam);
+        tournament.getRanking().setRankingTeams(listTeam);
+        TournamentRepository.save(tournament);
         return TournamentTeamRepository.save(tournamentTeam);
     }
 

@@ -20,7 +20,7 @@ public class TeamController {
     @Autowired
     private TeamService teamService;
     @PostMapping("/teams")
-    @PreAuthorize("hasAnyAuthority('BTV')")
+//    @PreAuthorize("hasAnyAuthority('BTV')")
     ApiResponse<Team> createTeam(@RequestBody @Valid TeamRequest req){
         ApiResponse<Team> apiResponse = new ApiResponse<>();
         apiResponse.setResult(teamService.createTeamService(req));
