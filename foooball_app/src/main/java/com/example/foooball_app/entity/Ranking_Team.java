@@ -1,5 +1,6 @@
 package com.example.foooball_app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,14 +9,16 @@ public class Ranking_Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int rankingTeamId;
 
-    private int point ;
+    private int points ;
 
     @ManyToOne
     @JoinColumn(name = "team_id")
+    @JsonIgnoreProperties("rankings")
     private Team team;
 
     @ManyToOne
     @JoinColumn(name = "ranking_id")
+    @JsonIgnoreProperties("tournamentTeam")
     private Ranking ranking;
 
     public int getRankingTeamId() {
@@ -27,11 +30,11 @@ public class Ranking_Team {
     }
 
     public int getPoint() {
-        return point;
+        return points;
     }
 
     public void setPoint(int point) {
-        this.point = point;
+        this.points = point;
     }
 
     public Ranking getRanking() {

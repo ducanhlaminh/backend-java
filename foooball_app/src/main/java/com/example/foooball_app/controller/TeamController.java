@@ -1,10 +1,8 @@
 package com.example.foooball_app.controller;
 import com.example.foooball_app.dto.request.RequestTeemToTournament;
 import com.example.foooball_app.dto.response.ApiResponse;
-import com.example.foooball_app.entity.Sponsorship;
-import com.example.foooball_app.entity.TournamentTeam;
+import com.example.foooball_app.entity.*;
 import com.example.foooball_app.service.TeamService;
-import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.dto.request.TeamRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +46,8 @@ public class TeamController {
     }
     @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
     @PostMapping("/teams-tournament")
-    ApiResponse<TournamentTeam> createTeamToTournament(@RequestBody RequestTeemToTournament data   ){
-        ApiResponse<TournamentTeam> apiResponse = new ApiResponse<>();
+    ApiResponse<Tournament> createTeamToTournament(@RequestBody RequestTeemToTournament data   ){
+        ApiResponse<Tournament> apiResponse = new ApiResponse<>();
         apiResponse.setResult(teamService.createTeamToTournament(data));
         return apiResponse;
     }
@@ -60,7 +58,7 @@ public class TeamController {
         apiResponse.setResult(teamService.updateTeam(id,teamData));
         return apiResponse;
     }
-    @PreAuthorize("hasAnyAuthority('BTV')")
+//    @PreAuthorize("hasAnyAuthority('BTV')")
 
     @DeleteMapping("/teams/{id}")
     ApiResponse deleteTeam(@PathVariable int id    ){

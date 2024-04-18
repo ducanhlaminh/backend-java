@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface RankingRepository extends JpaRepository<Ranking, Integer> {
-//    Ranking findByTournamentTournamentIdAndTeamTeamId(final int tournamentId, final int teamId);
+    Ranking findByTournamentTournamentId(final int tournamentId);
 
     void deleteByTournament(Tournament tournament);
 }

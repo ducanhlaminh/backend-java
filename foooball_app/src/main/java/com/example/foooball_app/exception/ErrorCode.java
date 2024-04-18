@@ -14,6 +14,7 @@ public enum ErrorCode {
     TOURNAMENT_EXISTED(2,"Đã tồn tại giải đấu này", HttpStatus.BAD_REQUEST),
 
     TOURNAMENT_TEAM_EXISTED(2,"Đã tồn tại TOURNAMENT_TEAM này", HttpStatus.BAD_REQUEST),
+    RANKING_TEAM_EXISTED(2,"Đã tồn tại RANKING_TEAM này", HttpStatus.BAD_REQUEST),
     TOURNAMENT_TEAM_UNEXISTED(2,"Không tìm thấy TOURNAMENT_TEAM này", HttpStatus.BAD_REQUEST),
 
 

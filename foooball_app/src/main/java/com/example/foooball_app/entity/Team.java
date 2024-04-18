@@ -27,7 +27,7 @@ public class Team {
     private String country;
 
     @OneToMany(mappedBy = "teams")
-    @JsonIgnoreProperties("teams")
+    @JsonIgnoreProperties({"teams"})
     private List<TournamentTeam> tournamentTeam;
 
     // Getters and setters
@@ -51,7 +51,7 @@ public class Team {
 
 
     @OneToMany(mappedBy = "team")
-    @JsonBackReference
+    @JsonIgnoreProperties({"teams","rankingTeams"})
     private List<Ranking_Team> rankings;
 
 

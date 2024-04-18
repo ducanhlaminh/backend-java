@@ -1,4 +1,5 @@
 package com.example.foooball_app.service;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.foooball_app.entity.*;
@@ -24,6 +25,10 @@ public class TeamService {
     private TournamentTeamRepository TournamentTeamRepository;
     @Autowired
     private TournamentRepository TournamentRepository;
+    @Autowired
+    private RankingRepository RankingRepository;
+    @Autowired
+    private RankingTeamRepository RankingTeamRepository;
 
     public List<Team> getTeamWithService(String country , String teamName){
         List<Team> listTeam;
@@ -36,27 +41,45 @@ public class TeamService {
         return listSponsorOfTeam ;
     }
 
-    public TournamentTeam createTeamToTournament(RequestTeemToTournament req) {
-        List<TournamentTeam> tournaments = TournamentTeamRepository.findAll();
-        for (TournamentTeam tournamentTeam : tournaments){
-          if(tournamentTeam.getTeams().getTeamId() == req.getTeam_id() && tournamentTeam.getTournament().getTournamentId() == req.getTournament_id()) {
-              throw new AppError(ErrorCode.USER_EXISTED);
-          }
+    public Tournament createTeamToTournament(RequestTeemToTournament req) {
+        TournamentTeam tournamentTeamCheck = TournamentTeamRepository.findByTournamentTournamentIdAndTeamsTeamId(req.getTournament_id(), req.getTeam_id());
+        if(tournamentTeamCheck != null){
+            throw new AppError(ErrorCode.TOURNAMENT_TEAM_EXISTED);
         }
-        TournamentTeam tournamentTeam = new TournamentTeam();
         Tournament tournament = TournamentRepository.findById(req.getTournament_id()).orElseThrow();
         Team team = TeamRepository.findById(req.getTeam_id()).orElseThrow();
-        tournamentTeam.setTournament(tournament);
-        tournamentTeam.setTeams(team);
 
-        List<Ranking_Team> listTeam = tournament.getRanking().getRankingTeams();
+        TournamentTeam tournamentTeam = new TournamentTeam();
+
+        tournamentTeam.setTeams(team);
+        team.getTournamentTeam().add(tournamentTeam);
+        TournamentTeamRepository.save(tournamentTeam);
+        tournamentTeam.setTournament(tournament);
+        tournament.getTournamentTeam().add(tournamentTeam);
+
+        Ranking ranking = new Ranking();
+        ranking.setTournament(tournament);
+
         Ranking_Team rankingTeam = new Ranking_Team();
         rankingTeam.setTeam(team);
-        listTeam.add(rankingTeam);
-        tournament.getRanking().setRankingTeams(listTeam);
-        TournamentRepository.save(tournament);
-        return TournamentTeamRepository.save(tournamentTeam);
+        rankingTeam.setRanking(ranking);
+        RankingRepository.save(ranking);
+        RankingTeamRepository.save(rankingTeam);
+//        TournamentTeamRepository.save(tournamentTeam);
+        return TournamentRepository.save(tournament);
     }
+
+//    public Tournament createTeamToRanking(RequestTeemToTournament req) {
+//        Ranking_Team rankingTeamCheck = RankingTeamRepository.findByTeamTeamId(req.getTeam_id());
+//        if(rankingTeamCheck != null){
+//            throw new AppError(ErrorCode.RANKING_TEAM_EXISTED);
+//        }
+//        Team team = TeamRepository.findById(req.getTeam_id()).orElseThrow();
+//        Ranking_Team rankingTeam = new Ranking_Team();
+//        rankingTeam.setTeam(team);
+//
+//        return
+//    }
 
     public Team createTeamService(TeamRequest req) {
 

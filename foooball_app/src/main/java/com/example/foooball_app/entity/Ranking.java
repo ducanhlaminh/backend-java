@@ -19,6 +19,7 @@ public class Ranking {
     private Tournament tournament;
 
     @OneToMany(mappedBy = "ranking")
+    @JsonIgnoreProperties({"ranking","tournamentTeam"})
     private List<Ranking_Team> rankingTeams;
 
 
@@ -46,6 +47,10 @@ public class Ranking {
 
     public void setRankingTeams(List<Ranking_Team> rankingTeams) {
         this.rankingTeams = rankingTeams;
+    }
+
+    public void addRankingTeam(Ranking_Team rankingTeam){
+        this.rankingTeams.add(rankingTeam);
     }
 }
 
