@@ -31,14 +31,14 @@ public class CoachController {
         apiResponse.setResult(coachService.createCoach(coach));
         return apiResponse;
     }
-    @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
+//    @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
 
     @GetMapping("/coaches")
     public ApiResponse<List<Coach>> getCoaches(@RequestParam(required = false) String coachName,
                                                 @RequestParam(required = false) String country) {
-        ApiResponse<List<Coach>> apiResponse = new ApiResponse<>();
+        ApiResponse apiResponse = new ApiResponse<>();
         List<ResponseCoach> responseCoaches = new ArrayList<>();
-        List<Coach> result = coachService.getCoaches();
+        List<Coach> result = coachService.getCoaches(coachName, country);
 
         for(Coach coach : result){
             ResponseCoach responseCoach = new ResponseCoach();

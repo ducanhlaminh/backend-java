@@ -3,6 +3,7 @@ package com.example.foooball_app.controller;
 import com.example.foooball_app.dto.request.TournamentRequest;
 import com.example.foooball_app.dto.request.TournamentTeamRequest;
 import com.example.foooball_app.dto.response.ApiResponse;
+import com.example.foooball_app.dto.response.ResponseTournament;
 import com.example.foooball_app.entity.Ranking;
 import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.entity.Tournament;
@@ -18,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,8 +45,23 @@ public class TournamentController {
     public ApiResponse<List<Tournament>> getTournaments(@RequestParam(required = false) String tournamentName,
                                                         @RequestParam(required = false) Date startDate,
                                                         @RequestParam(required = false) Date endDate) {
-        ApiResponse<List<Tournament>> apiResponse = new ApiResponse<>();
-        apiResponse.setResult(tournamentService.getTournaments(tournamentName, startDate, endDate));
+        ApiResponse apiResponse = new ApiResponse<>();
+//        apiResponse.setResult(tournamentService.getTournaments(tournamentName, startDate, endDate));
+
+        List<ResponseTournament> responseTournaments = new ArrayList<>();
+        List<Tournament> result = tournamentService.getTournaments(tournamentName, startDate, endDate);
+
+        for(Tournament tournament : result){
+            ResponseTournament responseTournament = new ResponseTournament();
+            responseTournament.setTournamentId(tournament.getTournamentId());
+            responseTournament.setTournamentName(tournament.getTournamentName());
+            responseTournament.setStartDate(tournament.getStartDate());
+            responseTournament.setEndDate(tournament.getEndDate());
+            responseTournament.setNumOfTeam(tournament.getTournamentTeam().size());
+
+            responseTournaments.add(responseTournament);
+        }
+        apiResponse.setResult(responseTournaments);
         return apiResponse;
     }
 
