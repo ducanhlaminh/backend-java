@@ -20,7 +20,7 @@
 
      @ManyToOne
      @JoinColumn(name = "tournament_id")
-     @JsonIgnoreProperties({"ranking"})
+     @JsonIgnoreProperties({"ranking","tournamentTeam"})
      private Tournament tournament;
      // Getters and Setters (omitted for brevity)
 

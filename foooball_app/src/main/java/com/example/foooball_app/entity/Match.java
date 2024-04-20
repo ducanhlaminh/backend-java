@@ -1,6 +1,8 @@
 package com.example.foooball_app.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -19,6 +21,10 @@ public class Match {
 
     private String stadium;
 
+    @ManyToOne
+    @JoinColumn(name = "team_id_win")
+    @JsonIncludeProperties({"matchId","matchDate","stadium"})
+    private Team teamWin;
 
     @ManyToOne
     @JoinColumn(name = "tournament_id")
@@ -26,7 +32,16 @@ public class Match {
     private Tournament tournament;
 
     @OneToMany(mappedBy="match")
+
     private List<Match_Teams> match_teams;
+
+    public Team getTeamWin() {
+        return teamWin;
+    }
+
+    public void setTeamWin(Team teamWin) {
+        this.teamWin = teamWin;
+    }
 
     public int getMatchId() {
         return matchId;

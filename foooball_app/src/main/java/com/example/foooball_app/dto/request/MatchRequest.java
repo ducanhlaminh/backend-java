@@ -9,7 +9,17 @@ public class MatchRequest {
 
     private String result;
 
+    private int teamIdWin;
+
     private int tournament_id;
+
+    public int getTeamIdWin() {
+        return teamIdWin;
+    }
+
+    public void setTeamIdWin(int teamIdWin) {
+        this.teamIdWin = teamIdWin;
+    }
 
     public Date getMatchDate() {
         return matchDate;

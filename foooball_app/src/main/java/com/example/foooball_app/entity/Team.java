@@ -30,10 +30,14 @@ public class Team {
     @JsonIgnoreProperties({"teams"})
     private List<TournamentTeam> tournamentTeam;
 
+    @OneToMany(mappedBy = "teamWin")
+    @JsonIgnoreProperties({"tournament","match_teams"})
+    private List<Match> matches;
+
     // Getters and setters
     @OneToOne
     @JoinColumn(name = "coach_id", referencedColumnName = "coach_id")
-    @JsonManagedReference
+    @JsonIgnoreProperties({"team"})
     private Coach coach;
 
     @OneToMany(mappedBy = "team")
@@ -54,7 +58,13 @@ public class Team {
     @JsonIgnoreProperties({"teams","rankingTeams"})
     private List<Ranking_Team> rankings;
 
+    public List<Match> getMatches() {
+        return matches;
+    }
 
+    public void setMatches(List<Match> matches) {
+        this.matches = matches;
+    }
 
     public List<Sponsorship> getTeamSponship() {
         return teamSponship;

@@ -3,6 +3,7 @@ import java.util.Date;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -17,9 +18,12 @@ public class Coach {
     private String coachName;
 
     private String country;
-//    @OneToOne(mappedBy = "coach")
-//    @JsonBackReference
-//    private Team team;
+
+
+    @OneToOne
+    @JoinColumn(name = "coach_id", referencedColumnName = "coach_id")
+    @JsonIgnoreProperties("coach")
+    private Team team;
 
     private Date dateOfBirth;
 
@@ -28,13 +32,13 @@ public class Coach {
     // Getters and setters
 
 
-//    public Team getTeam() {
-//        return team;
-//    }
-//
-//    public void setTeam(Team team) {
-//        this.team = team;
-//    }
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
     public int getYearsOfExperience() {
         return yearsOfExperience;
