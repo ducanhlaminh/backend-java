@@ -2,6 +2,7 @@ package com.example.foooball_app.controller;
 
 import com.example.foooball_app.dto.request.CoachRequest;
 import com.example.foooball_app.dto.response.ApiResponse;
+import com.example.foooball_app.dto.response.ResponseCoach;
 import com.example.foooball_app.entity.Coach;
 import com.example.foooball_app.service.CoachService;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -35,7 +37,21 @@ public class CoachController {
     public ApiResponse<List<Coach>> getCoaches(@RequestParam(required = false) String coachName,
                                                 @RequestParam(required = false) String country) {
         ApiResponse<List<Coach>> apiResponse = new ApiResponse<>();
-        apiResponse.setResult(coachService.getCoaches(coachName, country));
+        List<ResponseCoach> responseCoaches = new ArrayList<>();
+        List<Coach> result = coachService.getCoaches();
+
+        for(Coach coach : result){
+            ResponseCoach responseCoach = new ResponseCoach();
+            responseCoach.setCoachId(coach.getCoachId());
+            responseCoach.setCoachName(coach.getCoachName());
+            responseCoach.setCountry(coach.getCountry());
+            responseCoach.setDateOfBirth(coach.getDateOfBirth());
+            responseCoach.setYearsOfExperience(coach.getYearsOfExperience());
+            responseCoach.setTeamName(coach.getTeam().getTeamName());
+
+            responseCoaches.add(responseCoach);
+        }
+        apiResponse.setResult(responseCoaches);
         return apiResponse;
     }
     @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
