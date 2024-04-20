@@ -45,16 +45,8 @@ public class RakingService {
         return rankingRepository.save(ranking);
     }
 
-    public List<Tournament> getRankings(String tournament_id){
-        if(tournament_id == null){
-            return tournamentRepository.findAll();
-        }
-        else{
-            Tournament tournament = tournamentRepository.findById(Integer.valueOf(tournament_id)).orElseThrow();
-            List<Tournament> tournaments = new ArrayList<>();
-            tournaments.add(tournament);
-            return tournaments;
-        }
+    public Ranking getRankings(String tournament_id){
+        return rankingRepository.findByTournamentTournamentId(Integer.valueOf(tournament_id));
     }
 
 //    public Ranking updateRanking(RakingRequest req){
