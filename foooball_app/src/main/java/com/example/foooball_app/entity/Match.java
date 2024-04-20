@@ -23,12 +23,10 @@ public class Match {
 
     @ManyToOne
     @JoinColumn(name = "team_id_win")
-    @JsonIncludeProperties({"matchId","matchDate","stadium"})
     private Team teamWin;
 
     @ManyToOne
     @JoinColumn(name = "tournament_id")
-    @JsonManagedReference
     private Tournament tournament;
 
     @OneToMany(mappedBy="match")

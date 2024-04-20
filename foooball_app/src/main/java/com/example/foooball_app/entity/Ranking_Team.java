@@ -13,12 +13,10 @@ public class Ranking_Team {
 
     @ManyToOne
     @JoinColumn(name = "team_id")
-    @JsonIgnoreProperties("rankings")
     private Team team;
 
     @ManyToOne
     @JoinColumn(name = "ranking_id")
-    @JsonIgnoreProperties("tournamentTeam")
     private Ranking ranking;
 
     public int getRankingTeamId() {

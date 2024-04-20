@@ -23,7 +23,6 @@ public class Sponsor {
     private String country;
 
     @OneToOne(mappedBy = "sponsor")
-    @JsonManagedReference
     private User user;
 
     public User getUser() {

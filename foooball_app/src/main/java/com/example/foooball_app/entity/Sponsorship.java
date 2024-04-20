@@ -24,13 +24,11 @@ public class Sponsorship {
     private int sponsorshipAmount;
 
     @ManyToOne
-    @JsonIgnoreProperties( {"players", "tournamentTeam","user","teamSponship"})
     @JoinColumn(name = "team_id")
     private Team teamInfor;
 
     @ManyToOne
     @JoinColumn(name="sponsor_id", nullable=false)
-    @JsonIgnoreProperties("sponsorship")
     private Sponsor inforSponsor;
     // Getters and setters
 

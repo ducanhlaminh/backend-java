@@ -23,11 +23,9 @@ public class Tournament {
 
 
     @OneToMany(mappedBy = "tournament")
-    @JsonBackReference
     private List<Match> matches;
 
     @OneToMany(mappedBy = "tournament")
-    @JsonIgnoreProperties("tournament")
     private List<TournamentTeam> tournamentTeam;
 
     @OneToOne(mappedBy = "tournament", cascade = CascadeType.ALL)

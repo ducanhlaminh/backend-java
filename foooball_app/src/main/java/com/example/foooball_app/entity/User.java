@@ -27,7 +27,6 @@ public class User {
     }
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JsonBackReference
     @JoinColumn(name = "userSponsorId", referencedColumnName = "sponsorId")
     private Sponsor sponsor;
 

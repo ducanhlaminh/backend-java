@@ -27,21 +27,17 @@ public class Team {
     private String country;
 
     @OneToMany(mappedBy = "teams")
-    @JsonIgnoreProperties({"teams"})
     private List<TournamentTeam> tournamentTeam;
 
     @OneToMany(mappedBy = "teamWin")
-    @JsonIgnoreProperties({"tournament","match_teams"})
     private List<Match> matches;
 
     // Getters and setters
     @OneToOne
     @JoinColumn(name = "coach_id", referencedColumnName = "coach_id")
-    @JsonIgnoreProperties({"team"})
     private Coach coach;
 
     @OneToMany(mappedBy = "team")
-    @JsonBackReference
     private List<Match_Teams> teams;
 
     @OneToMany(mappedBy = "teamInfor")
@@ -50,12 +46,10 @@ public class Team {
 
 
     @OneToMany(mappedBy = "team" )
-    @JsonIgnoreProperties("teams")
     private List<Player> players;
 
 
     @OneToMany(mappedBy = "team")
-    @JsonIgnoreProperties({"teams","rankingTeams"})
     private List<Ranking_Team> rankings;
 
     public List<Match> getMatches() {

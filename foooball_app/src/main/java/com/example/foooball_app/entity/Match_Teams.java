@@ -16,12 +16,10 @@ public class Match_Teams {
 
     @ManyToOne
     @JoinColumn(name = "team_team_id" )
-    @JsonManagedReference
     private Team team;
 
     @ManyToOne
     @JoinColumn(name = "match_match_id")
-    @JsonBackReference
     private Match match;
 
     public int getMatchTeamId() {

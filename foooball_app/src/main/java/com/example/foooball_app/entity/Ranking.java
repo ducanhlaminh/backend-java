@@ -15,11 +15,9 @@ public class Ranking {
 
     @OneToOne
     @JoinColumn(name = "tournament_id")
-    @JsonIgnoreProperties("ranking")
     private Tournament tournament;
 
     @OneToMany(mappedBy = "ranking")
-    @JsonIgnoreProperties({"ranking","tournamentTeam"})
     private List<Ranking_Team> rankingTeams;
 
 

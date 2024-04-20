@@ -22,7 +22,6 @@ public class Coach {
 
     @OneToOne
     @JoinColumn(name = "coach_id", referencedColumnName = "coach_id")
-    @JsonIgnoreProperties("coach")
     private Team team;
 
     private Date dateOfBirth;

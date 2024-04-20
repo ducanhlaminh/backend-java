@@ -24,7 +24,6 @@ public class Player {
 
     @ManyToOne
     @JoinColumn(name = "team_id")
-    @JsonIgnoreProperties("players")
     private Team team;
 
 //    @ManyToOne
