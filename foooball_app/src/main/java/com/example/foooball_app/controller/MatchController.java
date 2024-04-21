@@ -1,5 +1,7 @@
 package com.example.foooball_app.controller;
 
+import com.example.foooball_app.dto.request.CreateMatchRequest;
+import com.example.foooball_app.dto.request.updateTeamWinRequest;
 import com.example.foooball_app.dto.response.ApiResponse;
 import com.example.foooball_app.entity.Match;
 import com.example.foooball_app.dto.request.MatchRequest;
@@ -16,7 +18,7 @@ public class MatchController {
     private MatchService matchService;
     @PreAuthorize("hasAnyAuthority('BTV')")
     @PostMapping("/matches")
-    ApiResponse<Match> createMatch(@RequestBody MatchRequest req){
+    ApiResponse<Match> createMatch(@RequestBody CreateMatchRequest req){
         ApiResponse apiResponse = new ApiResponse<>();
         apiResponse.setResult(matchService.createMatchService(req));
         return apiResponse;
@@ -37,7 +39,7 @@ public class MatchController {
     }
     @PreAuthorize("hasAnyAuthority('BTV')")
     @PutMapping("/matches/{match_id}")
-    ApiResponse<Match> updateMatch(@PathVariable int match_id, @RequestBody MatchRequest req) {
+    ApiResponse<Match> updateMatch(@PathVariable int match_id, @RequestBody updateTeamWinRequest req) {
         ApiResponse apiResponse = new ApiResponse<>();
         apiResponse.setResult(matchService.updateMatch(match_id,req));
         return apiResponse;
