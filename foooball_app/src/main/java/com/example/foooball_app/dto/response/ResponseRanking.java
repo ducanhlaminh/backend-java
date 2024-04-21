@@ -12,7 +12,7 @@ public class ResponseRanking {
 
     private String tournamentName;
 
-    private List<Ranking_Team> rankingTeams;
+    private List<ResponseRankingTeam> responseRankingTeams;
 
     public int getTournamentId() {
         return tournamentId;
@@ -39,11 +39,11 @@ public class ResponseRanking {
         this.rankingId = rankingId;
     }
 
-    public List<Ranking_Team> getRankingTeams() {
-        return rankingTeams;
+    public List<ResponseRankingTeam> getResponseRankingTeams() {
+        return responseRankingTeams;
     }
 
-    public void setRankingTeams(List<Ranking_Team> rankingTeams) {
-        this.rankingTeams = rankingTeams;
+    public void setResponseRankingTeams(List<ResponseRankingTeam> responseRankingTeams) {
+        this.responseRankingTeams = responseRankingTeams;
     }
 }
