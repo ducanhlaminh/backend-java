@@ -5,7 +5,7 @@ public class ResponseRankingTeam {
 
     private int points ;
 
-    private ResponseTeamNameRank responseTeamNameRank;
+    private String teamName;
 
     public int getRankingTeamId() {
         return rankingTeamId;
@@ -23,11 +23,11 @@ public class ResponseRankingTeam {
         this.points = points;
     }
 
-    public ResponseTeamNameRank getResponseTeamNameRank() {
-        return responseTeamNameRank;
+    public String getTeamName() {
+        return teamName;
     }
 
-    public void setResponseTeamNameRank(ResponseTeamNameRank responseTeamNameRank) {
-        this.responseTeamNameRank = responseTeamNameRank;
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 }

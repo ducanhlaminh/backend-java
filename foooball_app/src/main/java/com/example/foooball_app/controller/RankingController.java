@@ -4,10 +4,8 @@ import com.example.foooball_app.dto.request.RakingRequest;
 import com.example.foooball_app.dto.response.ApiResponse;
 import com.example.foooball_app.dto.response.ResponseRanking;
 import com.example.foooball_app.dto.response.ResponseRankingTeam;
-import com.example.foooball_app.dto.response.ResponseTeamNameRank;
 import com.example.foooball_app.entity.Ranking;
 import com.example.foooball_app.entity.Ranking_Team;
-import com.example.foooball_app.entity.Tournament;
 import com.example.foooball_app.service.RakingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,12 +38,10 @@ public class RankingController {
 
         List<ResponseRankingTeam> responseRankingTeams = new ArrayList<>();
         for(Ranking_Team rankingTeam : result.getRankingTeams()){
-            ResponseTeamNameRank responseTeamNameRank = new ResponseTeamNameRank();
-            responseTeamNameRank.setTeamName(rankingTeam.getTeam().getTeamName());
-
             ResponseRankingTeam responseRankingTeam = new ResponseRankingTeam();
+
             responseRankingTeam.setRankingTeamId(rankingTeam.getRankingTeamId());
-            responseRankingTeam.setResponseTeamNameRank(responseTeamNameRank);
+            responseRankingTeam.setTeamName(rankingTeam.getTeam().getTeamName());
             responseRankingTeam.setPoints(rankingTeam.getPoint());
 
             responseRankingTeams.add(responseRankingTeam);
