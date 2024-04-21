@@ -1,6 +1,8 @@
 package com.example.foooball_app.controller;
 import com.example.foooball_app.dto.request.RequestTeemToTournament;
 import com.example.foooball_app.dto.response.ApiResponse;
+import com.example.foooball_app.dto.response.ResponseCoach;
+import com.example.foooball_app.dto.response.ResponseTeam;
 import com.example.foooball_app.entity.*;
 import com.example.foooball_app.service.TeamService;
 import com.example.foooball_app.dto.request.TeamRequest;
@@ -10,6 +12,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -27,13 +31,24 @@ public class TeamController {
 
     @GetMapping("/teams")
     @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
-
     ApiResponse<List<Team>> getTeam(@RequestParam(required = false) String country , @RequestParam(required = false)  String teamName   ){
         var authen = SecurityContextHolder.getContext().getAuthentication();
-//        log.warn(authen.getName());
-//        authen.getAuthorities().forEach(grantedAuthority -> log.warn(grantedAuthority.getAuthority()));
-        ApiResponse<List<Team>> apiResponse = new ApiResponse<>();
-        apiResponse.setResult(teamService.getTeamWithService(country,teamName));
+        ApiResponse apiResponse = new ApiResponse<>();
+        List<ResponseTeam> responseTeams = new ArrayList<>();
+        List<Team> result = teamService.getTeamWithService(country,teamName);
+        for(Team team : result){
+            ResponseTeam responseTeam = new ResponseTeam();
+            responseTeam.setTeamName(team.getTeamName());
+            responseTeam.setTeamId(team.getTeamId());
+            responseTeam.setCountry(team.getCountry());
+            responseTeam.setNumberOfPlayers(team.getPlayers().size());
+            responseTeam.setCoach(team.getCoach().getCoachId(),team.getCoach().getCoachName());
+            for (TournamentTeam tournamentTeam : team.getTournamentTeam()){
+                responseTeam.setTournament(tournamentTeam);
+            }
+            responseTeams.add(responseTeam);
+        }
+        apiResponse.setResult(responseTeams);
         return apiResponse;
     }
     @PreAuthorize("hasAnyAuthority('BTV')")

@@ -52,34 +52,23 @@ public class TeamService {
         TournamentTeam tournamentTeam = new TournamentTeam();
 
         tournamentTeam.setTeams(team);
-        team.getTournamentTeam().add(tournamentTeam);
-        TournamentTeamRepository.save(tournamentTeam);
         tournamentTeam.setTournament(tournament);
-        tournament.getTournamentTeam().add(tournamentTeam);
+        TournamentTeamRepository.save(tournamentTeam);
 
-        Ranking ranking = new Ranking();
-        ranking.setTournament(tournament);
+        Ranking ranking = RankingRepository.findByTournamentTournamentId(tournament.getTournamentId());
 
+//
         Ranking_Team rankingTeam = new Ranking_Team();
         rankingTeam.setTeam(team);
         rankingTeam.setRanking(ranking);
+        ranking.getRankingTeams().add(rankingTeam);
+
         RankingRepository.save(ranking);
         RankingTeamRepository.save(rankingTeam);
-//        TournamentTeamRepository.save(tournamentTeam);
-        return TournamentRepository.save(tournament);
+        return tournament;
     }
 
-//    public Tournament createTeamToRanking(RequestTeemToTournament req) {
-//        Ranking_Team rankingTeamCheck = RankingTeamRepository.findByTeamTeamId(req.getTeam_id());
-//        if(rankingTeamCheck != null){
-//            throw new AppError(ErrorCode.RANKING_TEAM_EXISTED);
-//        }
-//        Team team = TeamRepository.findById(req.getTeam_id()).orElseThrow();
-//        Ranking_Team rankingTeam = new Ranking_Team();
-//        rankingTeam.setTeam(team);
-//
-//        return
-//    }
+
 
     public Team createTeamService(TeamRequest req) {
 

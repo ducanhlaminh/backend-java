@@ -28,8 +28,7 @@ public class Tournament {
     @OneToMany(mappedBy = "tournament")
     private List<TournamentTeam> tournamentTeam;
 
-    @OneToOne(mappedBy = "tournament", cascade = CascadeType.ALL)
-
+    @OneToOne(mappedBy = "tournament")
     private Ranking ranking;
 
 

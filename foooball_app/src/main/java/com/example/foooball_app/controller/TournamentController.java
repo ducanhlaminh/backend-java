@@ -4,6 +4,7 @@ import com.example.foooball_app.dto.request.TournamentRequest;
 import com.example.foooball_app.dto.request.TournamentTeamRequest;
 import com.example.foooball_app.dto.response.ApiResponse;
 import com.example.foooball_app.dto.response.ResponseTournament;
+import com.example.foooball_app.dto.response.ResponseTournamentTeams;
 import com.example.foooball_app.entity.Ranking;
 import com.example.foooball_app.entity.Team;
 import com.example.foooball_app.entity.Tournament;
@@ -38,6 +39,30 @@ public class TournamentController {
         tournament.setStartDate(request.getStartDate());
         tournament.setEndDate(request.getEndDate());
         apiResponse.setResult(tournamentService.createTournament(tournament));
+        return apiResponse;
+    }
+
+    @GetMapping("/tournament-teams/{tournamentId}")
+    public ApiResponse<Tournament> getTournamentTeams(@PathVariable int tournamentId) {
+        ApiResponse apiResponse = new ApiResponse<>();
+        Tournament result = tournamentService.getTournamentTeams(tournamentId);
+        ResponseTournamentTeams responseTournaments = new ResponseTournamentTeams();
+        responseTournaments.setTournamentId(tournamentId);
+        for (TournamentTeam tournamentTeam : result.getTournamentTeam()){
+            responseTournaments.setTeams(tournamentTeam.getTeams().getTeamId(),tournamentTeam.getTeams().getTeamName());
+        }
+
+
+        apiResponse.setResult(responseTournaments);
+        return apiResponse;
+    }
+
+    @DeleteMapping("/tournament-teams/{tournamentId}/{teamId}")
+    public ApiResponse<Tournament> deleteTournamentTeams(@PathVariable int tournamentId,@PathVariable int teamId) {
+        ApiResponse apiResponse = new ApiResponse<>();
+        apiResponse.setMessage(tournamentService.deleteTournamentTeams(teamId,tournamentId));
+        System.out.println(tournamentId);
+        System.out.println(teamId);
         return apiResponse;
     }
 

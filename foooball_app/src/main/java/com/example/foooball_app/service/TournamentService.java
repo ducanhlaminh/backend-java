@@ -14,6 +14,7 @@ import com.example.foooball_app.repository.TeamRepository;
 import com.example.foooball_app.repository.TournamentRepository;
 //import com.example.foooball_app.repository.TournamentTeamRepository;
 import com.example.foooball_app.repository.TournamentTeamRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,12 +30,26 @@ public class TournamentService {
     private TournamentRepository tournamentRepository;
     @Autowired
     private RankingRepository RankingRepository;
+    @Autowired
+    private TournamentTeamRepository TournamentTeamRepository;
 
 
     public List<Tournament> getTournaments(String tournamentName, Date startDate, Date endDate) {
         List<Tournament> tournaments = tournamentRepository.findAll();
         return filter(tournaments, tournamentName, startDate, endDate);
     }
+
+    public Tournament getTournamentTeams(int tournamentId) {
+        Tournament tournament = tournamentRepository.findById(tournamentId).orElseThrow();
+        return tournament;
+    }
+    @Transactional
+    public String deleteTournamentTeams(int teamId,int tournamentId) {
+          TournamentTeamRepository.deleteByTournamentTournamentIdAndTeamsTeamId(tournamentId,teamId);
+        return "Delete Successful";
+    }
+
+
 
     public Ranking createTournament(Tournament tournament) {
         if (tournamentRepository.existsByTournamentName(tournament.getTournamentName())) {

@@ -47,7 +47,10 @@ public class CoachController {
             responseCoach.setCountry(coach.getCountry());
             responseCoach.setDateOfBirth(coach.getDateOfBirth());
             responseCoach.setYearsOfExperience(coach.getYearsOfExperience());
-            responseCoach.setTeamName(coach.getTeam().getTeamName());
+            if(coach.getTeam()!=null){
+                responseCoach.setTeamName(coach.getTeam().getTeamName());
+            }
+
 
             responseCoaches.add(responseCoach);
         }

@@ -20,8 +20,7 @@ public class Coach {
     private String country;
 
 
-    @OneToOne
-    @JoinColumn(name = "coach_id", referencedColumnName = "coach_id")
+    @OneToOne(mappedBy = "coach")
     private Team team;
 
     private Date dateOfBirth;
