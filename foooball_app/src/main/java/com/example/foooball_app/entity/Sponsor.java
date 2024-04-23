@@ -23,6 +23,7 @@ public class Sponsor {
     private String country;
 
     @OneToOne(mappedBy = "sponsor")
+    @JsonIgnoreProperties("sponsor")
     private User user;
 
     public User getUser() {

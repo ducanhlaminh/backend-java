@@ -80,13 +80,13 @@ public class MatchService {
             Ranking ranking = RankingRepository.findByTournamentTournamentId(match.getTournament().getTournamentId());
 
             System.out.println(match.getTeamWin());
-//            for (Ranking_Team rankingTeam : ranking.getRankingTeams()){
-//                if(rankingTeam.getRankingTeamId() == req.getTeanIdWin()){
-//
-//                    rankingTeam.setPoint(rankingTeam.getPoint()+3);
-//                    RankingTeamRepository.save(rankingTeam);
-//                }
-//            }
+            for (Ranking_Team rankingTeam : ranking.getRankingTeams()){
+                if(rankingTeam.getRankingTeamId() == req.getTeanIdWin()){
+
+                    rankingTeam.setPoint(rankingTeam.getPoint()+3);
+                    RankingTeamRepository.save(rankingTeam);
+                }
+            }
 
             match.setTeamWin(optionalTeam.get());
         }

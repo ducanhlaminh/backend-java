@@ -32,6 +32,10 @@ public class SponsorService {
         System.out.println(listSponsor.toString());
          return filter(listSponsor,sponsorName,sponsorType,country) ;
     }
+    public List<Sponsorship> getSponsorShipWithService(){
+        List<Sponsorship> list = SponsorShipRepository.findAll();
+        return list ;
+    }
     public Sponsorship createSponsorService(SponsorRequest req) {
         Sponsor sponsor = SponsorRepository.findById(req.getSponsorId()).orElseThrow();
             Team team = TeamRepository.findById(req.getTeamId()).orElseThrow();

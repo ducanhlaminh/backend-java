@@ -25,6 +25,7 @@ public class Sponsorship {
 
     @ManyToOne
     @JoinColumn(name = "team_id")
+    @JsonIgnoreProperties("tournamentTeam")
     private Team teamInfor;
 
     @ManyToOne

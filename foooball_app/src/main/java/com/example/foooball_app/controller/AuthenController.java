@@ -26,8 +26,8 @@ public class AuthenController {
     @PostMapping("/sign-up/sponsor")
     ApiResponse signUpSponsorController(@RequestBody AuthenRequest request){
         ApiResponse<Sponsor> apiResponse = new ApiResponse<>();
-
-        apiResponse.setResult( AuthenService.signUpSponsorService(request));
+        AuthenService.signUpSponsorService(request);
+        apiResponse.setMessage( "Đăng ký thành cong");
         return apiResponse;
     }
     @PostMapping("/login")

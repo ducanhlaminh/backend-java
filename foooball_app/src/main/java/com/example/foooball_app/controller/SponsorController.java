@@ -33,6 +33,13 @@ public class SponsorController {
         return apiResponse;
     }
     @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
+    @GetMapping("/sponsorships")
+    ApiResponse<List<Sponsorship>> getSponsorShip(@RequestParam(required = false) String sponsorName , @RequestParam(required = false)  String sponsorType, @RequestParam(required = false)  String country   ){
+        ApiResponse<List<Sponsorship>> apiResponse = new ApiResponse<>();
+        apiResponse.setResult(SponsorService.getSponsorShipWithService());
+        return apiResponse;
+    }
+    @PreAuthorize("hasAnyAuthority('SPONSOR','BTV')")
     @PutMapping("/sponsors/{id}")
     ApiResponse<Sponsor> updateSponsor(@PathVariable int id , @RequestBody SponsorRequest req   ){
         ApiResponse<Sponsor> apiResponse = new ApiResponse<>();

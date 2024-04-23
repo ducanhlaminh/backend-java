@@ -42,7 +42,9 @@ public class TeamController {
             responseTeam.setTeamId(team.getTeamId());
             responseTeam.setCountry(team.getCountry());
             responseTeam.setNumberOfPlayers(team.getPlayers().size());
-            responseTeam.setCoach(team.getCoach().getCoachId(),team.getCoach().getCoachName());
+            if(team.getCoach()!=null){
+                responseTeam.setCoach(team.getCoach().getCoachId(),team.getCoach().getCoachName());
+            }
             for (TournamentTeam tournamentTeam : team.getTournamentTeam()){
                 responseTeam.setTournament(tournamentTeam);
             }

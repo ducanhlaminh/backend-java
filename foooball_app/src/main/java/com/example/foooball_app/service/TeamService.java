@@ -78,6 +78,8 @@ public class TeamService {
         Team team = new Team();
         team.setTeamName(req.getTeamName());
         team.setCountry(req.getCountry());
+        Coach coach = CoachRepository.findById(req.getCoachId()).orElseThrow();
+        team.setCoach(coach);
         return TeamRepository.save(team);
     }
     public List<Team> filter(List<Team> teams,String country, String teamName) {
